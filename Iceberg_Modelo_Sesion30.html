@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>El Modelo Iceberg — Meadows</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;background:#000;display:flex;align-items:center;justify-content:center;font-family:Georgia,'Times New Roman',serif;overflow:hidden}
+.slide{position:relative;width:1200px;height:700px;overflow:hidden;flex-shrink:0;transform-origin:center}
+.sky{position:absolute;top:0;left:0;right:0;height:222px;background:linear-gradient(180deg,#05091a 0%,#0a1528 40%,#122338 74%,#1c304e 100%)}
+.ocean{position:absolute;top:222px;left:0;right:0;bottom:0;background:linear-gradient(180deg,#0c1e3c 0%,#071228 25%,#04091c 55%,#020610 100%)}
+.wl{position:absolute;top:219px;left:0;right:0;height:5px;background:linear-gradient(90deg,transparent 0%,rgba(100,185,225,.2) 22%,rgba(175,232,255,.68) 50%,rgba(100,185,225,.2) 78%,transparent 100%);animation:ws 4s ease-in-out infinite}
+@keyframes ws{0%,100%{opacity:.55}50%{opacity:1}}
+.star{position:absolute;border-radius:50%;background:#fff;animation:tw var(--d) ease-in-out infinite var(--dl)}
+@keyframes tw{0%,100%{opacity:var(--lo)}50%{opacity:1}}
+.title{position:absolute;top:24px;left:44px;z-index:20}
+.title h1{color:rgba(255,255,255,.92);font-size:26px;font-weight:normal;letter-spacing:5px;text-transform:uppercase}
+.title p{color:rgba(155,205,238,.92);font-size:12px;letter-spacing:2px;margin-top:8px;font-style:italic}
+.zlbl{position:absolute;left:44px;z-index:20;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.78);display:flex;align-items:center;gap:8px}
+.zlbl::before{content:'';width:20px;height:1px;background:currentColor;display:block}
+.pct{position:absolute;z-index:10}
+.pct-n{font-size:52px;font-weight:bold;line-height:1;font-style:italic;color:rgba(255,255,255,.22)}
+.pct-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.52);margin-top:2px}
+.svg-main{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;pointer-events:none}
+#z-ev,#z-pa,#z-es,#z-mo{transition:opacity .45s ease}
+.lbl{position:absolute;right:36px;width:312px;cursor:pointer;padding:10px 14px;border-left:2px solid transparent;border-radius:0 4px 4px 0;transition:background .2s,border-color .2s;z-index:20}
+.lbl:hover{background:rgba(255,255,255,.04)}
+.lbl-n{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.52);margin-bottom:3px}
+.lbl-name{font-size:15px;font-weight:bold;letter-spacing:2.5px;text-transform:uppercase;transition:letter-spacing .22s}
+.lbl:hover .lbl-name,.lbl.act .lbl-name{letter-spacing:3.5px}
+.lbl-sub{font-size:11px;margin-top:3px;font-style:italic;color:rgba(255,255,255,.68);line-height:1.4}
+/* Above-water label (sky area — slightly dimmer is fine) */
+.ev .lbl-n{color:rgba(255,255,255,.38)}
+.ev .lbl-sub{color:rgba(255,255,255,.55)}
+/* Underwater labels — full contrast */
+.ev  .lbl-name{color:#f8d070}.ev.act{border-color:#f8d070;background:rgba(248,208,112,.06)}
+.pa  .lbl-name{color:#82d4ec}.pa.act{border-color:#82d4ec;background:rgba(130,212,236,.06)}
+.es  .lbl-name{color:#60aee0}.es.act{border-color:#60aee0;background:rgba(96,174,224,.06)}
+.mo  .lbl-name{color:#a4ccec}.mo.act{border-color:#a4ccec;background:rgba(164,204,236,.06)}
+.info-card{position:absolute;left:38px;bottom:38px;width:396px;z-index:25;background:rgba(4,11,26,.92);border:1px solid rgba(255,255,255,.10);border-radius:4px;padding:18px 22px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;transform:translateY(10px);transition:opacity .35s ease,transform .35s ease;pointer-events:none}
+.info-card.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.ic-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:5px}
+.ic-title{font-size:19px;font-weight:bold;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px}
+.ic-body{font-size:11.5px;line-height:1.75;color:rgba(215,235,252,.88);margin-bottom:12px}
+.ic-exlbl{font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:5px}
+.ic-ex{font-size:11.5px;line-height:1.65;color:rgba(195,222,246,.78);font-style:italic;padding-left:10px;border-left:2px solid rgba(255,255,255,.15)}
+.ic-x{position:absolute;top:10px;right:13px;font-size:18px;color:rgba(255,255,255,.25);cursor:pointer;font-family:sans-serif;line-height:1}
+.ic-x:hover{color:rgba(255,255,255,.65)}
+.info-def{position:absolute;left:38px;bottom:38px;width:396px;z-index:24;padding:18px 22px;font-size:12px;line-height:1.85;color:rgba(255,255,255,.72);font-style:italic;transition:opacity .25s ease}
+.info-def.hidden{opacity:0;pointer-events:none}
+.attr{position:absolute;bottom:15px;right:36px;font-size:9.5px;color:rgba(255,255,255,.52);letter-spacing:.4px;z-index:20}
+</style>
+</head>
+<body>
+<div class="slide" id="slide">
+
+  <div class="sky" id="skyEl"></div>
+  <div class="ocean"></div>
+  <div class="wl"></div>
+
+  <!-- TITLE — simplified -->
+  <div class="title">
+    <h1>El Modelo Iceberg</h1>
+    <p>Donella Meadows · 2008</p>
+  </div>
+
+  <div class="zlbl" style="top:200px">superficie</div>
+  <div class="zlbl" style="top:237px;opacity:.75">profundidad</div>
+
+  <div class="pct" style="left:185px;top:116px">
+    <div class="pct-n">10%</div>
+    <div class="pct-l">visible</div>
+  </div>
+  <div class="pct" style="left:145px;top:420px">
+    <div class="pct-n">90%</div>
+    <div class="pct-l">oculto</div>
+  </div>
+
+  <svg class="svg-main" id="mainSvg" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Zone highlight gradients -->
+      <linearGradient id="gZev" gradientUnits="userSpaceOnUse" x1="590" y1="30"  x2="590" y2="222">
+        <stop offset="0%"   stop-color="#f8d070" stop-opacity=".04"/>
+        <stop offset="100%" stop-color="#f8d070" stop-opacity=".30"/>
+      </linearGradient>
+      <linearGradient id="gZpa" gradientUnits="userSpaceOnUse" x1="590" y1="222" x2="590" y2="402">
+        <stop offset="0%"   stop-color="#82d4ec" stop-opacity=".02"/>
+        <stop offset="100%" stop-color="#82d4ec" stop-opacity=".28"/>
+      </linearGradient>
+      <linearGradient id="gZes" gradientUnits="userSpaceOnUse" x1="590" y1="400" x2="590" y2="530">
+        <stop offset="0%"   stop-color="#60aee0" stop-opacity=".02"/>
+        <stop offset="100%" stop-color="#60aee0" stop-opacity=".30"/>
+      </linearGradient>
+      <linearGradient id="gZmo" gradientUnits="userSpaceOnUse" x1="590" y1="522" x2="590" y2="664">
+        <stop offset="0%"   stop-color="#a4ccec" stop-opacity=".02"/>
+        <stop offset="100%" stop-color="#a4ccec" stop-opacity=".34"/>
+      </linearGradient>
+
+      <!-- Atmospheric glow filter -->
+      <filter id="fAura" x="-22%" y="-22%" width="144%" height="144%">
+        <feGaussianBlur stdDeviation="20" result="b"/>
+        <feColorMatrix in="b" type="matrix"
+          values="0 0 0 0 .06  0 0 0 0 .34  0 0 0 0 .80  0 0 0 .28 0" result="bc"/>
+        <feMerge><feMergeNode in="bc"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+
+      <!--
+        Clip paths match the NEW angular outlines defined in JS below.
+        Above-water: sharp crystalline peak
+        Below-water: angular diamond/crystal mass
+      -->
+      <clipPath id="cpA">
+        <path d="M 462 222 L 445 188 L 424 150 L 402 112
+                 L 432 76  L 462 48  L 498 22  L 548 5
+                 L 590 22  L 620 8   L 650 40  L 678 68
+                 L 700 102 L 714 140 L 720 178 L 720 222 Z"/>
+      </clipPath>
+      <clipPath id="cpB">
+        <path d="M 462 222 L 415 275 L 382 338 L 355 405
+                 L 342 472 L 355 540 L 392 598 L 452 642
+                 L 540 660 L 602 656 L 658 638 L 712 596
+                 L 748 538 L 762 470 L 760 402 L 742 335
+                 L 715 272 L 720 222 Z"/>
+      </clipPath>
+    </defs>
+
+    <!-- Atmospheric blue glow beneath iceberg -->
+    <ellipse cx="590" cy="455" rx="225" ry="232" fill="rgba(10,76,158,.07)" filter="url(#fAura)"/>
+
+    <!-- Low-poly iceberg: filled by JavaScript -->
+    <g id="icebergBelow"></g>
+
+    <!-- Zone highlight overlays -->
+    <rect id="z-ev" x="0" y="0"   width="1200" height="222" fill="url(#gZev)" clip-path="url(#cpA)" opacity="0"/>
+    <rect id="z-pa" x="0" y="222" width="1200" height="182" fill="url(#gZpa)" clip-path="url(#cpB)" opacity="0"/>
+    <rect id="z-es" x="0" y="400" width="1200" height="130" fill="url(#gZes)" clip-path="url(#cpB)" opacity="0"/>
+    <rect id="z-mo" x="0" y="522" width="1200" height="142" fill="url(#gZmo)" clip-path="url(#cpB)" opacity="0"/>
+
+    <!-- Zone separator lines (within new outline) -->
+    <line x1="357" y1="400" x2="760" y2="400" stroke="rgba(255,255,255,.07)" stroke-width=".8"/>
+    <line x1="352" y1="522" x2="751" y2="522" stroke="rgba(255,255,255,.07)" stroke-width=".8"/>
+
+    <g id="icebergAbove"></g>
+
+    <!-- Waterline dashed reference -->
+    <line x1="224" y1="222" x2="858" y2="222"
+      stroke="rgba(100,190,228,.18)" stroke-width=".8" stroke-dasharray="3 7"/>
+
+    <!-- Waterline ripple reflection -->
+    <path d="M 436 227 Q 500 234 570 225 Q 638 231 714 225"
+      fill="none" stroke="rgba(148,212,242,.12)" stroke-width="1.5"/>
+    <path d="M 445 232 Q 510 237 580 229 Q 646 234 715 229"
+      fill="none" stroke="rgba(148,212,242,.07)" stroke-width="1"/>
+
+    <!-- Connecting lines: labels (x=858) → iceberg right edge -->
+    <!-- EVENTOS → above-water right face at y=117 -->
+    <line x1="858" y1="117" x2="705" y2="117" stroke="rgba(248,208,112,.42)" stroke-width="1" stroke-dasharray="3 5"/>
+    <circle cx="705" cy="117" r="2.5" fill="rgba(248,208,112,.62)"/>
+
+    <!-- PATRONES → below-water right face at y=312 -->
+    <line x1="858" y1="312" x2="732" y2="312" stroke="rgba(130,212,236,.42)" stroke-width="1" stroke-dasharray="3 5"/>
+    <circle cx="732" cy="312" r="2.5" fill="rgba(130,212,236,.62)"/>
+
+    <!-- ESTRUCTURAS → below-water right face at y=452 -->
+    <line x1="858" y1="452" x2="761" y2="452" stroke="rgba(96,174,224,.42)" stroke-width="1" stroke-dasharray="3 5"/>
+    <circle cx="761" cy="452" r="2.5" fill="rgba(96,174,224,.62)"/>
+
+    <!-- MODELOS → below-water right face at y=580 -->
+    <line x1="858" y1="580" x2="722" y2="580" stroke="rgba(164,204,236,.42)" stroke-width="1" stroke-dasharray="3 5"/>
+    <circle cx="722" cy="580" r="2.5" fill="rgba(164,204,236,.62)"/>
+  </svg>
+
+  <!-- Level labels -->
+  <div class="lbl ev" style="top:76px"  onclick="pick('ev')">
+    <div class="lbl-n">01 — visible</div>
+    <div class="lbl-name">Eventos</div>
+    <div class="lbl-sub">Lo que vemos cuando algo ocurre o falla</div>
+  </div>
+  <div class="lbl pa" style="top:284px" onclick="pick('pa')">
+    <div class="lbl-n">02 — bajo el agua</div>
+    <div class="lbl-name">Patrones</div>
+    <div class="lbl-sub">Tendencias que se repiten sin resolverse de fondo</div>
+  </div>
+  <div class="lbl es" style="top:418px" onclick="pick('es')">
+    <div class="lbl-n">03 — profundidad media</div>
+    <div class="lbl-name">Estructuras</div>
+    <div class="lbl-sub">Las reglas, incentivos y relaciones de poder</div>
+  </div>
+  <div class="lbl mo" style="top:548px" onclick="pick('mo')">
+    <div class="lbl-n">04 — el fondo</div>
+    <div class="lbl-name">Modelos Mentales</div>
+    <div class="lbl-sub">Creencias que hacen inevitables las estructuras</div>
+  </div>
+
+  <div class="info-def" id="infoDef">
+    Haga clic en cualquier nivel para ver un ejemplo de transformación digital en el sector público.<br><br>
+    <span style="color:rgba(255,255,255,.50)">La mayoría de las intervenciones actúan en el nivel 1.<br>
+    La transformación real ocurre en los niveles 3 y 4.</span>
+  </div>
+
+  <div class="info-card" id="infoCard">
+    <span class="ic-x" onclick="closeCard()">×</span>
+    <div class="ic-lbl"   id="icLbl"></div>
+    <div class="ic-title" id="icTitle"></div>
+    <div class="ic-body"  id="icBody"></div>
+    <div class="ic-exlbl">Ejemplo — Sector Público</div>
+    <div class="ic-ex"    id="icEx"></div>
+  </div>
+
+  <div class="attr">Meadows, D. H. (2008). Thinking in Systems. Chelsea Green Publishing.</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+/* ---- Responsive scaling ---- */
+const slide = document.getElementById('slide');
+function resize() {
+  const s = Math.min(window.innerWidth/1200, window.innerHeight/700, 1);
+  slide.style.transform = 'scale('+s+')';
+}
+window.addEventListener('resize', resize); resize();
+
+/* ---- Stars ---- */
+(function(){
+  const sky = document.getElementById('skyEl');
+  for(let i=0;i<94;i++){
+    const el=document.createElement('div'); el.className='star';
+    const sz=(Math.random()*1.85+0.38).toFixed(2);
+    el.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+(Math.random()*100).toFixed(1)+'%;top:'+(Math.random()*100).toFixed(1)+'%;--d:'+(Math.random()*3.5+1.5).toFixed(1)+'s;--dl:'+(Math.random()*4.2).toFixed(1)+'s;--lo:'+(Math.random()*0.36+0.12).toFixed(2);
+    sky.appendChild(el);
+  }
+})();
+
+/* ---- Level data & interaction ---- */
+const levels = {
+  ev:{color:'#f8d070',lbl:'Nivel 01 — Lo visible',title:'Eventos',
+    body:'Los eventos son los hechos observables: el sistema cayó, el proyecto se retrasó, el ciudadano no pudo acceder. Reciben toda la atención política y mediática — pero intervenir solo aquí no cambia nada de fondo. El mismo evento volverá.',
+    ex:'"El sistema de turnos online colapsó el primer lunes del mes." La respuesta habitual: reiniciar el servidor. La causa real: nunca se hicieron pruebas de carga. Eso es un problema de nivel 3.',
+    zone:'z-ev'},
+  pa:{color:'#82d4ec',lbl:'Nivel 02 — Bajo el agua',title:'Patrones',
+    body:'Los patrones son los eventos que se repiten sistemáticamente. Si cada proyecto digital fracasa en sus primeros seis meses, si siempre se lanza sin capacitar a los usuarios: eso es un patrón. Y los patrones señalan estructuras.',
+    ex:'"Cada nuevo sistema que implementamos muere en los primeros seis meses por falta de adopción." Si ocurre siempre, no es mala suerte: es la señal de una estructura que lo produce.',
+    zone:'z-pa'},
+  es:{color:'#60aee0',lbl:'Nivel 03 — Profundidad media',title:'Estructuras',
+    body:'Las estructuras son los mecanismos que mantienen los patrones: contratos sin cláusulas de sostenibilidad, presupuestos que financian lanzamientos pero no mantenimiento, silos institucionales, incentivos que premian velocidad sobre calidad.',
+    ex:'"El área de TI no tiene poder real sobre los contratos. Cada ministerio elige su propio proveedor sin requisitos de interoperabilidad." Hasta que esto cambie, los sistemas no conversarán entre sí.',
+    zone:'z-es'},
+  mo:{color:'#a4ccec',lbl:'Nivel 04 — El fondo del iceberg',title:'Modelos Mentales',
+    body:'Los modelos mentales son las creencias no examinadas que hacen que las estructuras parezcan inevitables: "la tecnología es gasto de TI, no inversión estratégica", "los ciudadanos no saben usar sistemas digitales", "esto no es problema del liderazgo político".',
+    ex:'"La transformación digital es cosa del departamento de sistemas." Mientras este modelo mental persista en la alta dirección, ninguna intervención estructural será duradera.',
+    zone:'z-mo'}
+};
+const zones=['z-ev','z-pa','z-es','z-mo'];
+let cur=null;
+function pick(key){
+  if(cur===key){closeCard();return;}
+  cur=key; const d=levels[key];
+  document.querySelectorAll('.lbl').forEach(function(el){el.classList.remove('act');});
+  document.querySelector('.lbl.'+key).classList.add('act');
+  zones.forEach(function(id){var el=document.getElementById(id);if(el)el.style.opacity='0';});
+  var ze=document.getElementById(d.zone);if(ze)ze.style.opacity='1';
+  document.getElementById('icLbl').textContent=d.lbl;
+  var t=document.getElementById('icTitle');t.style.color=d.color;t.textContent=d.title;
+  document.getElementById('icBody').textContent=d.body;
+  document.getElementById('icEx').textContent=d.ex;
+  document.getElementById('infoCard').classList.add('show');
+  document.getElementById('infoDef').classList.add('hidden');
+}
+function closeCard(){
+  cur=null;
+  document.querySelectorAll('.lbl').forEach(function(el){el.classList.remove('act');});
+  zones.forEach(function(id){var el=document.getElementById(id);if(el)el.style.opacity='0';});
+  document.getElementById('infoCard').classList.remove('show');
+  document.getElementById('infoDef').classList.remove('hidden');
+}
+
+/* ============================================================
+   LOW-POLY ICEBERG — angular, crystalline geometry
+   ============================================================ */
+
+/* Seeded RNG (Mulberry32) — reproducible jitter */
+function mkRng(seed){
+  let s=seed>>>0;
+  return function(){
+    s+=0x6D2B79F5;
+    let t=Math.imul(s^(s>>>15),1|s);
+    t^=t+Math.imul(t^(t>>>7),61|t);
+    return((t^(t>>>14))>>>0)/4294967296;
+  };
+}
+
+/* Ray-casting point-in-polygon */
+function pip(px,py,poly){
+  let inside=false;
+  for(let i=0,j=poly.length-1;i<poly.length;j=i++){
+    const xi=poly[i][0],yi=poly[i][1],xj=poly[j][0],yj=poly[j][1];
+    if(((yi>py)!==(yj>py))&&(px<(xj-xi)*(py-yi)/(yj-yi)+xi))inside=!inside;
+  }
+  return inside;
+}
+
+/* Deterministic per-position noise */
+function noise2(x,y){
+  return Math.sin(x*0.113+y*0.071)*Math.sin(x*0.047-y*0.137)*0.5+0.5;
+}
+
+/* Color interpolation along stops [[t,[r,g,b]],...] */
+function colorAtT(stops,t){
+  t=Math.max(0,Math.min(1,t));
+  for(let i=1;i<stops.length;i++){
+    if(t<=stops[i][0]){
+      const tl=(t-stops[i-1][0])/(stops[i][0]-stops[i-1][0]);
+      const a=stops[i-1][1],b=stops[i][1];
+      return'rgb('+Math.round(a[0]+(b[0]-a[0])*tl)+','+Math.round(a[1]+(b[1]-a[1])*tl)+','+Math.round(a[2]+(b[2]-a[2])*tl)+')';
+    }
+  }
+  const l=stops[stops.length-1][1];return'rgb('+l[0]+','+l[1]+','+l[2]+')';
+}
+
+/* Colour palettes — slightly higher saturation for crisper facets */
+const aboveStops=[
+  [0.00,[242,254,255]],   /* near-white peak */
+  [0.18,[214,240,255]],   /* icy highlight */
+  [0.40,[172,215,248]],   /* light blue */
+  [0.65,[132,186,232]],   /* medium */
+  [1.00,[98, 158,215]],   /* darker at waterline */
+];
+const belowStops=[
+  [0.00,[148,200,238]],   /* light teal-blue, just under surface */
+  [0.16,[110,166,220]],
+  [0.34,[75, 132,198]],
+  [0.54,[48, 100,172]],
+  [0.70,[30, 74, 148]],
+  [0.85,[18, 52, 118]],
+  [1.00,[10, 34, 85 ]],   /* deep navy tip */
+];
+
+function colorAbove(cx,cy){
+  const t=(cy-5)/(222-5);
+  const xNorm=(cx-462)/258;
+  const xBias=(xNorm-0.42)*0.16;
+  /* Stronger noise = more visible facet edges */
+  const n=(noise2(cx,cy)-0.5)*0.32;
+  return colorAtT(aboveStops,t+xBias+n);
+}
+function colorBelow(cx,cy){
+  const t=(cy-222)/(662-222);
+  const n=(noise2(cx*1.3,cy*0.9)-0.5)*0.22;
+  return colorAtT(belowStops,t+n);
+}
+
+/* ----------------------------------------------------------------
+   ICEBERG OUTLINES — angular, crystal / gem-cut geometry
+   (fewer vertices per edge → longer straight sections = sharper look)
+   ---------------------------------------------------------------- */
+
+/* Above-water: sharp asymmetric crystal peak */
+const aboveOutline=[
+  [462,222],
+  [445,188],   /* left face, strong downward angle */
+  [424,150],
+  [402,112],   /* prominent left shoulder corner */
+  [432,76],    /* sharp inward jag */
+  [462,48],    /* ascending toward peak */
+  [498,22],
+  [548,5],     /* MAIN PEAK — highest point */
+  [590,22],    /* right of peak */
+  [620,8],     /* secondary right peak */
+  [650,40],
+  [678,68],    /* right upper face, long straight plane */
+  [700,102],   /* right face corner */
+  [714,140],   /* right lower face */
+  [720,178],
+  [720,222]    /* right waterline */
+];
+
+/* Below-water: angular diamond / crystal mass
+   Clear flat planes with sharp corner vertices */
+const belowOutline=[
+  [462,222],
+  [415,275],   /* upper-left face, clear angle */
+  [382,338],   /* left face */
+  [355,405],   /* LEFT CORNER — prominent shoulder */
+  [342,472],   /* left lower face */
+  [355,540],   /* turning inward */
+  [392,598],   /* lower-left face */
+  [452,642],   /* bottom-left corner */
+  [540,660],   /* bottom */
+  [602,656],
+  [658,638],   /* bottom-right corner */
+  [712,596],   /* lower-right face */
+  [748,538],   /* right lower */
+  [762,470],   /* RIGHT CORNER — prominent shoulder */
+  [760,402],   /* right face */
+  [742,335],   /* right upper */
+  [715,272],   /* upper-right face */
+  [720,222]    /* right waterline */
+];
+
+/* Feature vertices guide Delaunay to produce large, angular facets
+   at structurally important zones (placed along "fault lines") */
+const belowFeatures=[
+  /* Upper band (y 222–340): 3 facets wide */
+  [498,262],[590,256],[660,264],
+  /* Corner zone (y 340–410): emphasise the shoulder corners */
+  [385,370],[478,360],[580,354],[668,362],[748,370],
+  /* Widest horizontal band (y ~400) */
+  [362,402],[458,397],[572,394],[666,398],[754,403],
+  /* Mid-lower band (y 470–540) */
+  [356,476],[452,468],[570,462],[666,468],[756,476],
+  /* Lower band (y 540–600) */
+  [370,548],[464,540],[572,536],[660,540],[744,547],
+  /* Near-bottom (y 600–660) */
+  [420,610],[510,607],[592,609],[656,607],[705,613],
+  /* Tip */
+  [590,658]
+];
+const aboveFeatures=[
+  /* Peak cluster */
+  [528,44],[578,36],[614,48],
+  /* Mid-level */
+  [458,96],[536,89],[618,86],[678,96],
+  /* Lower level */
+  [458,147],[536,140],[618,137],[682,147],
+  /* Near waterline */
+  [508,184],[588,180],[652,184]
+];
+
+const belowPts=belowOutline.concat(belowFeatures);
+const abovePts=aboveOutline.concat(aboveFeatures);
+
+/* Draw low-poly triangulation into a <g> SVG element */
+function drawLowPoly(groupEl,outline,colorFn,spacing,rng){
+  const minX=Math.min(...outline.map(p=>p[0]));
+  const maxX=Math.max(...outline.map(p=>p[0]));
+  const minY=Math.min(...outline.map(p=>p[1]));
+  const maxY=Math.max(...outline.map(p=>p[1]));
+  const pts=outline.map(p=>[p[0],p[1]]);
+  const jAmt=spacing*0.38;
+
+  for(let y=minY+spacing*0.5;y<maxY;y+=spacing){
+    for(let x=minX+spacing*0.5;x<maxX;x+=spacing){
+      const jx=x+(rng()-0.5)*2*jAmt;
+      const jy=y+(rng()-0.5)*2*jAmt;
+      if(pip(jx,jy,outline))pts.push([jx,jy]);
+    }
+  }
+
+  const del=d3.Delaunay.from(pts);
+  const NS='http://www.w3.org/2000/svg';
+
+  for(let i=0;i<del.triangles.length;i+=3){
+    const a=pts[del.triangles[i]],b=pts[del.triangles[i+1]],c=pts[del.triangles[i+2]];
+    const cx=(a[0]+b[0]+c[0])/3,cy=(a[1]+b[1]+c[1])/3;
+    if(!pip(cx,cy,outline))continue;
+    const color=colorFn(cx,cy);
+    const el=document.createElementNS(NS,'polygon');
+    el.setAttribute('points',
+      a[0].toFixed(1)+','+a[1].toFixed(1)+' '+
+      b[0].toFixed(1)+','+b[1].toFixed(1)+' '+
+      c[0].toFixed(1)+','+c[1].toFixed(1));
+    el.setAttribute('fill',color);
+    el.setAttribute('stroke',color);      /* same fill = no micro-gaps */
+    el.setAttribute('stroke-width','0.6');
+    el.setAttribute('stroke-linejoin','miter'); /* sharp corners */
+    groupEl.appendChild(el);
+  }
+}
+
+window.addEventListener('load',function(){
+  if(typeof d3==='undefined')return;
+
+  const NS='http://www.w3.org/2000/svg';
+  const rng=mkRng(0xDEADBEEF);
+
+  drawLowPoly(document.getElementById('icebergBelow'),belowPts,colorBelow,70,rng);
+  drawLowPoly(document.getElementById('icebergAbove'),abovePts,colorAbove,38,rng);
+
+  const svg=document.getElementById('mainSvg');
+
+  /* Sharp outline stroke over above-water tip */
+  function addPath(d,stroke,sw,fill){
+    const p=document.createElementNS(NS,'path');
+    p.setAttribute('d',d);p.setAttribute('fill',fill||'none');
+    p.setAttribute('stroke',stroke);p.setAttribute('stroke-width',sw);
+    p.setAttribute('stroke-linejoin','miter');p.setAttribute('stroke-linecap','square');
+    svg.appendChild(p);return p;
+  }
+
+  /* Above-water silhouette */
+  addPath(
+    'M 462 222 L 445 188 L 424 150 L 402 112 L 432 76 L 462 48 L 498 22 L 548 5 L 590 22 L 620 8 L 650 40 L 678 68 L 700 102 L 714 140 L 720 178 L 720 222 Z',
+    'rgba(218,246,255,0.55)','1.4');
+
+  /* Below-water silhouette (faint) */
+  addPath(
+    'M 462 222 L 415 275 L 382 338 L 355 405 L 342 472 L 355 540 L 392 598 L 452 642 L 540 660 L 602 656 L 658 638 L 712 596 L 748 538 L 762 470 L 760 402 L 742 335 L 715 272 L 720 222 Z',
+    'rgba(80,155,215,0.20)','1');
+
+  /* Ice ridge: prominent left face lines for crystalline depth */
+  addPath(
+    'M 462 222 L 445 188 L 424 150 L 402 112 M 402 112 L 432 76 L 462 48 L 498 22 M 498 22 L 548 5',
+    'rgba(240,254,255,0.55)','1.3');
+
+  /* Snow cap fills on the three peaks */
+  [
+    'M 548 5  L 590 22 L 549 20 Z',
+    'M 498 22 L 548 5  L 500 18 Z',
+    'M 620 8  L 650 40 L 622 36 Z'
+  ].forEach(function(d){
+    const p=document.createElementNS(NS,'path');
+    p.setAttribute('d',d);p.setAttribute('fill','rgba(255,255,255,0.94)');
+    p.setAttribute('stroke','none');svg.appendChild(p);
+  });
+});
+</script>
+</body>
+</html>
