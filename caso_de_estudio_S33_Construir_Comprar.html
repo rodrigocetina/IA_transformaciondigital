@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso de estudio (Sesión 33): construir o comprar bien — ChatTCU, Pair, Humphrey y ChileCompra</title>
+<style>
+  :root{
+    --azul:#1f4e79;
+    --azul-claro:#eaf1f8;
+    --acento:#b5651d;
+    --texto:#222;
+    --gris:#666;
+    --borde:#d8dee6;
+    --fondo:#fbfbfa;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Georgia","Times New Roman",serif;
+    color:var(--texto);
+    background:var(--fondo);
+    line-height:1.6;
+  }
+  .container{max-width:880px;margin:0 auto;padding:40px 24px 80px;}
+  header h1{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+    font-size:2rem;
+    margin-bottom:6px;
+  }
+  header p.subtitulo{color:var(--gris);font-style:italic;margin-top:0;}
+  h2{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+    border-bottom:2px solid var(--azul-claro);
+    padding-bottom:6px;
+    margin-top:2.2em;
+  }
+  h3{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--azul);}
+  table.ficha{
+    width:100%;
+    border-collapse:collapse;
+    margin:18px 0 28px;
+    font-size:0.96rem;
+  }
+  table.ficha th, table.ficha td{
+    border:1px solid var(--borde);
+    padding:10px 12px;
+    text-align:left;
+    vertical-align:top;
+  }
+  table.ficha th{
+    background:var(--azul-claro);
+    width:28%;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+  }
+  p{text-align:justify;}
+  .nota-instrucciones{
+    background:var(--azul-claro);
+    border-left:4px solid var(--azul);
+    padding:14px 18px;
+    border-radius:4px;
+    font-size:0.95rem;
+  }
+  .pregunta{
+    background:#fff;
+    border:1px solid var(--borde);
+    border-radius:8px;
+    padding:18px 20px;
+    margin-bottom:20px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.05);
+  }
+  .pregunta h3{margin-top:0;margin-bottom:8px;font-size:1.02rem;}
+  .pregunta p.enunciado{margin-top:0;margin-bottom:12px;}
+  textarea{
+    width:100%;
+    min-height:120px;
+    padding:10px;
+    font-family:"Georgia",serif;
+    font-size:0.98rem;
+    border:1px solid var(--borde);
+    border-radius:6px;
+    resize:vertical;
+  }
+  .contador{font-size:0.82rem;color:var(--gris);text-align:right;margin-top:4px;}
+  .acciones{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+    margin:24px 0 8px;
+  }
+  button{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:11px 20px;
+    border-radius:6px;
+    font-size:0.95rem;
+    cursor:pointer;
+  }
+  button.secundario{
+    background:#fff;
+    color:var(--azul);
+    border:1px solid var(--azul);
+  }
+  button:hover{opacity:0.88;}
+  #estadoCopia{font-size:0.9rem;color:var(--acento);font-weight:bold;}
+  .caveat{
+    border-left:4px solid var(--acento);
+    background:#fdf3ea;
+    padding:14px 18px;
+    border-radius:4px;
+    font-style:italic;
+    color:#7a4310;
+  }
+  ul.fuentes li{margin-bottom:8px;}
+  a{color:var(--azul);}
+  footer{margin-top:60px;font-size:0.85rem;color:var(--gris);border-top:1px solid var(--borde);padding-top:16px;}
+  @media print{
+    .acciones, #estadoCopia{display:none;}
+    textarea{border:1px solid #999;}
+  }
+
+  table.comparativa th{width:auto;}
+  table.comparativa thead th{background:var(--azul);color:#fff;}
+  table.comparativa td:first-child{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--azul);font-weight:bold;width:20%;background:var(--azul-claro);}
+  ul.lista{margin-top:0;}
+  ul.lista li{margin-bottom:6px;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Caso de estudio (Sesión 33): Construir o comprar bien — ChatTCU (Brasil), Pair (Singapur), Humphrey (Reino Unido) y ChileCompra con el GobLab UAI (Chile)</h1>
+  <p class="subtitulo">Caso de estudio con lectura guiada, pensado para la reflexión personal. Sesión 33: alianzas público-privadas para la transformación digital.</p>
+</header>
+
+<table class="ficha">
+<tr><th>Países / Nivel</th><td>Brasil, Singapur, Reino Unido y Chile — gobierno nacional</td></tr>
+<tr><th>Instituciones líderes</th><td><strong>Brasil:</strong> Tribunal de Contas da União (TCU). <strong>Singapur:</strong> Open Government Products (OGP), equipo experimental de la agencia de tecnología del gobierno (GovTech). <strong>Reino Unido:</strong> i.AI, la incubadora de IA del gobierno, hoy integrada en el Government Digital Service. <strong>Chile:</strong> Dirección ChileCompra y GobLab de la Universidad Adolfo Ibáñez (UAI).</td></tr>
+<tr><th>Modelo</th><td><strong>Construir</strong> herramientas propias sobre modelos de lenguaje comerciales (Brasil, Singapur, Reino Unido). <strong>Comprar bien</strong>, con reglas de compra diseñadas junto con la academia (Chile).</td></tr>
+<tr><th>Fechas clave</th><td><strong>ChatTCU:</strong> lanzado en 2023; cesión de su código a otros organismos desde junio de 2024. <strong>Pair:</strong> desde mediados de 2023. <strong>Humphrey:</strong> anunciado en enero de 2025; primera prueba real de una de sus herramientas en mayo de 2025. <strong>Chile:</strong> proyecto Algoritmos Éticos desde diciembre de 2020; bases tipo aprobadas en diciembre de 2022; directiva de recomendaciones en diciembre de 2023.</td></tr>
+<tr><th>Función de la IA</th><td>Asistentes de IA generativa para el trabajo interno de los funcionarios: redactar, resumir, transcribir reuniones, buscar documentos o analizar respuestas a consultas públicas. En Chile, el objeto no es una herramienta sino las reglas para comprar cualquier proyecto de ciencia de datos o IA.</td></tr>
+<tr><th>Evidencia principal</th><td><strong>Pair:</strong> más de 60.000 usuarios registrados y más de 20.000 activos cada semana en septiembre de 2024. <strong>ChatTCU:</strong> código cedido a más de 136 organismos públicos según el TCU (2025). <strong>Humphrey:</strong> primera prueba con 2.000 respuestas de una consulta del Gobierno escocés. <strong>Chile:</strong> licitaciones piloto en 2022 y bases tipo de uso general. La mayoría de estos datos proceden de las propias instituciones.</td></tr>
+</table>
+
+<h2>Contexto y el problema</h2>
+<p>Cuando la IA generativa se volvió accesible, a partir de 2023, muchos funcionarios empezaron a usarla por su cuenta, como se vio en la Sesión 31. Las instituciones públicas se enfrentaron entonces a una decisión práctica: prohibirla, contratar licencias de herramientas comerciales o construir una herramienta propia, segura y adaptada a su trabajo. Y, para los sistemas de mayor impacto, a una segunda decisión: si hay que comprar, ¿cómo hacerlo sin perder el control de lo que se compra?</p>
+<p>Este caso reúne cuatro respuestas. Tres instituciones decidieron construir: un tribunal de cuentas en Brasil, un pequeño equipo del gobierno de Singapur y la incubadora de IA del gobierno británico. La cuarta experiencia, en Chile, muestra otro camino: comprar, pero con reglas diseñadas junto con una universidad para que el Estado sepa qué exigir. Ninguna es un modelo puro. En las cuatro, lo decisivo fue qué parte del sistema quedaba bajo control público.</p>
+
+<h2>Brasil: ChatTCU, del uso interno al código compartido</h2>
+<p>El Tribunal de Contas da União, el órgano de control externo del gobierno federal brasileño, lanzó en 2023 ChatTCU, un asistente de IA generativa para su personal. La primera versión se apoyaba en ChatGPT; poco después la herramienta se trasladó a un servicio en la nube que permitía proteger la información de los usuarios. Desde entonces ha ido incorporando modelos de varios proveedores, alojados en distintas nubes, de modo que el Tribunal puede elegir o cambiar el modelo sin rehacer la herramienta.</p>
+<p>Lo que el TCU construyó no es el modelo de lenguaje, que sigue siendo de empresas privadas, sino todo lo que lo rodea: la interfaz, la conexión con sus documentos, las reglas de uso y la posibilidad de cambiar de proveedor. Esa es la capa que la institución decidió controlar.</p>
+<p>Desde junio de 2024, el Tribunal cede gratuitamente el código fuente de ChatTCU a otros organismos públicos mediante un contrato de adhesión. Lo que se comparte es el código, no el servicio: cada institución lo instala y adapta a sus necesidades. Entre los primeros receptores estuvieron el Ministerio de Gestión e Innovación y los tribunales de cuentas del Distrito Federal, Acre y Ceará. En 2025, el TCU informó de más de 136 cesiones, entre ellas un acuerdo con la Contraloría General de la República de Chile; en 2026, la prensa especializada elevó la cifra a más de 160 organismos.</p>
+
+<h2>Singapur: Pair, un equipo pequeño con método</h2>
+<p>Open Government Products es un equipo experimental dentro de GovTech, la agencia de tecnología del gobierno de Singapur. Cada enero, sus integrantes dejan sus tareas habituales durante un mes para desarrollar prototipos que respondan a problemas públicos reales. De ese ejercicio salió en 2023 Pair Chat, construido por cinco personas de perfiles distintos: una versión segura de ChatGPT para los funcionarios, en la que los datos permanecen dentro del gobierno y no quedan registrados por los proveedores de nube.</p>
+<p>A Pair Chat le siguieron otras herramientas, como Pair Noms, que redacta actas de reuniones con el formato del gobierno, y Pair Search, que permite buscar en debates parlamentarios, sentencias y legislación. Todo el conjunto lo mantenía en 2024 un equipo de siete personas: un responsable de producto, tres ingenieros, un especialista en operaciones, un experto en políticas públicas y un diseñador.</p>
+<p>Dos prácticas del equipo son especialmente útiles para esta sesión. La primera: no se casa con un modelo. Prueba los modelos más avanzados de distintas empresas y, antes de cambiar el que usa, los evalúa con criterios propios. Para las actas, por ejemplo, definió qué es un acta de calidad en el gobierno de Singapur y mide los resultados contra esa definición. La segunda: acompaña la herramienta con guías de uso y colabora con las autoridades digitales del país para convertir lo aprendido en reglas para todo el servicio público.</p>
+<p>Según el propio equipo, en septiembre de 2024 Pair tenía más de 60.000 usuarios registrados y más de 20.000 activos cada semana, con un ahorro estimado del 46% del tiempo dedicado a tareas administrativas. En junio de 2026, la prensa informó de que más de la mitad de los 150.000 funcionarios del país la usaban con regularidad.</p>
+
+<h2>Reino Unido: Humphrey, herramientas a medida para el gobierno</h2>
+<p>En enero de 2025, el gobierno británico presentó Humphrey, un conjunto de herramientas de IA para los funcionarios desarrollado por i.AI, su incubadora interna de IA. El nombre es un guiño a Sir Humphrey Appleby, el alto funcionario de la comedia televisiva <em>Yes, Minister</em>. El paquete incluye herramientas para tareas muy concretas: Consult, para analizar las respuestas a consultas públicas; Minute, para transcribir y resumir reuniones de forma segura; Parlex, para buscar en debates parlamentarios; Lex, para la investigación jurídica, y Redbox, para resumir documentos y preparar notas informativas.</p>
+<p>Consult ilustra bien la lógica de construir. Según el gobierno, sus cerca de 500 consultas anuales consumen unos 75.000 días de análisis humano, una tarea que con frecuencia se encargaba a empresas externas. En mayo de 2025, Consult se probó por primera vez con una consulta real del Gobierno escocés: clasificó 2.000 respuestas por temas, mientras el personal escocés las revisaba también una a una para comparar. Según el ministerio responsable, la herramienta y las personas coincidieron la mayoría de las veces, y las diferencias apenas alteraron la jerarquía de los temas. El gobierno estimó que usar Consult en todas las consultas podría ahorrar unos 20 millones de libras al año, y advirtió que hacía falta más evaluación antes de extenderla a todos los ministerios.</p>
+<p>El ministro de Tecnología presentó la decisión en términos explícitos de construir frente a comprar: no tenía sentido, dijo, gastar millones de libras en externalizar ese trabajo a contratistas. Al mismo tiempo, un estudio sobre los líderes digitales británicos describía la adopción de IA en el gobierno como conducir con un pie en el acelerador y otro en el freno: el entusiasmo político convive con la cautela sobre la seguridad.</p>
+
+<h2>Chile: comprar bien, con la universidad como socia</h2>
+<p>No todas las instituciones pueden ni deben construir. La mayoría seguirá comprando. La pregunta es cómo comprar sin que el proveedor defina por su cuenta lo que importa. En diciembre de 2020, la Universidad Adolfo Ibáñez puso en marcha, con apoyo de BID Lab, el proyecto Algoritmos Éticos, Responsables y Transparentes, liderado por su laboratorio de innovación pública, el GobLab. La Dirección ChileCompra, el organismo que gestiona las compras públicas del país, participó como socia.</p>
+<p>El resultado principal fueron unas bases tipo de licitación para proyectos de ciencia de datos e inteligencia artificial: un modelo de pliego que cualquier institución pública puede usar. Se sometieron a consulta pública y ChileCompra las aprobó en diciembre de 2022. Incluyen exigencias de transparencia, privacidad, no discriminación y explicabilidad, y piden a los proveedores, entre otras cosas, métricas de equidad estadística y análisis de sesgos. Antes de aprobarlas, se probaron en dos licitaciones piloto en 2022, del Fondo Nacional de Salud (FONASA) y de la Defensoría Penal Pública. En diciembre de 2023, ChileCompra añadió una directiva con recomendaciones para gestionar este tipo de proyectos.</p>
+<p>Según ChileCompra, Chile fue el primer país de América Latina en incorporar requisitos de ética de datos a la compra de sistemas automatizados. El proyecto ha recibido reconocimientos internacionales, pasó a una segunda fase con financiamiento de la agencia nacional de investigación (ANID) y el GobLab publicó en 2024 una herramienta abierta de evaluación de impacto algorítmico. Aquí la universidad no es un proveedor: es el socio que aporta al Estado la capacidad técnica para saber qué exigir.</p>
+
+<h2>Diseño institucional y gobernanza</h2>
+<table class="ficha comparativa">
+<thead><tr><th></th><th>ChatTCU (Brasil)</th><th>Pair (Singapur)</th><th>Humphrey (Reino Unido)</th><th>ChileCompra y GobLab UAI</th></tr></thead>
+<tbody>
+<tr><td>Modelo</td><td>Construir sobre modelos comerciales</td><td>Construir sobre modelos comerciales</td><td>Construir herramientas a medida</td><td>Comprar con reglas co-diseñadas</td></tr>
+<tr><td>Quién construye</td><td>Equipo propio del Tribunal</td><td>Equipo pequeño y estable de GovTech</td><td>Incubadora de IA del gobierno</td><td>Los proveedores, bajo reglas diseñadas con una universidad</td></tr>
+<tr><td>Qué controla la institución</td><td>Interfaz, documentos, reglas de uso y elección del modelo</td><td>Datos dentro del gobierno, evaluación y elección del modelo</td><td>Herramientas adaptadas a tareas del gobierno</td><td>Requisitos éticos obligatorios en el pliego</td></tr>
+<tr><td>Dependencia que se mantiene</td><td>De los proveedores de modelos y nube, repartida entre varios</td><td>De los modelos comerciales, con capacidad de cambiar</td><td>No se detalla en las fuentes consultadas</td><td>Del proveedor adjudicatario, acotada por el contrato</td></tr>
+<tr><td>Cómo se comparte</td><td>Cesión gratuita del código a otros organismos</td><td>Herramienta para todo el servicio público, con guías de uso</td><td>Suite común para todos los ministerios</td><td>Bases tipo y herramientas abiertas para cualquier institución</td></tr>
+</tbody>
+</table>
+
+<h2>Evidencia de impacto</h2>
+<p>Conviene leer las cifras con cuidado. Los datos de uso y de ahorro de Pair proceden del propio equipo. Los ahorros de Consult son estimaciones del gobierno británico, y su índice de precisión lo calculó el mismo ministerio. Las cifras de ChatTCU cuentan cesiones de código, no uso real ni resultados en las instituciones receptoras. En Chile están documentados los pilotos y la aprobación de las bases, pero no se encontró un listado público de las licitaciones que las han usado ni una evaluación independiente de sus efectos.</p>
+<p>Ninguno de los casos ofrece todavía evidencia independiente sobre resultados para la ciudadanía. Sí ofrecen algo valioso: ejemplos de instituciones que, al construir o comprar, construyeron también su propia forma de evaluar, como los criterios de calidad de actas de Singapur o la doble revisión humana de la primera prueba de Consult.</p>
+
+<h2>Tensiones y preguntas abiertas</h2>
+<p>La primera tensión es que construir no elimina la dependencia: la desplaza. Los tres desarrollos propios se apoyan en modelos de grandes empresas tecnológicas. Lo que cambia es qué capa controla la institución. Trabajar con varios proveedores, como el TCU, o evaluar y cambiar de modelo con criterios propios, como Singapur, son formas de conservar la libertad de elegir.</p>
+<p>La segunda es el talento. Pair muestra que un equipo pequeño puede sostener herramientas usadas por decenas de miles de personas, pero ese equipo necesita estabilidad, autonomía y respaldo directivo. ¿Cuántas instituciones pueden garantizarlo a través de los cambios de gobierno?</p>
+<p>La tercera es la responsabilidad. Construir no exime de responder por el sistema; al contrario, la institución asume el papel que en una compra tendría el proveedor. Comprar, en cambio, exige saber qué pedir, y esa capacidad tampoco se improvisa. Chile la obtuvo asociándose con una universidad, pero un modelo de pliego también necesita actualizarse a medida que cambia la tecnología.</p>
+<div class="caveat">Pregunta estructural para la reflexión: Brasil, Singapur y el Reino Unido pudieron construir porque tenían, o crearon, equipos técnicos propios. Chile compró mejor porque se asoció con una universidad. Para una institución sin equipo técnico ni presupuesto para crearlo, ¿cuál es el primer paso realista: formar un equipo mínimo, asociarse con la academia o adoptar una herramienta que otro organismo público ya construyó, como permite el TCU?</div>
+
+
+<h2>Preguntas para la reflexión</h2>
+<div class="nota-instrucciones">
+  <strong>Cómo usar estos espacios:</strong> Los recuadros que acompañan a cada pregunta son solo para usted. Puede usarlos para anotar sus reflexiones a medida que lee el caso, con la extensión que quiera. No se trata de una tarea: no tiene que entregar estas notas ni publicarlas en ningún sitio, y nadie las va a revisar ni a evaluar. Es una lectura guiada, pensada para ayudarle a leer el caso con más atención y a preparar la decisión sobre cómo desarrollar la iniciativa de su proyecto final.
+  <br><br>
+  Si quiere conservar lo que ha escrito, puede copiarlo o descargarlo como archivo de texto con los botones que encontrará al final. Tenga en cuenta que las notas no se guardan si cierra o recarga la página.
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 1</h3>
+  <p class="enunciado">Los tres desarrollos propios se construyeron sobre modelos de empresas privadas. ¿Qué controla realmente una institución cuando "construye" su herramienta de IA, y qué sigue dependiendo de terceros? Piense en la iniciativa de su proyecto final: ¿qué parte necesita controlar su institución y qué parte puede delegar?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 2</h3>
+  <p class="enunciado">Pair nació de un equipo de cinco personas en un ejercicio interno de innovación; ChatTCU, dentro de un tribunal de cuentas. ¿Qué condiciones institucionales hicieron posible construir: autonomía, talento, presupuesto, respaldo directivo? ¿Cuáles existen hoy en su institución y cuál le falta?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 3</h3>
+  <p class="enunciado">El TCU cede gratuitamente su código a otros organismos públicos. ¿Qué ventajas y qué riesgos tendría para su institución adoptar una herramienta construida por otro organismo, en lugar de construirla o comprarla? Si esa herramienta fallara, ¿quién respondería ante las personas afectadas?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 4</h3>
+  <p class="enunciado">ChileCompra se asoció con una universidad para definir qué exigir a los proveedores. Si su iniciativa se compra, ¿qué tres requisitos incluiría en el pliego para no perder el control sobre el sistema? ¿Con qué universidad u organización de su entorno podría asociarse para definirlos?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 5</h3>
+  <p class="enunciado">La mayoría de los resultados disponibles (usuarios, ahorros estimados, código compartido) proceden de las propias instituciones. ¿Cómo demostraría usted, de forma creíble, que la opción elegida para su iniciativa funciona? Proponga una métrica y diga quién debería verificarla.</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="acciones">
+  <button id="copiarBtn">Copiar mis notas</button>
+  <button id="descargarBtn" class="secundario">Descargar mis notas (.txt)</button>
+  <span id="estadoCopia"></span>
+</div>
+
+<h2>Fuentes</h2>
+<ul class="fuentes">
+  <li><a href="https://portal.tcu.gov.br/imprensa/noticias/chattcu-ultrapassa-136-compartilhamentos-de-codigo-fonte" target="_blank" rel="noopener">TCU — ChatTCU supera los 136 compartimientos de código fuente</a></li>
+  <li><a href="https://portal.tcu.gov.br/imprensa/noticias/orgaos-publicos-recebem-licenca-para-uso-do-chattcu" target="_blank" rel="noopener">TCU — Órganos públicos reciben licencia para usar ChatTCU</a></li>
+  <li><a href="https://ia.tcu.gov.br/assets/docs/chat-tcu/chattcu-apresentacao-institucional-pt-2025.pdf" target="_blank" rel="noopener">TCU — presentación institucional de ChatTCU (2025)</a></li>
+  <li><a href="https://convergenciadigital.com.br/governo/codigo-fonte-da-ia-chattcu-ja-foi-compartilhado-com-mais-de-160-orgaos-publicos/" target="_blank" rel="noopener">Convergência Digital — el código de ChatTCU, compartido con más de 160 organismos (2026)</a></li>
+  <li><a href="https://www.undp.org/policy-centre/singapore/blog/pairing-ai-public-sector-impact-singapore" target="_blank" rel="noopener">PNUD — Ong, B. y Chew, G., "Pairing with AI for Public Sector Impact in Singapore" (2024)</a></li>
+  <li><a href="https://open.gov.sg/products/pair/" target="_blank" rel="noopener">Open Government Products — página de Pair</a></li>
+  <li><a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/06/02/singapore-to-create-a-registry-of-ai-agents-for-150000-public-officers-amid-ai-push" target="_blank" rel="noopener">The Star — registro de agentes de IA para los 150.000 funcionarios de Singapur (junio de 2026)</a></li>
+  <li><a href="https://www.globalgovernmentforum.com/yes-civil-servant-meet-humphrey-the-governments-ai-package-for-officials/" target="_blank" rel="noopener">Global Government Forum — "Meet Humphrey, the UK government's AI package for officials" (enero de 2025)</a></li>
+  <li><a href="https://www.civilserviceworld.com/professions/article/civil-service-ai-tool-for-consultation-analysis-passes-first-test" target="_blank" rel="noopener">Civil Service World — primera prueba real de Consult (mayo de 2025)</a></li>
+  <li><a href="https://www.chilecompra.cl/2023/01/ya-se-encuentra-disponible-bases-tipo-para-licitar-proyectos-de-algoritmos-e-inteligencia-artificial-con-requisitos-eticos/" target="_blank" rel="noopener">ChileCompra — bases tipo para licitar proyectos de algoritmos e IA con requisitos éticos (2023)</a></li>
+  <li><a href="https://www.chilecompra.cl/2023/12/nueva-directiva-de-chilecompra-entrega-recomendaciones-para-la-gestion-de-proyectos-de-inteligencia-artificial-o-ciencia-de-datos/" target="_blank" rel="noopener">ChileCompra — directiva de recomendaciones para proyectos de IA y ciencia de datos (diciembre de 2023)</a></li>
+  <li><a href="https://www.chilecompra.cl/2023/11/chilecompra-es-parte-del-comite-directivo-de-la-2a-fase-del-proyecto-algoritmos-eticos-de-la-uai/" target="_blank" rel="noopener">ChileCompra — segunda fase del proyecto Algoritmos Éticos de la UAI</a></li>
+  <li><a href="https://www.chilecompra.cl/2024/11/goblab-uai-presento-nueva-herramienta-para-una-ia-responsable-y-etica/" target="_blank" rel="noopener">ChileCompra — el GobLab UAI presenta una herramienta de evaluación de impacto algorítmico (2024)</a></li>
+</ul>
+
+<footer>
+  Material elaborado para uso académico a partir de las fuentes públicas citadas arriba. Compilado el 14 de noviembre de 2026.
+</footer>
+
+</div>
+
+<script>
+  const preguntas = document.querySelectorAll('.pregunta');
+
+  preguntas.forEach(div => {
+    const textarea = div.querySelector('textarea');
+    const contador = div.querySelector('.contador');
+    textarea.addEventListener('input', () => {
+      const palabras = textarea.value.trim().split(/\s+/).filter(Boolean).length;
+      contador.textContent = palabras + (palabras === 1 ? ' palabra' : ' palabras');
+    });
+  });
+
+  function construirTexto(){
+    let out = "CASO DE ESTUDIO (SESIÓN 33): CONSTRUIR O COMPRAR BIEN — CHATTCU (BRASIL), PAIR (SINGAPUR), HUMPHREY (REINO UNIDO) Y CHILECOMPRA CON EL GOBLAB UAI (CHILE)" + "\n";
+    out += "Notas personales de lectura\n";
+    out += "----------------------------------------\n\n";
+    preguntas.forEach((div, i) => {
+      const enunciado = div.querySelector('.enunciado').textContent.trim();
+      const respuesta = div.querySelector('textarea').value.trim();
+      out += "Pregunta " + (i+1) + ": " + enunciado + "\n";
+      out += (respuesta || "[Sin notas]") + "\n\n";
+    });
+    return out;
+  }
+
+  const estado = document.getElementById('estadoCopia');
+
+  document.getElementById('copiarBtn').addEventListener('click', () => {
+    const texto = construirTexto();
+    navigator.clipboard.writeText(texto).then(() => {
+      estado.textContent = "Notas copiadas al portapapeles.";
+    }).catch(() => {
+      estado.textContent = "No se pudo copiar automáticamente. Seleccione y copie el texto manualmente.";
+    });
+  });
+
+  document.getElementById('descargarBtn').addEventListener('click', () => {
+    const texto = construirTexto();
+    const blob = new Blob([texto], {type: "text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "notas_caso_S33_construir_comprar.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+</script>
+
+</body>
+</html>
