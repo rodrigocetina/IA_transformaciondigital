@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Verificación de Contratación Pública de IA</title>
+<style>
+:root {
+  --navy:    #1C2B4A;
+  --navy2:   #152238;
+  --gold:    #C9952A;
+  --crimson: #8B1E3F;
+  --teal:    #028090;
+  --green:   #15803D;
+  --offwhite:#F5F7FA;
+  --ltgray:  #E2E8F0;
+  --mdgray:  #64748B;
+  --white:   #FFFFFF;
+  --iceblue: #CADCFC;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--offwhite);color:var(--navy);min-height:100vh;}
+
+/* ── HEADER ── */
+header{background:var(--navy);position:sticky;top:0;z-index:200;box-shadow:0 2px 14px rgba(0,0,0,.28);}
+.gold-bar{height:4px;background:var(--gold);}
+.header-inner{max-width:980px;margin:0 auto;padding:14px 24px 12px;display:flex;align-items:center;gap:20px;}
+.header-text{flex:1;}
+header h1{font-size:1.1rem;font-weight:700;color:var(--gold);letter-spacing:.01em;}
+header p{font-size:.73rem;color:var(--iceblue);margin-top:2px;}
+.overall-progress{width:180px;flex-shrink:0;}
+.prog-label{font-size:.7rem;color:var(--iceblue);display:flex;justify-content:space-between;margin-bottom:4px;}
+.prog-bg{background:rgba(255,255,255,.15);border-radius:8px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:8px;transition:width .4s ease;width:0%;}
+
+/* ── PHASE TABS ── */
+.tab-nav{background:var(--navy2);border-bottom:3px solid var(--gold);overflow-x:auto;}
+.tab-nav-inner{max-width:980px;margin:0 auto;display:flex;}
+.tab-btn{padding:12px 18px;border:none;background:transparent;color:var(--iceblue);cursor:pointer;
+  font-size:.8rem;font-weight:600;white-space:nowrap;border-bottom:3px solid transparent;
+  margin-bottom:-3px;transition:all .18s;display:flex;align-items:center;gap:8px;}
+.tab-btn:hover{color:var(--white);background:rgba(255,255,255,.06);}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,149,42,.1);}
+.tab-phase-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:800;flex-shrink:0;}
+.tab-mini-prog{font-size:.68rem;color:var(--mdgray);margin-left:4px;}
+.tab-btn.active .tab-mini-prog{color:var(--gold);}
+
+/* ── MAIN ── */
+main{max-width:980px;margin:0 auto;padding:24px 24px 80px;}
+.phase-panel{display:none;}
+.phase-panel.active{display:block;}
+
+/* ── PHASE INTRO ── */
+.phase-intro{background:var(--white);border-radius:10px;padding:18px 22px;margin-bottom:18px;
+  box-shadow:0 1px 6px rgba(0,0,0,.06);border-left:5px solid var(--navy);}
+.phase-intro h2{font-size:1rem;font-weight:700;margin-bottom:6px;}
+.phase-intro p{font-size:.83rem;color:var(--mdgray);line-height:1.6;}
+.source-tag{display:inline-block;font-size:.68rem;background:var(--offwhite);border:1px solid var(--ltgray);
+  border-radius:4px;padding:2px 7px;color:var(--mdgray);margin-top:8px;margin-right:4px;}
+
+/* ── ITEMS ── */
+.items-card{background:var(--white);border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.06);overflow:hidden;margin-bottom:14px;}
+.items-card-header{padding:12px 20px;background:var(--offwhite);border-bottom:1px solid var(--ltgray);
+  font-size:.78rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;display:flex;justify-content:space-between;align-items:center;}
+.items-card-header .badge{font-size:.68rem;background:var(--navy);color:var(--white);border-radius:20px;padding:2px 10px;font-weight:600;text-transform:none;letter-spacing:0;}
+
+/* YES/NO ROWS */
+.yn-row{padding:14px 20px;border-bottom:1px solid var(--ltgray);transition:background .15s;}
+.yn-row:last-child{border-bottom:none;}
+.yn-row.ans-yes{background:#FFF8EC;}
+.yn-row.ans-no{background:#F0FDF4;}
+.yn-top{display:flex;align-items:flex-start;gap:12px;}
+.q-num{width:26px;height:26px;border-radius:50%;background:var(--navy);color:var(--white);
+  font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.q-text{flex:1;font-size:.88rem;line-height:1.55;font-weight:500;}
+.q-meta{font-size:.72rem;color:var(--mdgray);margin-top:3px;font-style:italic;}
+.yn-btns{display:flex;gap:7px;flex-shrink:0;}
+.yn-btn{padding:5px 16px;border-radius:20px;border:2px solid var(--ltgray);background:var(--white);
+  cursor:pointer;font-size:.8rem;font-weight:600;transition:all .15s;color:var(--mdgray);}
+.yn-btn:hover{border-color:var(--gold);color:var(--navy);}
+.yn-btn.sel-yes{border-color:var(--crimson);background:var(--crimson);color:var(--white);}
+.yn-btn.sel-no{border-color:var(--teal);background:var(--teal);color:var(--white);}
+.trigger-box{margin:10px 0 0 38px;padding:10px 14px;border-left:4px solid var(--crimson);
+  background:#FDF2F4;border-radius:0 6px 6px 0;font-size:.81rem;color:#6B1630;display:none;}
+.trigger-box.show{display:block;}
+.trigger-box strong{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--navy);margin-bottom:3px;}
+
+/* CHECKBOX ROWS */
+.cb-row{padding:14px 20px;border-bottom:1px solid var(--ltgray);display:flex;align-items:flex-start;gap:14px;cursor:pointer;transition:background .15s;}
+.cb-row:last-child{border-bottom:none;}
+.cb-row:hover{background:#F8F9FC;}
+.cb-row.done{background:#F0FDF4;}
+.cb-box{width:22px;height:22px;border:2.5px solid var(--ltgray);border-radius:5px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;transition:all .15s;margin-top:1px;background:var(--white);}
+.cb-row.done .cb-box{background:var(--teal);border-color:var(--teal);}
+.cb-check{color:var(--white);font-size:.82rem;display:none;}
+.cb-row.done .cb-check{display:block;}
+.cb-content{flex:1;}
+.cb-title{font-size:.88rem;font-weight:600;}
+.cb-desc{font-size:.78rem;color:var(--mdgray);margin-top:4px;line-height:1.5;}
+.cb-source{font-size:.68rem;color:var(--teal);margin-top:4px;}
+
+/* NECESSITY ALERT */
+.necessity-alert{margin:10px 0 0 38px;padding:10px 14px;border-left:4px solid var(--crimson);
+  background:#FDF2F4;border-radius:0 6px 6px 0;font-size:.81rem;color:#6B1630;display:none;}
+.necessity-alert.show{display:block;}
+
+/* ── SUMMARY PANEL ── */
+.summary-panel{background:var(--navy);border-radius:10px;padding:22px 24px;margin-top:28px;}
+.sum-title{font-size:.95rem;font-weight:700;color:var(--gold);margin-bottom:16px;}
+.sum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.sum-stat{background:rgba(255,255,255,.08);border-radius:8px;padding:14px 12px;text-align:center;}
+.sum-num{font-size:1.8rem;font-weight:700;color:var(--gold);}
+.sum-lbl{font-size:.7rem;color:var(--iceblue);margin-top:3px;}
+.risk-badge{display:inline-block;padding:3px 14px;border-radius:20px;font-weight:700;font-size:1rem;}
+.risk-low     {background:#14532D;color:#86EFAC;}
+.risk-moderate{background:#713F12;color:#FDE68A;}
+.risk-high    {background:#7F1D1D;color:#FCA5A5;}
+.risk-critical{background:#450A0A;color:#F87171;}
+.risk-none    {color:var(--iceblue);font-size:.9rem;font-style:italic;}
+
+.trigger-summary-list{margin-top:16px;}
+.trigger-summary-list h4{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--iceblue);margin-bottom:8px;}
+.trigger-item{font-size:.8rem;padding:7px 12px;background:rgba(201,149,42,.12);border-left:3px solid var(--gold);
+  border-radius:0 5px 5px 0;margin-bottom:6px;color:#FFF8EC;}
+.phase-progress-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:16px;}
+.phase-prog-item{text-align:center;}
+.phase-prog-label{font-size:.65rem;color:var(--iceblue);margin-bottom:5px;}
+.phase-prog-bar-bg{background:rgba(255,255,255,.12);border-radius:4px;height:6px;overflow:hidden;}
+.phase-prog-bar-fill{height:100%;background:var(--teal);border-radius:4px;transition:width .4s;}
+.phase-prog-pct{font-size:.65rem;color:var(--gold);margin-top:3px;}
+.reset-btn{margin-top:18px;width:100%;padding:10px;border:2px solid rgba(255,255,255,.18);
+  background:transparent;color:var(--iceblue);border-radius:6px;cursor:pointer;font-size:.82rem;transition:all .15s;}
+.reset-btn:hover{background:rgba(255,255,255,.08);color:var(--white);}
+
+footer{text-align:center;padding:20px;font-size:.73rem;color:var(--mdgray);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="gold-bar"></div>
+  <div class="header-inner">
+    <div class="header-text">
+      <h1>Lista de Verificación de Contratación Pública de IA</h1>
+      <p>Marco de Gobernanza de 5 Fases &mdash; Cetina Presuel, BSM &ndash; UPF &nbsp;|&nbsp; Basado en el AI Act de la UE, OCDE 2026, Directiva DAM de Canadá, DTA de Australia, y la literatura académica de referencia sobre contratación pública</p>
+    </div>
+    <div class="overall-progress">
+      <div class="prog-label"><span>Total</span><span id="overall-pct">0%</span></div>
+      <div class="prog-bg"><div class="prog-fill" id="overall-fill"></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- PHASE TABS -->
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="tab-btn active" onclick="switchTab(0)">
+      <div class="tab-phase-num" style="background:#8B1E3F;color:#fff;">1</div>
+      Pre-Adquisición<span class="tab-mini-prog" id="tp0">0%</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab(1)">
+      <div class="tab-phase-num" style="background:#028090;color:#fff;">2</div>
+      Contratación<span class="tab-mini-prog" id="tp1">0%</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab(2)">
+      <div class="tab-phase-num" style="background:#C9952A;color:#fff;">3</div>
+      Pruebas y Validación<span class="tab-mini-prog" id="tp2">0%</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab(3)">
+      <div class="tab-phase-num" style="background:#1C2B4A;color:#fff;">4</div>
+      Despliegue<span class="tab-mini-prog" id="tp3">0%</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab(4)">
+      <div class="tab-phase-num" style="background:#15803D;color:#fff;">5</div>
+      Post-Despliegue<span class="tab-mini-prog" id="tp4">0%</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab(5)">
+      <div class="tab-phase-num" style="background:#64748B;color:#fff;">&#9776;</div>
+      Resumen
+    </button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ════════════════════════════════
+     PHASE 1 — PRE-ACQUISITION
+════════════════════════════════ -->
+<div class="phase-panel active" id="phase-0">
+
+  <div class="phase-intro" style="border-left-color:var(--crimson);">
+    <h2>Fase 1 &mdash; Evaluación Previa a la Adquisición</h2>
+    <p>Antes de iniciar cualquier contratación, las agencias públicas deben establecer que la IA es tanto necesaria como gobernable. Esta fase plantea nueve preguntas fundamentales de cribado — cada "Sí" activa un requisito de gobernanza obligatorio — más dos pruebas de umbral ausentes en la mayoría de los marcos: la EIA (Evaluación de Impacto Ético/de Derechos) y la prueba de necesidad.</p>
+    <span class="source-tag">Sanchez-Graells (2024)</span>
+    <a class="source-tag" style="text-decoration:none;" href="https://www.oecd.org/en/publications/anti-corruption-and-integrity-outlook-2026_16708b78-en.html" target="_blank">OCDE (2026)</a>
+    <a class="source-tag" style="text-decoration:none;" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank">AI Act de la UE</a>
+    <span class="source-tag">Mulligan y Bamberger (2019)</span>
+  </div>
+
+  <!-- Screening Questions -->
+  <div class="items-card">
+    <div class="items-card-header">Preguntas de Cribado — Activadores de Riesgo de Gobernanza
+      <span class="badge">Sí = requisito de gobernanza activado</span>
+    </div>
+
+    <div class="yn-row" id="yn-row-1-1">
+      <div class="yn-top">
+        <div class="q-num">1</div>
+        <div style="flex:1">
+          <div class="q-text">¿El sistema trata datos personales, sensibles o confidenciales?</div>
+          <div class="q-meta">Incluye salud, datos financieros, estatus migratorio, antecedentes penales</div>
+        </div>
+        <div class="yn-btns">
+          <button class="yn-btn" onclick="ynAnswer('1-1','yes',this)">Sí</button>
+          <button class="yn-btn" onclick="ynAnswer('1-1','no',this)">No</button>
+        </div>
+      </div>
+      <div class="trigger-box" id="trigger-1-1">
+        <strong>Governance Trigger</strong>
+        Obligatorio: Evaluación de Impacto de Uso Individual (IUIA) detallada y Evaluación de Impacto en la Privacidad. El principio de minimización de datos debe incorporarse contractualmente.
+      </div>
+    </div>
+
+    <div class="yn-row" id="yn-row-1-2">
+      <div class="yn-top">
+        <div class="q-num">2</div>
+        <div style="flex:1">
+          <div class="q-text">¿El sistema interactúa con los usuarios finales con autonomía significativa?</div>
+          <div class="q-meta">Respuestas automatizadas, chatbots, cartas de decisión generadas sin redacción humana</div>
+        </div>
+        <div class="yn-btns">
+          <button class="yn-btn" onclick="ynAnswer('1-2','yes',this)">Sí</button>
+          <button class="yn-btn" onclick="ynAnswer('1-2','no',this)">No</button>
+        </div>
+      </div>
+      <div class="trigger-box" id="trigger-1-2">
+        <strong>Governance Trigger</strong>
+        Requiere: supervisión de un alto cargo ejecutivo, interfaces de control estrictas, y aviso claramente visible de que se está utilizando IA.
+      </div>
+    </div>
+
+    <div class="yn-row" id="yn-row-1-3">
+      <div class="yn-top">
+        <div class="q-num">3</div>
+        <div style="flex:1">
+          <div class="q-text">¿El sistema actúa de forma autónoma a gran escala o carece de intervención humana significativa?</div>
+          <div class="q-meta">Procesamiento por lotes, cobro automatizado de deudas, puntuación masiva sin revisión individual</div>
+        </div>
+        <div class="yn-btns">
+          <button class="yn-btn" onclick="ynAnswer('1-3','yes',this)">Sí</button>
+          <button class="yn-btn" onclick="ynAnswer('1-3','no',this)">No</button>
+        </div>
+      </div>
+      <div class="trigger-box" id="trigger-1-3">
+        <strong>Activador de Gobernanza — Riesgo Alto</strong>
+        Requiere: consulta al comité ejecutivo superior, notificación al organismo regulador, y diseño impugnable obligatorio con capacidad de anulación humana sustantiva (no ceremonial). Véase el precedente Robodebt.
+      </div>
+    </div>
+
+    <div class="yn-row" id="yn-row-1-4">
+      <div class="yn-top">
+        <div class="q-num">4</div>
+        <div style="flex:1">
+          <div class="q-text">¿El sistema afecta a personas en circunstancias vulnerables o marginadas?</div>
+          <div class="q-meta">Beneficiarios de prestaciones sociales, solicitantes de asilo, personas con discapacidad, menores, población de bajos ingresos</div>
+        </div>
+        <div class="yn-btns">
+          <button class="yn-btn" onclick="ynAnswer('1-4','yes',this)">Sí</button>
+          <button class="yn-btn" onclick="ynAnswer('1-4','no',this)">No</button>
+        </div>
+      </div>
+      <div class="trigger-box" id="trigger-1-4">
+        <strong>Governance Trigger</strong>
+        Obligatorio: panel de revisión ética, evaluación rigurosa de impacto en derechos humanos, y consulta participativa estructurada con representantes de las comunidades afectadas antes de continuar con la contratación.
+      </div>
+    </div>
+
+    <div class="yn-row" id="yn-row-1-5">
+      <div class="yn-top">
+        <div class="q-num">5</div>
+        <div style="flex:1">
+          <div class="q-text">¿El sistema opera en un ámbito regulado o produce efectos jurídicamente significativos?</div>
+          <div class="q-meta">Justicia penal, inmigración, prestaciones sociales, empleo, crédito</div>
+        </div>
+        <div class="yn-btns">
+          <button class="yn-btn" onclick="ynAnswer('1-5','yes',this)">Sí</button>
+          <button class="yn-btn" onclick="ynAnswer('1-5','no',this)">No</button>
+        </div>
+      </div>
+      <div class="trigger-box" id="trigger-1-5">
+        <strong>Governance Trigger</strong>
+        Obligatorio: revisión jurídica de cumplimiento del derecho administrativo, garantías de debido proceso, y normativa sectorial aplicable. Puede aplicar la clasificación de alto riesgo del AI Act de la UE.
+      </div>
+    </div>
+
+    <div class="yn-row" id="yn-row-1-6">
+      <div class="yn-top">
+        <div class="q-num">6</div>
+        <div style="flex:1">
+          <div class="q-text">¿Sería difícil impugnar o revertir el daño causado por una decisión errónea?</div>
+          <div class="q-meta">Ejecución de deudas, deportación, denegación de vivienda, puntuaciones de riesgo penal</div>
+        </div>
+        <div class="yn-btns">
+          <button class="yn-btn" onclick="ynAnswer('1-6','yes',this)">Sí</button>
+          <button class="yn-btn" onclick="ynAnswer('1-6','no',this)">No</button>
+        </div>
+      </div>
+      <div class="trigger-box" id="trigger-1-6">
+        <strong>Governance Trigger</strong>
+        Obligatorio: vías de reparación pública establecidas y accesibles, aprobación de un comité directivo superior, y auditoría previa al despliegue de los mecanismos de impugnación. Precedente del Toeslagenaffaire: la ausencia de vías de reparación constituye una injusticia sistémica.
+      </div>
+    </div>
+
+    <div class="yn-row" id="yn-row-1-7">
+      <div class="yn-top">
+        <div class="q-num">7</div>
+        <div style="flex:1">
+          <div class="q-text">¿El sistema es de propósito general o se adapta fácilmente más allá de su finalidad declarada?</div>
+          <div class="q-meta">Modelos fundacionales, LLM, herramientas de puntuación multipropósito</div>
+        </div>
+        <div class="yn-btns">
+          <button class="yn-btn" onclick="ynAnswer('1-7','yes',this)">Sí</button>
+          <button class="yn-btn" onclick="ynAnswer('1-7','no',this)">No</button>
+        </div>
+      </div>
+      <div class="trigger-box" id="trigger-1-7">
+        <strong>Governance Trigger</strong>
+        Requiere: interfaces de control especializadas, cláusulas contractuales que limiten el alcance, aprobación de un comité de gobernanza de alto nivel, y reevaluación obligatoria antes de cualquier cambio de uso.
+      </div>
+    </div>
+
+    <div class="yn-row" id="yn-row-1-8">
+      <div class="yn-top">
+        <div class="q-num">8</div>
+        <div style="flex:1">
+          <div class="q-text">¿El sistema se basa en datos históricos que puedan incorporar prácticas discriminatorias del pasado?</div>
+          <div class="q-meta">Datos de reincidencia, historiales de fraude en prestaciones sociales, datos policiales, registros de solvencia crediticia</div>
+        </div>
+        <div class="yn-btns">
+          <button class="yn-btn" onclick="ynAnswer('1-8','yes',this)">Sí</button>
+          <button class="yn-btn" onclick="ynAnswer('1-8','no',this)">No</button>
+        </div>
+      </div>
+      <div class="trigger-box" id="trigger-1-8">
+        <strong>Activador de Gobernanza — Sesgo Histórico</strong>
+        Obligatorio: auditoría de sesgo histórico de los datos de entrenamiento, metodología documentada de corrección de sesgo, y monitoreo continuo de equidad. Los precedentes de COMPAS y HART demuestran que los datos de entrada sesgados producen resultados discriminatorios independientemente de la sofisticación técnica.
+      </div>
+    </div>
+
+    <div class="yn-row" id="yn-row-1-9">
+      <div class="yn-top">
+        <div class="q-num">9</div>
+        <div style="flex:1">
+          <div class="q-text">¿Es la IA demostrablemente necesaria en este caso — o una alternativa no automatizada serviría igual de bien al propósito público?</div>
+          <div class="q-meta">La prueba de necesidad: la carga de la prueba recae en la agencia contratante, que debe justificar el despliegue de la IA</div>
+        </div>
+        <div class="yn-btns">
+          <button class="yn-btn" onclick="ynAnswer('1-9','yes',this)">Sí — necesaria</button>
+          <button class="yn-btn" onclick="ynAnswer('1-9','no',this)">No — no está claro</button>
+        </div>
+      </div>
+      <div class="trigger-box" id="trigger-1-9">
+        <strong>La Contratación No Debería Continuar</strong>
+        Si no puede demostrarse la necesidad, la contratación no debería continuar. La asunción por defecto bajo un enfoque centrado en derechos es que la IA NO es la solución apropiada. Sanchez-Graells (2024): las normas de contratación deben obligar a las agencias a justificar por qué se requiere automatización, no solo que resulta más barata.
+      </div>
+    </div>
+
+  </div><!-- /screening questions -->
+
+  <!-- FRIA checkbox -->
+  <div class="items-card">
+    <div class="items-card-header">Requisito de Umbral
+      <span class="badge">Completar antes de pasar a la Fase 2</span>
+    </div>
+    <div class="cb-row" onclick="toggleCb(this,'p1-fria')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Evaluación de Impacto Ético y en Derechos (EIA) completada</div>
+        <div class="cb-desc">Una evaluación prospectiva y estructurada realizada por la agencia — no por el proveedor — que valora los riesgos para la no discriminación, la privacidad, el debido proceso, el acceso a la justicia y los derechos de los grupos vulnerables. La EIA debe completarse antes de firmar cualquier contrato. No solo pregunta si la IA causa daño, sino si sirve mejor a los derechos que las alternativas disponibles.</div>
+        <div class="cb-source">Fuente: AI Act de la UE, Art. 27; OCDE (2026); Andhov et al. (2025), Frontiers in Sustainability; Recomendación UNESCO sobre la Ética de la IA, Ámbito de Actuación 1</div>
+      </div>
+    </div>
+    <div class="cb-row" onclick="toggleCb(this,'p1-consult')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Consulta realizada con la comunidad afectada</div>
+        <div class="cb-desc">Proceso de diseño participativo estructurado con representantes de las poblaciones que se verán directamente afectadas por el sistema. Es un requisito normativo bajo un enfoque centrado en derechos — no una cortesía consultiva. La consulta debe realizarse antes de fijar las decisiones de diseño, no después.</div>
+        <div class="cb-source">Fuente: Mulligan y Bamberger (2019); Johnson et al. (2025), CHI</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /phase 0 -->
+
+
+<!-- ════════════════════════════════
+     PHASE 2 — CONTRACTING
+════════════════════════════════ -->
+<div class="phase-panel" id="phase-1">
+
+  <div class="phase-intro" style="border-left-color:var(--teal);">
+    <h2>Fase 2 &mdash; Contratación y Controles de Adquisición</h2>
+    <p>El contrato es el único momento de poder equilibrado entre la agencia y el proveedor. Los derechos que no se incorporan aquí no pueden reclamarse después de la firma. Esta fase aborda los fallos estructurales identificados en los casos de estudio: la opacidad anidada, las lagunas de contratación, y el vacío de responsabilidad de "muchas manos".</p>
+    <span class="source-tag">Ben Dor y Coglianese (2021)</span>
+    <span class="source-tag">Sanchez-Graells (2024)</span>
+    <a class="source-tag" style="text-decoration:none;" href="https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32592" target="_blank">Directiva DAM de Canadá</a>
+    <a class="source-tag" style="text-decoration:none;" href="https://www.digital.gov.au/policy/ai/AI-technical-standard" target="_blank">DTA de Australia (2025)</a>
+    <span class="source-tag">Rowe y Prior (2022)</span>
+  </div>
+
+  <div class="items-card">
+    <div class="items-card-header">Transparencia y Derechos de Auditoría</div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p2-audit')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">El contrato preserva el derecho del gobierno a auditar el software propietario</div>
+        <div class="cb-desc">El contrato debe otorgar explícitamente a la agencia — y a cualquier auditor independiente designado — el derecho a inspeccionar la arquitectura del modelo, los datos de entrenamiento y la lógica algorítmica, sin perjuicio de cualquier alegación de secreto comercial o cláusula de confidencialidad. Los derechos de propiedad intelectual del proveedor no priman sobre las obligaciones de rendición de cuentas democrática.</div>
+        <div class="cb-source">Fuente: Directiva de Canadá sobre la Toma de Decisiones Automatizada; Mulligan y Bamberger (2019); Zięba (2024)</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p2-disclose')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">El proveedor debe divulgar contractualmente: la arquitectura del modelo, la procedencia de los datos de entrenamiento, las funciones objetivo, y las tasas de error desagregadas por grupo demográfico</div>
+        <div class="cb-desc">Las estadísticas generales de rendimiento son insuficientes. Las tasas de error deben desglosarse por raza, género, nacionalidad, nivel socioeconómico y discapacidad cuando proceda. Las funciones objetivo (aquello que el sistema realmente optimiza) deben expresarse en lenguaje sencillo, no en jerga técnica.</div>
+        <div class="cb-source">Fuente: Von Behr y Abrahamsson (2022); Caiza et al. (2024); Hickok (2024)</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p2-nodisclose')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Se han rechazado las propuestas que invocan el secreto comercial absoluto para bloquear los derechos de auditoría</div>
+        <div class="cb-desc">La transparencia de la IA no es una cortesía comercial — es un requisito democrático. Cualquier proveedor que no esté dispuesto a permitir una auditoría técnica independiente de un sistema que ejercerá poder público debería ser descalificado. La transparencia de la IA es una condición de legitimidad democrática, no una desventaja competitiva.</div>
+        <div class="cb-source">Fuente: Pasquale (el deber no delegable de pensar); Mulligan y Bamberger (2019)</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="items-card">
+    <div class="items-card-header">Integridad de la Contratación — Cierre de Lagunas</div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p2-channel')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">El sistema se adquirió por los canales de contratación adecuados — sin elusión mediante suscripciones con tarjeta de crédito, contratos "a cuestas" de otros, o reclasificación como desarrollo interno</div>
+        <div class="cb-desc">La IA elude con frecuencia los marcos de gobernanza entrando como "suscripciones de software", añadiéndose a contratos existentes no relacionados, o desarrollándose internamente sin supervisión. Cada una de estas vías debe cerrarse explícitamente. Todos los sistemas de IA que afecten a la toma de decisiones públicas deben pasar por el proceso de contratación completo, sin importar el coste o la clasificación.</div>
+        <div class="cb-source">Fuente: Sanchez-Graells (2024): "alucinación regulatoria" cuando las salvaguardas existen sobre el papel pero se eluden en la práctica</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p2-subcontract')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Divulgación completa de la cadena de subcontratación — se identifican todos los terceros proveedores y sus funciones específicas</div>
+        <div class="cb-desc">El vacío de responsabilidad de "muchas manos" surge cuando la responsabilidad se difumina entre el proveedor principal, los subcontratistas, los proveedores de datos y los operadores de infraestructura. Cada entidad de la cadena debe ser identificada, su función especificada, y su acceso a datos sensibles regulado por los mismos estándares contractuales que el proveedor principal.</div>
+        <div class="cb-source">Fuente: Rowe y Prior (2022); Andersson et al. (2025)</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="items-card">
+    <div class="items-card-header">Rendición de Cuentas y Titularidad</div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p2-official')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Se designa un responsable de IA nombrado, con responsabilidad personal por los resultados del sistema</div>
+        <div class="cb-desc">Una persona concreta dentro de la agencia contratante — no un comité, no un proveedor — debe ser nombrada como responsable personal del cumplimiento de las obligaciones de derechos por parte del sistema. Este puesto debe tener autoridad para suspender el sistema sin el consentimiento del proveedor. El modelo de la DTA australiana exige responsables de IA, ingenieros de prueba y responsables de ética como funciones diferenciadas.</div>
+        <div class="cb-source">Fuente: Estándar Técnico de IA de la DTA de Australia (2025); Aboelazm (2025)</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p2-ip')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Se definen los términos de titularidad de la propiedad intelectual; se especifican las obligaciones del proveedor de destrucción de datos al término del contrato</div>
+        <div class="cb-desc">El gobierno debe conservar la titularidad, o derechos de acceso perpetuo, sobre todos los resultados y datos generados por el sistema durante la vigencia del contrato. Las obligaciones del proveedor de destruir o devolver todos los datos del gobierno y de los ciudadanos al finalizar el contrato deben tener plazos definidos y ser auditables.</div>
+        <div class="cb-source">Fuente: ClauseBank de la DTA de Australia (2025); Obinna y Kess-Momoh (2024)</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p2-indemnity')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Se incluye una cláusula de indemnización por sesgo algorítmico y resultados discriminatorios</div>
+        <div class="cb-desc">El contrato debe asignar al proveedor una responsabilidad financiera clara por el daño causado por resultados algorítmicos discriminatorios. Esto crea incentivos de mercado para que los proveedores inviertan en la prevención de sesgos — transformando las normas de contratación en instrumentos de moldeamiento del mercado para una IA de interés público.</div>
+        <div class="cb-source">Fuente: adendas modelo de la coalición GovAI; Ben Dor y Coglianese (2021)</div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /phase 1 -->
+
+
+<!-- ════════════════════════════════
+     PHASE 3 — TESTING & VALIDATION
+════════════════════════════════ -->
+<div class="phase-panel" id="phase-2">
+
+  <div class="phase-intro" style="border-left-color:var(--gold);">
+    <h2>Fase 3 &mdash; Pruebas y Validación Previas al Despliegue</h2>
+    <p>Los sistemas que superan el cribado de gobernanza y la contratación deben someterse a pruebas rigurosas antes del despliegue en producción. Las pruebas deben ir más allá de la precisión general para examinar la equidad, la explicabilidad, y la operatividad genuina de la supervisión humana. Un sistema que no puede explicarse a las personas a las que afecta no puede ser democráticamente responsable.</p>
+    <span class="source-tag">Caiza et al. (2024)</span>
+    <span class="source-tag">Molina-Miranda et al. (2023)</span>
+    <span class="source-tag">Zick et al. (2024)</span>
+    <span class="source-tag">García Rodríguez et al. (2022)</span>
+  </div>
+
+  <div class="items-card">
+    <div class="items-card-header">Pruebas de Sesgo y Equidad</div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p3-bias')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Pruebas de sesgo completadas para todos los grupos demográficos protegidos antes del despliegue</div>
+        <div class="cb-desc">Las pruebas deben realizarse para cada característica protegida relevante en el contexto de despliegue (raza, género, nacionalidad, nivel socioeconómico, discapacidad, religión). Los resultados deben documentarse y ser revisados por el responsable de IA. Los sistemas con tasas de disparidad inaceptables no deben proceder al despliegue sin un plan de corrección documentado.</div>
+        <div class="cb-source">Fuente: Hickok (2024); Nagita et al. (2022)</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p3-disagg')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Las tasas de error se reportan desagregadas por grupo demográfico — no solo la precisión general</div>
+        <div class="cb-desc">Un sistema puede alcanzar un 85% de precisión general y a la vez producir el doble de tasa de falsos positivos para grupos minoritarios específicos — como demostró el caso COMPAS. Las cifras de precisión general son insuficientes y pueden ocultar un rendimiento discriminatorio. Todas las métricas de precisión y error deben reportarse por separado para cada grupo protegido.</div>
+        <div class="cb-source">Fuente: Angwin et al. sobre COMPAS; Caiza et al. (2024); Dreyling et al. (2023)</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p3-historical')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Auditoría de sesgo histórico de los datos de entrenamiento completada, con metodología de corrección de sesgo documentada</div>
+        <div class="cb-desc">Cuando los datos de entrenamiento reflejan prácticas discriminatorias del pasado (por ejemplo, datos policiales que incorporan disparidades raciales, o historiales de fraude en prestaciones sociales que reflejan el señalamiento desproporcionado de comunidades minoritarias), el enfoque de corrección de sesgo debe documentarse explícitamente y verificarse de forma independiente. La metodología debe explicar qué variables sustitutas (proxy) se identificaron y cómo se abordaron.</div>
+        <div class="cb-source">Fuente: Ayobami et al. (2024); Iders-Bankovs et al. (2025)</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="items-card">
+    <div class="items-card-header">Explicabilidad (XAI)</div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p3-xai')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Se aplica una herramienta de IA explicable (SHAP y/o LIME) para validar la importancia de las variables e identificar discriminación por proxy</div>
+        <div class="cb-desc">SHAP (SHapley Additive exPlanations) ofrece una visión a nivel de sistema de qué variables determinan los resultados en todo el conjunto de datos. LIME (Local Interpretable Model-agnostic Explanations) explica decisiones individuales. Ambas deben aplicarse para verificar que las características protegidas — o sus variables sustitutas (código postal, nombre, idioma) — no estén influyendo indebidamente en los resultados.</div>
+        <div class="cb-source">Fuente: Molina-Miranda et al. (2023); Zick et al. (2024); García Rodríguez et al. (2022)</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p3-explain-plain')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">La lógica de decisión del sistema es explicable en lenguaje sencillo a un ciudadano afectado sin conocimientos técnicos</div>
+        <div class="cb-desc">La explicabilidad técnica (puntuaciones SHAP, pesos de las variables) es necesaria pero no suficiente. La agencia debe poder producir una explicación en lenguaje sencillo de por qué se tomó una decisión concreta — una que una persona sin conocimientos técnicos pueda entender e impugnar de forma significativa. Si esto no es posible, el sistema no es apto para el despliegue público.</div>
+        <div class="cb-source">Fuente: Johnson et al. (2025), CHI; Pasquale — el deber no delegable de pensar</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="items-card">
+    <div class="items-card-header">Supervisión Humana e Impugnabilidad</div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p3-override')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">El mecanismo de anulación humana ha sido probado y verificado como sustantivo — no ceremonial</div>
+        <div class="cb-desc">La anulación debe ser técnicamente operable, utilizada activamente por personal que la comprenda, y objeto de seguimiento. Un sistema en el que el 96,8% de los resultados se aprueban automáticamente como un sello — como se documentó en el caso RisCanvi — no cuenta con supervisión humana genuina. Las pruebas deben incluir: medición de la tasa de anulación, pruebas de comprensión del personal, y documentación de las decisiones de anulación reales. El sesgo de automatización debe abordarse explícitamente en los protocolos del personal.</div>
+        <div class="cb-source">Fuente: caso RisCanvi; Andersson et al. (2025); Dreyling et al. (2023)</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p3-contest')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">La vía de impugnación está documentada, probada y es accesible — no solo enunciada en una política</div>
+        <div class="cb-desc">El diseño impugnable requiere más que una política de apelación por escrito. La vía debe probarse de principio a fin: ¿puede un ciudadano afectado iniciar realmente una impugnación? ¿Es el proceso accesible sin representación legal? ¿Son razonables los plazos? ¿Es el sistema capaz de producir la explicación necesaria para una impugnación significativa? Probar con usuarios reales de las comunidades afectadas.</div>
+        <div class="cb-source">Fuente: Johnson et al. (2025); Toeslagenaffaire — la ausencia de reparación real constituyó una injusticia sistemática</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p3-audit3p')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Se ha realizado una auditoría técnica independiente por un tercero antes del despliegue</div>
+        <div class="cb-desc">Las pruebas internas son necesarias pero no suficientes. Un auditor técnico independiente — sin relación financiera con el proveedor — debe revisar las métricas de sesgo del sistema, los resultados de explicabilidad, la postura de seguridad, y el cumplimiento de las conclusiones de la EIA. El informe de auditoría debe ser de acceso público o estar disponible para los organismos de supervisión de la sociedad civil designados.</div>
+        <div class="cb-source">Fuente: Von Behr y Abrahamsson (2022); Andhov et al. (2025)</div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /phase 2 -->
+
+
+<!-- ════════════════════════════════
+     PHASE 4 — DEPLOYMENT
+════════════════════════════════ -->
+<div class="phase-panel" id="phase-3">
+
+  <div class="phase-intro" style="border-left-color:var(--navy);">
+    <h2>Fase 4 &mdash; Despliegue</h2>
+    <p>El despliegue no es el final del proceso de gobernanza — es el momento en que todas las salvaguardas previas deben estar operativamente activas. Las obligaciones de transparencia, la formación del personal, y el paquete de documentación de gobernanza deben estar completos y funcionales antes de que el sistema entre en producción.</p>
+    <a class="source-tag" style="text-decoration:none;" href="https://www.digital.gov.au/policy/ai/AI-technical-standard" target="_blank">DTA de Australia (2025)</a>
+    <span class="source-tag">Aboelazm (2025)</span>
+    <span class="source-tag">Obinna y Kess-Momoh (2024)</span>
+  </div>
+
+  <div class="items-card">
+    <div class="items-card-header">Obligaciones de Transparencia</div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p4-notify')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Se notifica a las personas afectadas que se utiliza IA en las decisiones que las afectan</div>
+        <div class="cb-desc">La notificación pública debe ser clara, oportuna y accesible — no enterrada en los términos y condiciones. Las personas sujetas a decisiones influidas por IA deben ser informadas de: (1) que se está usando IA; (2) qué papel desempeña en la decisión; (3) cómo pueden solicitar una revisión humana; y (4) cómo pueden acceder a una explicación del resultado de la IA.</div>
+        <div class="cb-source">Fuente: obligaciones de transparencia del AI Act de la UE; Sinha (2025), Tech Policy Press</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p4-public')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">El sistema está registrado en un registro público de IA (cuando proceda) — p. ej., el Registro OASI (UE), el Registro de Algoritmos (Países Bajos)</div>
+        <div class="cb-desc">Los registros públicos de IA generan rendición de cuentas democrática al hacer visibles la existencia y la finalidad de los sistemas de IA gubernamentales ante ciudadanos, periodistas y organismos de supervisión. El registro debe incluir: nombre y finalidad del sistema, agencia contratante, proveedor, fecha de despliegue, resumen de la EIA, y contacto para consultas.</div>
+        <div class="cb-source">Fuente: OCDE (2026); Andhov et al. (2025)</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="items-card">
+    <div class="items-card-header">Formación del Personal y Controles Operativos</div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p4-training')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">El personal recibe formación específica sobre el sesgo de automatización y el ejercicio de la autoridad de anulación</div>
+        <div class="cb-desc">La formación debe ir más allá de "cómo usar el sistema" para abordar el sesgo de automatización — la tendencia cognitiva documentada a deferir a los resultados algorítmicos incluso cuando el juicio humano diferiría. El personal debe entender: qué puede y qué no puede hacer el sistema de forma fiable; cuándo es apropiado anular una decisión; y que la anulación es una práctica esperada y fomentada, no una excepción que requiera justificación.</div>
+        <div class="cb-source">Fuente: Dreyling et al. (2023); Andersson et al. (2025) sobre la cultura de aprobación automática</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p4-contestable')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Elementos de diseño impugnable activos: umbrales de decisión configurables, vías de argumentación dentro del sistema, e interfaz de apelación ciudadana</div>
+        <div class="cb-desc">El diseño impugnable incorpora el derecho a impugnar en el propio sistema — no como un añadido externo. Los umbrales configurables permiten a los operadores humanos ajustar la sensibilidad. La argumentación dentro del sistema permite introducir de forma estructurada factores atenuantes. Las interfaces de apelación ciudadana ofrecen una vía directa, conectada al sistema, para que las personas presenten impugnaciones sin necesidad de navegar procesos burocráticos externos.</div>
+        <div class="cb-source">Fuente: Johnson et al. (2025), CHI — marco de diseño impugnable</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="items-card">
+    <div class="items-card-header">Paquete de Documentación de Gobernanza</div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p4-datasets')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Conjuntos de Datos — características detalladas, origen de las fuentes, y etiquetas nutricionales de datos</div>
+        <div class="cb-source">Fuente: requisito original de la lista de verificación</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p4-opt')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Reglas de Optimización — funciones y objetivos matemáticos (qué maximiza o minimiza el sistema), expresados en lenguaje sencillo</div>
+        <div class="cb-source">Fuente: requisito original de la lista de verificación + el requisito de lenguaje sencillo de Pasquale</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p4-design')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Decisiones de Diseño — documentación de las reglas, etiquetas y abstracciones introducidas por los desarrolladores (todos los juicios humanos incorporados al sistema)</div>
+        <div class="cb-source">Fuente: requisito original de la lista de verificación</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p4-perf')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Informes de Rendimiento — pruebas de equidad y precisión en poblaciones marginadas, desagregadas por grupo demográfico</div>
+        <div class="cb-source">Fuente: requisito original de la lista de verificación + el requisito de desagregación</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p4-fria-doc')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Documento de la EIA — Evaluación de Impacto Ético y en Derechos completa</div>
+        <div class="cb-source">Fuente: AI Act de la UE; OCDE (2026)</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p4-sub-doc')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Divulgación de Subcontratación — cadena completa de proveedores con funciones y acceso a datos documentados</div>
+        <div class="cb-source">Fuente: Rowe y Prior (2022)</div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /phase 3 -->
+
+
+<!-- ════════════════════════════════
+     PHASE 5 — POST-DEPLOYMENT
+════════════════════════════════ -->
+<div class="phase-panel" id="phase-4">
+
+  <div class="phase-intro" style="border-left-color:#15803D;">
+    <h2>Fase 5 &mdash; Monitoreo Post-Despliegue</h2>
+    <p>El despliegue no es el final de la rendición de cuentas — es el comienzo de una gobernanza continua. Los sistemas de IA se degradan con el tiempo por la deriva de datos y la deriva de concepto: el mundo cambia mientras el modelo permanece estático. La sociedad civil y la supervisión independiente deben tener acceso estructurado para verificar que el sistema sigue funcionando de forma segura y justa.</p>
+    <span class="source-tag">Ayobami et al. (2023)</span>
+    <span class="source-tag">Nagita et al. (2022)</span>
+    <a class="source-tag" style="text-decoration:none;" href="https://www.oecd.org/en/publications/anti-corruption-and-integrity-outlook-2026_16708b78-en.html" target="_blank">OCDE (2026)</a>
+    <span class="source-tag">Andhov et al. (2025)</span>
+  </div>
+
+  <div class="items-card">
+    <div class="items-card-header">Monitoreo Continuo del Rendimiento</div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p5-drift')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Monitoreo continuo de la deriva de datos y la deriva de concepto, con umbrales de intervención definidos</div>
+        <div class="cb-desc">La deriva de datos ocurre cuando las propiedades estadísticas de los datos en producción divergen de los datos de entrenamiento. La deriva de concepto ocurre cuando la relación del mundo real que el modelo fue entrenado para capturar cambia con el tiempo. Ambas formas de deriva degradan la precisión y pueden introducir nuevos patrones de sesgo. El monitoreo debe incluir umbrales numéricos definidos que activen la suspensión automática o la revalidación obligatoria del sistema.</div>
+        <div class="cb-source">Fuente: Nagita et al. (2022); Ayobami et al. (2023)</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p5-reaudit')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Se establece un calendario de reauditoría periódica — como mínimo anual para sistemas de alto riesgo, con nuevas pruebas de rendimiento desagregadas</div>
+        <div class="cb-desc">Las nuevas pruebas anuales son el estándar mínimo para los sistemas de alto riesgo. Las reauditorías deben replicar íntegramente el régimen de pruebas previo al despliegue, incluidas las métricas de equidad desagregadas. Los resultados deben compararse con la línea base establecida en el despliegue para identificar la degradación del rendimiento. Una degradación significativa debe activar una revisión obligatoria antes de que el sistema continúe operando.</div>
+        <div class="cb-source">Fuente: Von Behr y Abrahamsson (2022); DTA de Australia (2025)</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p5-blockchain')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Se implementa un registro de auditoría a prueba de manipulación — todas las decisiones influidas por IA se registran con marca de tiempo, datos de entrada utilizados, resultado generado, y la acción de revisión humana adoptada</div>
+        <div class="cb-desc">El blockchain, o un registro inmutable equivalente, crea un rastro de auditoría a prueba de manipulación que respalda la rendición de cuentas ex post, permite el análisis de patrones de sesgo, y proporciona la base probatoria para las apelaciones individuales. La implementación de blockchain de Estonia ha demostrado una reducción del 50% en el tiempo de procesamiento administrativo junto con una mejor rendición de cuentas. Los registros deben conservarse durante toda la ventana máxima de apelación.</div>
+        <div class="cb-source">Fuente: Iders-Bankovs et al. (2025); Obinna y Kess-Momoh (2024) sobre gobernanza mediante blockchain</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="items-card">
+    <div class="items-card-header">Rendición de Cuentas y Acceso de la Sociedad Civil</div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p5-incident')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Mecanismo activo de reporte de incidentes — las personas afectadas y el personal pueden reportar sospechas de error o sesgo sin barreras burocráticas</div>
+        <div class="cb-desc">El mecanismo de reporte debe ser lo bastante sencillo para que pueda usarlo un ciudadano sin representación legal. Los reportes deben registrarse, investigarse en un plazo definido, y — cuando se validen — activar una revisión de si el patrón refleja un problema sistémico. El personal debe estar protegido frente a represalias por reportar fallos del sistema.</div>
+        <div class="cb-source">Fuente: Johnson et al. (2025); Toeslagenaffaire — la supresión de alertas internas contribuyó al daño sistémico</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p5-civil')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">La sociedad civil y los organismos de supervisión independientes tienen acceso estructurado a los resultados de las auditorías y a los datos de rendimiento</div>
+        <div class="cb-desc">La rendición de cuentas democrática exige que la supervisión no dependa de la autodeclaración del gobierno. Las organizaciones de la sociedad civil, las defensorías del pueblo, las comisiones parlamentarias, y los investigadores académicos designados deben tener acceso estructurado y basado en derechos a los hallazgos de las auditorías, los datos de rendimiento y los informes de incidentes. El acceso puede estar sujeto a protecciones de confidencialidad adecuadas para los datos personales, pero no a alegaciones de secreto comercial.</div>
+        <div class="cb-source">Fuente: Sinha (2025); Andhov et al. (2025); Mulligan y Bamberger (2019)</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p5-antifraud')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Se ha considerado o desplegado una herramienta de monitoreo antifraude de IA para auditar el propio proceso de contratación</div>
+        <div class="cb-desc">La IA puede usarse para vigilar la propia contratación de IA: sistemas como ALICE de Brasil (suspendió 1.500 millones de euros en licitaciones problemáticas), BRIAS de Corea del Sur, y Red Flags de Hungría demuestran que el monitoreo de contratación basado en aprendizaje automático puede detectar colusión, amaño de licitaciones y corrupción a gran escala. La contratación de sistemas de IA es en sí misma un área de alto riesgo de captura y debería estar sujeta a monitoreo de integridad algorítmica.</div>
+        <div class="cb-source">Fuente: Caiza et al. (2024); Andhov et al. (2025); OCDE (2026) sobre herramientas de IA anticorrupción</div>
+      </div>
+    </div>
+
+    <div class="cb-row" onclick="toggleCb(this,'p5-renew')">
+      <div class="cb-box"><span class="cb-check">✓</span></div>
+      <div class="cb-content">
+        <div class="cb-title">Activador de renovación de contrato: la evaluación de las Fases 1-3 se repite en su totalidad antes de cualquier renovación de contrato o reutilización del sistema en un nuevo contexto</div>
+        <div class="cb-desc">Un sistema contratado para un contexto no puede extenderse o reutilizarse automáticamente sin repetir el proceso de gobernanza completo. Los cambios de contexto — nuevas poblaciones de usuarios, ampliación del alcance geográfico, nuevos ámbitos de decisión — pueden cambiar fundamentalmente las implicaciones del sistema para los derechos. Cada reutilización es, desde una perspectiva de gobernanza, una nueva contratación.</div>
+        <div class="cb-source">Fuente: Sanchez-Graells (2024) sobre la expansión no controlada del alcance; disposiciones del AI Act de la UE sobre el cambio de uso</div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /phase 4 -->
+
+
+<!-- ════════════════════════════════
+     SUMMARY TAB
+════════════════════════════════ -->
+<div class="phase-panel" id="phase-5">
+  <div class="summary-panel">
+    <div class="sum-title">&#9881; Resumen de la Evaluación de Contratación</div>
+
+    <div class="sum-grid">
+      <div class="sum-stat">
+        <div class="sum-num" id="sum-q-answered">0/9</div>
+        <div class="sum-lbl">Preguntas de cribado respondidas</div>
+      </div>
+      <div class="sum-stat">
+        <div class="sum-num" id="sum-triggers">0</div>
+        <div class="sum-lbl">Activadores de gobernanza activados</div>
+      </div>
+      <div class="sum-stat">
+        <div class="sum-num" id="sum-checks">0/32</div>
+        <div class="sum-lbl">Elementos de la lista confirmados</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:.75rem;color:var(--iceblue);margin-bottom:8px;">Nivel de Riesgo General</div>
+      <div id="risk-badge" class="risk-none">— Responde las preguntas de cribado para evaluar el riesgo —</div>
+    </div>
+
+    <!-- Per-phase mini bars -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--iceblue);margin-bottom:10px;">Progreso por Fase</div>
+      <div class="phase-progress-grid">
+        <div class="phase-prog-item">
+          <div class="phase-prog-label">Fase 1<br>Pre-Adquisición</div>
+          <div class="phase-prog-bar-bg"><div class="phase-prog-bar-fill" id="pp0" style="width:0%"></div></div>
+          <div class="phase-prog-pct" id="pp0-pct">0%</div>
+        </div>
+        <div class="phase-prog-item">
+          <div class="phase-prog-label">Fase 2<br>Contratación</div>
+          <div class="phase-prog-bar-bg"><div class="phase-prog-bar-fill" id="pp1" style="width:0%"></div></div>
+          <div class="phase-prog-pct" id="pp1-pct">0%</div>
+        </div>
+        <div class="phase-prog-item">
+          <div class="phase-prog-label">Fase 3<br>Pruebas</div>
+          <div class="phase-prog-bar-bg"><div class="phase-prog-bar-fill" id="pp2" style="width:0%"></div></div>
+          <div class="phase-prog-pct" id="pp2-pct">0%</div>
+        </div>
+        <div class="phase-prog-item">
+          <div class="phase-prog-label">Fase 4<br>Despliegue</div>
+          <div class="phase-prog-bar-bg"><div class="phase-prog-bar-fill" id="pp3" style="width:0%"></div></div>
+          <div class="phase-prog-pct" id="pp3-pct">0%</div>
+        </div>
+        <div class="phase-prog-item">
+          <div class="phase-prog-label">Fase 5<br>Monitoreo</div>
+          <div class="phase-prog-bar-bg"><div class="phase-prog-bar-fill" id="pp4" style="width:0%"></div></div>
+          <div class="phase-prog-pct" id="pp4-pct">0%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active triggers -->
+    <div id="active-triggers-section" style="display:none;margin-bottom:16px;">
+      <div class="trigger-summary-list">
+        <h4>Requisitos de Gobernanza Activos</h4>
+        <div id="active-trigger-items"></div>
+      </div>
+    </div>
+    <p id="no-trigger-msg" style="font-size:.8rem;color:var(--iceblue);font-style:italic;margin-bottom:16px;">
+      Responde las preguntas de cribado de la Fase 1 para ver qué requisitos de gobernanza se aplican a este sistema.
+    </p>
+
+    <button class="reset-btn" onclick="resetAll()">&#8635; Reiniciar toda la lista</button>
+  </div>
+</div>
+
+
+</main>
+<footer>Lista de Verificación de Contratación Pública de IA &mdash; Marco de Gobernanza de 5 Fases &nbsp;|&nbsp; Cetina Presuel, BSM &ndash; Universitat Pompeu Fabra &nbsp;|&nbsp; Fuentes: AI Act de la UE &middot; OCDE (2026) &middot; Directiva DAM de Canadá &middot; DTA de Australia &middot; Sanchez-Graells (2024) &middot; Ben Dor y Coglianese (2021) &middot; Mulligan y Bamberger (2019) y más de 20 fuentes académicas revisadas por pares &middot; Recomendación UNESCO sobre la Ética de la IA (2021)</footer>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────────────────
+const ynState = {};  // key → 'yes'|'no'
+const cbState = {};  // key → true|false
+
+// Per-phase item counts (yn questions + checkboxes)
+// Phase 0: 9 yn + 2 cb = 11
+// Phase 1: 0 yn + 6 cb = 6
+// Phase 2: 0 yn + 6 cb = 6
+// Phase 3: 0 yn + 8 cb = 8  (includes 6 doc items)  wait let me recount
+// Phase 4: 0 yn + 5 cb = 5
+// Let me count carefully:
+
+const PHASE_ITEMS = [
+  // Phase 0: 9 yn questions + 2 checkboxes = 11
+  { yn:9, cb:2, total:11 },
+  // Phase 1: 0 yn + 6 cb = 6
+  { yn:0, cb:6, total:6 },
+  // Phase 2: 0 yn + 6 cb = 6
+  { yn:0, cb:6, total:6 },
+  // Phase 3: 0 yn + 9 cb = 9 (2 transparency + 2 training + 6 docs)
+  { yn:0, cb:9, total:9 },
+  // Phase 4: 0 yn + 5 cb = 5
+  { yn:0, cb:5, total:5 },
+];
+// Total: 11+6+6+9+5 = 37 items
+
+const TRIGGER_TEXTS = {
+  '1-1': 'P1 — IUIA obligatoria + Evaluación de Impacto en la Privacidad',
+  '1-2': 'P2 — Supervisión de alto cargo ejecutivo + aviso de uso de IA',
+  '1-3': 'P3 — Riesgo alto: comité ejecutivo superior + notificación al regulador + anulación sustantiva',
+  '1-4': 'P4 — Revisión ética obligatoria + evaluación de impacto en derechos humanos + consulta comunitaria',
+  '1-5': 'P5 — Revisión jurídica obligatoria de cumplimiento administrativo + clasificación del AI Act de la UE',
+  '1-6': 'P6 — Vías de reparación pública obligatorias + aprobación de comité directivo superior',
+  '1-7': 'P7 — Interfaces de control especializadas + cláusulas contractuales limitantes del alcance + revisión obligatoria ante cambio de uso',
+  '1-8': 'P8 — Auditoría de sesgo histórico + metodología documentada de corrección + monitoreo continuo de equidad',
+  '1-9': 'P9 — Necesidad no demostrada: la contratación no debería continuar sin justificación',
+};
+
+// Determine which phase each cb key belongs to (for progress tracking)
+// Phase 0 cbs: p1-fria, p1-consult
+// Phase 1 cbs: p2-audit, p2-disclose, p2-nodisclose, p2-channel, p2-subcontract, p2-official, p2-ip, p2-indemnity (6)
+// Phase 2 cbs: p3-bias, p3-disagg, p3-historical, p3-xai, p3-explain-plain, p3-override, p3-contest, p3-audit3p (6... wait 8? let me recount)
+
+// Actually I need to count the actual items in each phase from the HTML
+// Phase 0: yn 1-1 through 1-9 (9), cb p1-fria, p1-consult (2) = 11
+// Phase 1: cb p2-audit, p2-disclose, p2-nodisclose, p2-channel, p2-subcontract, p2-official, p2-ip, p2-indemnity = 8 (not 6)
+// Phase 2: cb p3-bias, p3-disagg, p3-historical, p3-xai, p3-explain-plain, p3-override, p3-contest, p3-audit3p = 8
+// Phase 3: cb p4-notify, p4-public, p4-training, p4-contestable, p4-datasets, p4-opt, p4-design, p4-perf, p4-fria-doc, p4-sub-doc = 10
+// Phase 4: cb p5-drift, p5-reaudit, p5-blockchain, p5-incident, p5-civil, p5-antifraud, p5-renew = 7
+
+// Total = 11 + 8 + 8 + 10 + 7 = 44 items
+
+// Let me redefine per-phase
+const PHASE_CB_KEYS = [
+  ['p1-fria','p1-consult'],
+  ['p2-audit','p2-disclose','p2-nodisclose','p2-channel','p2-subcontract','p2-official','p2-ip','p2-indemnity'],
+  ['p3-bias','p3-disagg','p3-historical','p3-xai','p3-explain-plain','p3-override','p3-contest','p3-audit3p'],
+  ['p4-notify','p4-public','p4-training','p4-contestable','p4-datasets','p4-opt','p4-design','p4-perf','p4-fria-doc','p4-sub-doc'],
+  ['p5-drift','p5-reaudit','p5-blockchain','p5-incident','p5-civil','p5-antifraud','p5-renew'],
+];
+const PHASE_YN_COUNT = [9, 0, 0, 0, 0];
+const PHASE_TOTALS = PHASE_CB_KEYS.map((cbs, i) => cbs.length + PHASE_YN_COUNT[i]);
+const GRAND_TOTAL = PHASE_TOTALS.reduce((a,b) => a+b, 0);
+
+function getPhaseOfCb(key) {
+  for (let i=0; i<PHASE_CB_KEYS.length; i++) {
+    if (PHASE_CB_KEYS[i].includes(key)) return i;
+  }
+  return -1;
+}
+
+// ── YN ANSWER ────────────────────────────────────────────────────────────
+function ynAnswer(id, val, btn) {
+  const row = document.getElementById('yn-row-' + id);
+  row.querySelectorAll('.yn-btn').forEach(b => b.classList.remove('sel-yes','sel-no'));
+  btn.classList.add(val === 'yes' ? 'sel-yes' : 'sel-no');
+  row.className = 'yn-row ' + (val === 'yes' ? 'ans-yes' : 'ans-no');
+  const trigger = document.getElementById('trigger-' + id);
+  if (trigger) trigger.classList.toggle('show', val === 'yes');
+  ynState[id] = val;
+  update();
+}
+
+// ── CHECKBOX ──────────────────────────────────────────────────────────────
+function toggleCb(row, key) {
+  row.classList.toggle('done');
+  cbState[key] = row.classList.contains('done');
+  update();
+}
+
+// ── TAB SWITCHING ─────────────────────────────────────────────────────────
+let currentTab = 0;
+function switchTab(n) {
+  document.querySelectorAll('.phase-panel').forEach((p,i) => p.classList.toggle('active', i===n));
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===n));
+  currentTab = n;
+}
+
+// ── UPDATE ────────────────────────────────────────────────────────────────
+function update() {
+  const ynAnswered = Object.keys(ynState).length;
+  const yesCount   = Object.values(ynState).filter(v=>v==='yes').length;
+  const cbDone     = Object.values(cbState).filter(Boolean).length;
+  const totalDone  = ynAnswered + cbDone;
+
+  // Overall progress
+  const pct = Math.round((totalDone / GRAND_TOTAL) * 100);
+  document.getElementById('overall-fill').style.width = pct + '%';
+  document.getElementById('overall-pct').textContent  = pct + '%';
+
+  // Estadísticas de resumen
+  document.getElementById('sum-q-answered').textContent = ynAnswered + '/9';
+  document.getElementById('sum-triggers').textContent   = yesCount;
+  document.getElementById('sum-checks').textContent     = cbDone + '/' + (GRAND_TOTAL - 9);
+
+  // Risk badge
+  let risk='', rClass='risk-none', rText='— Responde las preguntas de cribado para evaluar el riesgo —';
+  if (ynAnswered > 0) {
+    if      (yesCount === 0) { rText='Riesgo Bajo';      rClass='risk-low'; }
+    else if (yesCount <= 2)  { rText='Riesgo Moderado'; rClass='risk-moderate'; }
+    else if (yesCount <= 5)  { rText='Riesgo Alto';     rClass='risk-high'; }
+    else                     { rText='Riesgo Crítico'; rClass='risk-critical'; }
+  }
+  const rb = document.getElementById('risk-badge');
+  rb.className = rClass;
+  rb.textContent = rText;
+
+  // Per-phase progress
+  PHASE_CB_KEYS.forEach((keys, phaseIdx) => {
+    const ynTotal   = PHASE_YN_COUNT[phaseIdx];
+    const ynDoneNow = phaseIdx === 0 ? ynAnswered : 0;
+    const cbDoneNow = keys.filter(k => cbState[k]).length;
+    const done = ynDoneNow + cbDoneNow;
+    const total = PHASE_TOTALS[phaseIdx];
+    const p = Math.round((done/total)*100);
+    document.getElementById('pp'+phaseIdx).style.width = p + '%';
+    document.getElementById('pp'+phaseIdx+'-pct').textContent = p + '%';
+    document.getElementById('tp'+phaseIdx).textContent = p + '%';
+  });
+
+  // Active triggers
+  const active = Object.keys(ynState).filter(k => ynState[k]==='yes');
+  const triggerSection = document.getElementById('active-triggers-section');
+  const noMsg = document.getElementById('no-trigger-msg');
+  if (active.length > 0) {
+    triggerSection.style.display = 'block';
+    noMsg.style.display = 'none';
+    document.getElementById('active-trigger-items').innerHTML =
+      active.map(k => `<div class="trigger-item">${TRIGGER_TEXTS[k]||k}</div>`).join('');
+  } else {
+    triggerSection.style.display = 'none';
+    noMsg.style.display = 'block';
+    noMsg.textContent = ynAnswered > 0
+      ? 'No se activó ningún requisito de gobernanza — todas las respuestas de cribado fueron No.'
+      : 'Responde las preguntas de cribado de la Fase 1 para ver qué requisitos de gobernanza se aplican a este sistema.';
+  }
+}
+
+// ── RESET ─────────────────────────────────────────────────────────────────
+function resetAll() {
+  // Clear state
+  Object.keys(ynState).forEach(k => delete ynState[k]);
+  Object.keys(cbState).forEach(k => delete cbState[k]);
+
+  // Reset yn rows
+  document.querySelectorAll('.yn-row').forEach(row => {
+    row.className = 'yn-row';
+    row.querySelectorAll('.yn-btn').forEach(b => b.classList.remove('sel-yes','sel-no'));
+  });
+  document.querySelectorAll('.trigger-box').forEach(t => t.classList.remove('show'));
+
+  // Reset checkboxes
+  document.querySelectorAll('.cb-row').forEach(r => r.classList.remove('done'));
+
+  update();
+}
+</script>
+</body>
+</html>
