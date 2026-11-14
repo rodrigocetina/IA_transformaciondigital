@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso de estudio A (Sesión 35): registros públicos de algoritmos — Ámsterdam, Helsinki y los Países Bajos</title>
+<style>
+  :root{
+    --azul:#1f4e79;
+    --azul-claro:#eaf1f8;
+    --acento:#b5651d;
+    --texto:#222;
+    --gris:#666;
+    --borde:#d8dee6;
+    --fondo:#fbfbfa;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Georgia","Times New Roman",serif;
+    color:var(--texto);
+    background:var(--fondo);
+    line-height:1.6;
+  }
+  .container{max-width:880px;margin:0 auto;padding:40px 24px 80px;}
+  header h1{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+    font-size:2rem;
+    margin-bottom:6px;
+  }
+  header p.subtitulo{color:var(--gris);font-style:italic;margin-top:0;}
+  h2{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+    border-bottom:2px solid var(--azul-claro);
+    padding-bottom:6px;
+    margin-top:2.2em;
+  }
+  h3{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--azul);}
+  table.ficha{
+    width:100%;
+    border-collapse:collapse;
+    margin:18px 0 28px;
+    font-size:0.96rem;
+  }
+  table.ficha th, table.ficha td{
+    border:1px solid var(--borde);
+    padding:10px 12px;
+    text-align:left;
+    vertical-align:top;
+  }
+  table.ficha th{
+    background:var(--azul-claro);
+    width:28%;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+  }
+  p{text-align:justify;}
+  .nota-instrucciones{
+    background:var(--azul-claro);
+    border-left:4px solid var(--azul);
+    padding:14px 18px;
+    border-radius:4px;
+    font-size:0.95rem;
+  }
+  .pregunta{
+    background:#fff;
+    border:1px solid var(--borde);
+    border-radius:8px;
+    padding:18px 20px;
+    margin-bottom:20px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.05);
+  }
+  .pregunta h3{margin-top:0;margin-bottom:8px;font-size:1.02rem;}
+  .pregunta p.enunciado{margin-top:0;margin-bottom:12px;}
+  textarea{
+    width:100%;
+    min-height:120px;
+    padding:10px;
+    font-family:"Georgia",serif;
+    font-size:0.98rem;
+    border:1px solid var(--borde);
+    border-radius:6px;
+    resize:vertical;
+  }
+  .contador{font-size:0.82rem;color:var(--gris);text-align:right;margin-top:4px;}
+  .acciones{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+    margin:24px 0 8px;
+  }
+  button{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:11px 20px;
+    border-radius:6px;
+    font-size:0.95rem;
+    cursor:pointer;
+  }
+  button.secundario{
+    background:#fff;
+    color:var(--azul);
+    border:1px solid var(--azul);
+  }
+  button:hover{opacity:0.88;}
+  #estadoCopia{font-size:0.9rem;color:var(--acento);font-weight:bold;}
+  .caveat{
+    border-left:4px solid var(--acento);
+    background:#fdf3ea;
+    padding:14px 18px;
+    border-radius:4px;
+    font-style:italic;
+    color:#7a4310;
+  }
+  ul.fuentes li{margin-bottom:8px;}
+  a{color:var(--azul);}
+  footer{margin-top:60px;font-size:0.85rem;color:var(--gris);border-top:1px solid var(--borde);padding-top:16px;}
+  @media print{
+    .acciones, #estadoCopia{display:none;}
+    textarea{border:1px solid #999;}
+  }
+
+  table.comparativa th{width:auto;}
+  table.comparativa thead th{background:var(--azul);color:#fff;}
+  table.comparativa td:first-child{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--azul);font-weight:bold;width:20%;background:var(--azul-claro);}
+  ul.lista{margin-top:0;}
+  ul.lista li{margin-bottom:6px;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Caso de estudio A (Sesión 35): Registros públicos de algoritmos — de Ámsterdam y Helsinki al registro nacional de los Países Bajos</h1>
+  <p class="subtitulo">Caso de estudio con lectura guiada, pensado para la reflexión personal. Sesión 35: liderazgo para el cambio digital consciente.</p>
+</header>
+
+<table class="ficha">
+<tr><th>Ciudades / países y nivel</th><td>Ámsterdam (Países Bajos) y Helsinki (Finlandia), nivel municipal; después, el gobierno de los Países Bajos, nivel nacional.</td></tr>
+<tr><th>Instituciones líderes</th><td>Municipio de Ámsterdam y Ciudad de Helsinki, con Saidot, una empresa finlandesa que desarrolló ambos registros. En el nivel nacional, el Ministerio del Interior y Relaciones del Reino de los Países Bajos.</td></tr>
+<tr><th>Qué es</th><td>No es un sistema de IA, sino un instrumento de transparencia: una lista pública que describe qué algoritmos usa cada organismo, para qué, con qué datos y con qué salvaguardas.</td></tr>
+<tr><th>Fechas clave</th><td>Septiembre de 2020: Ámsterdam y Helsinki lanzan sus registros. 2020: Ámsterdam adopta un marco de gobernanza algorítmica. Finales de 2022: comienza a publicar el registro nacional neerlandés. 1 de enero de 2025: el registro de Ámsterdam se integra en el nacional.</td></tr>
+<tr><th>Capa de gobernanza</th><td>Principalmente sistémica: permite que ciudadanos, periodistas, órganos de control y academia vean qué se usa y lo cuestionen. Se apoya en controles previos (predespliegue) y en el seguimiento diario (operacional).</td></tr>
+<tr><th>Evidencia principal</th><td>Los registros municipales de 2020 empezaron con pocos sistemas. En 2025, el registro nacional superó los 1.300 algoritmos publicados por más de 500 organismos, y el gobierno se fijó la meta de llegar a 1.600 en 2026.</td></tr>
+</table>
+
+<h2>Contexto y el problema</h2>
+<p>Una persona no puede cuestionar una decisión si no sabe que en ella intervino un algoritmo. Un periodista no puede investigar un sistema cuya existencia desconoce, y un órgano de control no puede auditar lo que nadie le ha informado. Durante años, la mayoría de las administraciones usaron algoritmos sin decir públicamente cuáles, para qué ni con qué controles. La consecuencia es una brecha de rendición de cuentas: aunque las salvaguardas internas existan, nadie fuera de la institución puede comprobarlo.</p>
+<p>Los registros públicos de algoritmos responden a ese problema con una idea sencilla: publicar, en un lugar accesible y en un lenguaje comprensible, qué sistemas algorítmicos usa la administración. Es una pieza de la capa sistémica de la gobernanza: no sustituye a la evaluación de impacto ni a la supervisión humana, pero hace posible que otros controlen que existan.</p>
+
+<h2>Ámsterdam y Helsinki: los primeros registros municipales</h2>
+<p>En septiembre de 2020, Ámsterdam y Helsinki presentaron los primeros registros públicos municipales de algoritmos e inteligencia artificial del mundo. Ambos fueron desarrollados por Saidot, una empresa finlandesa especializada en herramientas de transparencia para la IA. Empezaron con pocos sistemas, de forma explícitamente experimental.</p>
+<p>El registro de Ámsterdam describía, entre otros, un sistema automatizado de control del estacionamiento, una herramienta que analiza los avisos ciudadanos sobre problemas en el espacio público y un algoritmo que estima la probabilidad de que una vivienda se esté alquilando ilegalmente a turistas. El de Helsinki incluía varios asistentes conversacionales, como uno sobre estacionamiento, y un sistema para gestionar la colección de la biblioteca municipal. En cada caso, el registro explicaba para qué se usaba el sistema, qué datos empleaba, cómo se supervisaba y a quién dirigirse con preguntas.</p>
+<p>La motivación, según la responsable de derechos digitales y ética de Ámsterdam, era doble. Por un lado, la confianza: el secretismo genera desconfianza, y una administración que muestra lo que hace la refuerza. Por otro, la rendición de cuentas democrática: si un algoritmo interviene en decisiones sobre prestaciones, permisos o inspecciones, las personas tienen que poder entender cómo se toman y, si algo sale mal, impugnarlas.</p>
+
+<h2>Del registro local al registro nacional</h2>
+<p>La experiencia de Ámsterdam inspiró un registro nacional de algoritmos en los Países Bajos, impulsado tras una petición de la Cámara de Representantes y gestionado por el Ministerio del Interior. El municipio participó en su diseño desde el principio. Desde finales de 2022, organismos de todos los niveles de gobierno publican en él la descripción de sus algoritmos: qué hacen, dónde se aplican y qué impacto tienen sobre la ciudadanía. En 2025 superó los 1.300 algoritmos publicados por más de 500 organismos, y el gobierno se fijó la meta de llegar a 1.600 en 2026.</p>
+<p>El 1 de enero de 2025, el registro de Ámsterdam se integró en el nacional. Además de unificar la información en una sola plataforma, la fusión redujo los costos de gestión del municipio. Lo que empezó como una innovación local se convirtió en una infraestructura pública compartida.</p>
+
+<h2>Más allá de publicar</h2>
+<p>Tanto Ámsterdam como el Ministerio del Interior insisten en que el registro no es un fin en sí mismo. En palabras de la responsable de política de IA del ministerio, registrar es el punto de partida; el trabajo real está en la conversación sobre salvaguardas, riesgos y responsabilidades: si se hizo a tiempo la evaluación de impacto, o si ciertos usos deberían suspenderse.</p>
+<p>Por eso Ámsterdam acompañó el registro con otras herramientas. En 2020 adoptó un marco de gobernanza algorítmica que incluye controles de privacidad, sesgo y legalidad antes de usar un sistema. Sus criterios de aceptación de calidad guían a cada departamento, paso a paso, por los requisitos de cualquier proyecto digital, y empiezan siempre con una pregunta ética: ¿de verdad queremos hacer esto? El municipio publicó además una "ficha ética" para ayudar a los equipos a usar los algoritmos de forma responsable y transparente. Como resumió uno de sus responsables, no todo lo que es técnicamente posible y legalmente permitido debe hacerse necesariamente.</p>
+<p>El mismo enfoque aparece en el Reglamento de IA de la Unión Europea, que prevé que las autoridades públicas que utilicen sistemas de alto riesgo registren ese uso en una base de datos de la UE. Los registros nacionales y municipales pueden ir más allá e incluir también sistemas de menor riesgo que afectan a la vida diaria de las personas.</p>
+
+<h2>Diseño institucional y gobernanza</h2>
+<table class="ficha comparativa">
+<thead><tr><th></th><th>Registros municipales (Ámsterdam y Helsinki, 2020)</th><th>Registro nacional (Países Bajos, desde 2022)</th></tr></thead>
+<tbody>
+<tr><td>Quién publica</td><td>Cada ciudad, sobre sus propios sistemas</td><td>Organismos de todos los niveles de gobierno, más de 500 en 2025</td></tr>
+<tr><td>Quién lo gestiona</td><td>Cada municipio, con una plataforma desarrollada por una empresa</td><td>El Ministerio del Interior, como infraestructura pública común</td></tr>
+<tr><td>Qué se publica</td><td>Finalidad, datos, supervisión y contacto de cada sistema</td><td>Qué hace el algoritmo, dónde se aplica, qué impacto tiene y qué salvaguardas existen</td></tr>
+<tr><td>Instrumentos que lo acompañan</td><td>En Ámsterdam: marco de gobernanza algorítmica, criterios de calidad y ficha ética</td><td>Orientaciones para redactar descripciones comprensibles; revisión encargada al Servicio de Auditoría sobre la coherencia de los registros</td></tr>
+<tr><td>Principal desafío</td><td>Cobertura: empezaron con pocos sistemas</td><td>Completitud y calidad: que todos los organismos registren y que las descripciones sean útiles</td></tr>
+</tbody>
+</table>
+
+<h2>Evidencia de impacto</h2>
+<p>El número de algoritmos publicados mide cuánto se ha divulgado, no cuánto ha mejorado la rendición de cuentas. No se encontraron datos públicos sobre cuántas personas consultan los registros, ni sobre cuántas decisiones se han cuestionado o corregido gracias a ellos. La prensa especializada neerlandesa ha señalado, además, que muchos organismos, entre ellos numerosos municipios, todavía no registran todos sus algoritmos. El propio ministerio reconoce que "todavía no hemos llegado" y ha encargado al Servicio de Auditoría del Reino un estudio sobre cómo viven los organismos el proceso de publicación y sobre la coherencia de lo que publican.</p>
+<p>Lo que sí está documentado es un cambio institucional: una práctica local se convirtió en estándar nacional, con un ministerio responsable, metas públicas y un esfuerzo explícito por mejorar la calidad de lo que se publica.</p>
+
+<h2>Tensiones y preguntas abiertas</h2>
+<p>La primera tensión es entre transparencia y comprensión. Una descripción técnica puede ser exacta e inútil para el ciudadano; una demasiado simple puede ocultar lo importante. El ministerio neerlandés insiste en que las descripciones se redacten pensando en las personas, no en los especialistas.</p>
+<p>La segunda es la completitud. Un registro voluntario o con poca supervisión tiende a mostrar los sistemas menos problemáticos. ¿Qué garantiza que aparezcan precisamente los que más afectan a las personas?</p>
+<p>La tercera es el costo. Mantener actualizado un registro exige tiempo y personas. Ámsterdam redujo ese costo integrándose en una plataforma nacional; una institución pequeña quizá no tenga esa opción.</p>
+<p>La cuarta tiene que ver con quién construye la transparencia. Los primeros registros los desarrolló una empresa privada. Pasar a una infraestructura pública, como hizo el gobierno neerlandés, aseguró la continuidad, pero no todos los países pueden hacerlo de inmediato.</p>
+<div class="caveat">Pregunta estructural para la reflexión: un registro de algoritmos hace visible lo que una institución decide mostrar. ¿Qué tendría que existir antes, dentro de la institución, para que lo que se publica sea completo y veraz? ¿Puede un registro funcionar en una administración que todavía no ha regularizado el uso de la IA por parte de su propio personal?</div>
+
+
+<h2>Preguntas para la reflexión</h2>
+<div class="nota-instrucciones">
+  <strong>Cómo usar estos espacios:</strong> Los recuadros que acompañan a cada pregunta son solo para usted. Puede usarlos para anotar sus reflexiones a medida que lee el caso, con la extensión que quiera. No se trata de una tarea: no tiene que entregar estas notas ni publicarlas en ningún sitio, y nadie las va a revisar ni a evaluar. Es una lectura guiada, pensada para ayudarle a leer el caso con más atención y a preparar el Mapa de Impacto y la estrategia de liderazgo de su proyecto final.
+  <br><br>
+  Si quiere conservar lo que ha escrito, puede copiarlo o descargarlo como archivo de texto con los botones que encontrará al final. Tenga en cuenta que las notas no se guardan si cierra o recarga la página.
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 1</h3>
+  <p class="enunciado">Ámsterdam empieza todo proyecto digital con una pregunta: ¿de verdad queremos hacer esto? Imagine que tuviera que publicar mañana la descripción de la iniciativa de su proyecto final en un registro abierto. ¿Qué le resultaría fácil explicar y qué le incomodaría publicar? ¿Qué le dice esa incomodidad sobre su diseño?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 2</h3>
+  <p class="enunciado">Según sus propios responsables, registrar es el punto de partida y no el final. Con las cuatro capas de la arquitectura de gobernanza (predespliegue, contractual, operacional y sistémica), explique qué capas activa un registro de algoritmos y cuáles necesitan otros instrumentos.</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 3</h3>
+  <p class="enunciado">Redacte una ficha mínima de registro para su iniciativa con cinco campos: finalidad, datos que usa, quién decide, salvaguardas y cómo puede reclamar una persona afectada. ¿Quién en su institución debería mantenerla actualizada, y con qué frecuencia?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 4</h3>
+  <p class="enunciado">Muchos organismos todavía no registran todos sus algoritmos. Piense en posibles razones y clasifíquelas como resistencia cultural, estructural o política. Elija una y proponga una respuesta de liderazgo que la trate como fuente de información y no solo como obstáculo.</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 5</h3>
+  <p class="enunciado">Los primeros registros los desarrolló una empresa privada; después se integraron en una plataforma pública nacional. ¿Qué ventajas y qué riesgos tiene que una herramienta de transparencia pública la construya o la gestione un proveedor? ¿Quién debería ser su responsable en su país?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="acciones">
+  <button id="copiarBtn">Copiar mis notas</button>
+  <button id="descargarBtn" class="secundario">Descargar mis notas (.txt)</button>
+  <span id="estadoCopia"></span>
+</div>
+
+<h2>Fuentes</h2>
+<ul class="fuentes">
+  <li><a href="https://www.nldigitalgovernment.nl/featured-stories/how-amsterdam-helped-shape-algorithm-registers-success/" target="_blank" rel="noopener">Gobierno de los Países Bajos — "How Amsterdam helped shape Algorithm Register's success" (abril de 2026)</a></li>
+  <li><a href="https://algoritmes.overheid.nl/en" target="_blank" rel="noopener">Registro nacional de algoritmos de los Países Bajos (Algoritmeregister)</a></li>
+  <li><a href="https://algoritmes.overheid.nl/en/dashboard" target="_blank" rel="noopener">Registro nacional de algoritmos — panel de datos</a></li>
+  <li><a href="https://ai-regulation.com/amsterdam-and-helsinki-launch-algorithm-and-ai-register/" target="_blank" rel="noopener">AI Regulation — "Amsterdam and Helsinki Launch Algorithm and AI Register" (2020)</a></li>
+  <li><a href="https://shorttermrentalz.com/news/amsterdam-helsinki-ai-register/" target="_blank" rel="noopener">Short Term Rentalz — los registros de IA de Ámsterdam y Helsinki (2020)</a></li>
+  <li><a href="https://openresearch.amsterdam/nl/page/93041/de-ethische-bijsluiter" target="_blank" rel="noopener">Municipio de Ámsterdam — "De ethische bijsluiter" (ficha ética, en neerlandés)</a></li>
+  <li><a href="https://eur-lex.europa.eu/legal-content/ES/TXT/HTML/?uri=OJ:L_202401689" target="_blank" rel="noopener">Reglamento (UE) 2024/1689 (Reglamento de IA)</a></li>
+</ul>
+
+<footer>
+  Material elaborado para uso académico a partir de las fuentes públicas citadas arriba. Compilado el 14 de noviembre de 2026.
+</footer>
+
+</div>
+
+<script>
+  const preguntas = document.querySelectorAll('.pregunta');
+
+  preguntas.forEach(div => {
+    const textarea = div.querySelector('textarea');
+    const contador = div.querySelector('.contador');
+    textarea.addEventListener('input', () => {
+      const palabras = textarea.value.trim().split(/\s+/).filter(Boolean).length;
+      contador.textContent = palabras + (palabras === 1 ? ' palabra' : ' palabras');
+    });
+  });
+
+  function construirTexto(){
+    let out = "CASO DE ESTUDIO A (SESIÓN 35): REGISTROS PÚBLICOS DE ALGORITMOS — DE ÁMSTERDAM Y HELSINKI AL REGISTRO NACIONAL DE LOS PAÍSES BAJOS" + "\n";
+    out += "Notas personales de lectura\n";
+    out += "----------------------------------------\n\n";
+    preguntas.forEach((div, i) => {
+      const enunciado = div.querySelector('.enunciado').textContent.trim();
+      const respuesta = div.querySelector('textarea').value.trim();
+      out += "Pregunta " + (i+1) + ": " + enunciado + "\n";
+      out += (respuesta || "[Sin notas]") + "\n\n";
+    });
+    return out;
+  }
+
+  const estado = document.getElementById('estadoCopia');
+
+  document.getElementById('copiarBtn').addEventListener('click', () => {
+    const texto = construirTexto();
+    navigator.clipboard.writeText(texto).then(() => {
+      estado.textContent = "Notas copiadas al portapapeles.";
+    }).catch(() => {
+      estado.textContent = "No se pudo copiar automáticamente. Seleccione y copie el texto manualmente.";
+    });
+  });
+
+  document.getElementById('descargarBtn').addEventListener('click', () => {
+    const texto = construirTexto();
+    const blob = new Blob([texto], {type: "text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "notas_caso_S35_A_registros_algoritmos.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+</script>
+
+</body>
+</html>

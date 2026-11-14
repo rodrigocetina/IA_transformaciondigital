@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso de estudio B (Sesión 35): la metodología RAM de la UNESCO en América Latina</title>
+<style>
+  :root{
+    --azul:#1f4e79;
+    --azul-claro:#eaf1f8;
+    --acento:#b5651d;
+    --texto:#222;
+    --gris:#666;
+    --borde:#d8dee6;
+    --fondo:#fbfbfa;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Georgia","Times New Roman",serif;
+    color:var(--texto);
+    background:var(--fondo);
+    line-height:1.6;
+  }
+  .container{max-width:880px;margin:0 auto;padding:40px 24px 80px;}
+  header h1{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+    font-size:2rem;
+    margin-bottom:6px;
+  }
+  header p.subtitulo{color:var(--gris);font-style:italic;margin-top:0;}
+  h2{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+    border-bottom:2px solid var(--azul-claro);
+    padding-bottom:6px;
+    margin-top:2.2em;
+  }
+  h3{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--azul);}
+  table.ficha{
+    width:100%;
+    border-collapse:collapse;
+    margin:18px 0 28px;
+    font-size:0.96rem;
+  }
+  table.ficha th, table.ficha td{
+    border:1px solid var(--borde);
+    padding:10px 12px;
+    text-align:left;
+    vertical-align:top;
+  }
+  table.ficha th{
+    background:var(--azul-claro);
+    width:28%;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+  }
+  p{text-align:justify;}
+  .nota-instrucciones{
+    background:var(--azul-claro);
+    border-left:4px solid var(--azul);
+    padding:14px 18px;
+    border-radius:4px;
+    font-size:0.95rem;
+  }
+  .pregunta{
+    background:#fff;
+    border:1px solid var(--borde);
+    border-radius:8px;
+    padding:18px 20px;
+    margin-bottom:20px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.05);
+  }
+  .pregunta h3{margin-top:0;margin-bottom:8px;font-size:1.02rem;}
+  .pregunta p.enunciado{margin-top:0;margin-bottom:12px;}
+  textarea{
+    width:100%;
+    min-height:120px;
+    padding:10px;
+    font-family:"Georgia",serif;
+    font-size:0.98rem;
+    border:1px solid var(--borde);
+    border-radius:6px;
+    resize:vertical;
+  }
+  .contador{font-size:0.82rem;color:var(--gris);text-align:right;margin-top:4px;}
+  .acciones{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+    margin:24px 0 8px;
+  }
+  button{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:11px 20px;
+    border-radius:6px;
+    font-size:0.95rem;
+    cursor:pointer;
+  }
+  button.secundario{
+    background:#fff;
+    color:var(--azul);
+    border:1px solid var(--azul);
+  }
+  button:hover{opacity:0.88;}
+  #estadoCopia{font-size:0.9rem;color:var(--acento);font-weight:bold;}
+  .caveat{
+    border-left:4px solid var(--acento);
+    background:#fdf3ea;
+    padding:14px 18px;
+    border-radius:4px;
+    font-style:italic;
+    color:#7a4310;
+  }
+  ul.fuentes li{margin-bottom:8px;}
+  a{color:var(--azul);}
+  footer{margin-top:60px;font-size:0.85rem;color:var(--gris);border-top:1px solid var(--borde);padding-top:16px;}
+  @media print{
+    .acciones, #estadoCopia{display:none;}
+    textarea{border:1px solid #999;}
+  }
+
+  table.comparativa th{width:auto;}
+  table.comparativa thead th{background:var(--azul);color:#fff;}
+  table.comparativa td:first-child{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--azul);font-weight:bold;width:20%;background:var(--azul-claro);}
+  ul.lista{margin-top:0;}
+  ul.lista li{margin-bottom:6px;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Caso de estudio B (Sesión 35): Evaluarse antes de avanzar — la Metodología de Evaluación del Estadio de Preparación (RAM) de la UNESCO en América Latina</h1>
+  <p class="subtitulo">Caso de estudio con lectura guiada, pensado para la reflexión personal. Sesión 35: liderazgo para el cambio digital consciente.</p>
+</header>
+
+<table class="ficha">
+<tr><th>Países / Nivel</th><td>Chile, México, Uruguay y Perú, con referencias a Paraguay — nivel nacional</td></tr>
+<tr><th>Instituciones líderes</th><td>UNESCO, junto con los gobiernos nacionales. En México, con la Alianza Nacional de Inteligencia Artificial; en Uruguay, con Agesic; en el Perú, la Presidencia del Consejo de Ministros.</td></tr>
+<tr><th>Qué es</th><td>La RAM es una herramienta de la Recomendación de la UNESCO sobre la Ética de la IA (2021) que diagnostica las fortalezas y brechas de un país para diseñar, desarrollar y usar la IA de forma ética. Examina cinco dimensiones y termina en un informe nacional con recomendaciones y una hoja de ruta.</td></tr>
+<tr><th>Fechas clave</th><td><strong>Chile:</strong> primer país del mundo en completarla (2023). <strong>México:</strong> informe presentado en el Senado (julio de 2024). <strong>Uruguay:</strong> informe presentado en octubre de 2024. <strong>Perú:</strong> compromiso de aplicarla; Estrategia Nacional de IA 2026–2030 aprobada en mayo de 2026.</td></tr>
+<tr><th>Capa de gobernanza</th><td>Sistémica y nacional: evalúa si el país en su conjunto tiene las condiciones para gobernar la IA. Es el equivalente, a escala de país, de lo que la EIA hace para cada sistema.</td></tr>
+<tr><th>Evidencia principal</th><td>Informes nacionales publicados para Chile, México y Uruguay, elaborados con amplia participación. En Chile y Uruguay, el diagnóstico coincidió con la actualización de la política o estrategia nacional de IA.</td></tr>
+</table>
+
+<h2>Contexto y el problema</h2>
+<p>La EIA, que se estudia en esta sesión, evalúa un sistema concreto. Pero ninguna institución gobierna la IA en el vacío. Para que una evaluación de impacto sirva de algo hacen falta leyes que protejan los datos, autoridades que supervisen, personas formadas, infraestructura y una ciudadanía capaz de exigir explicaciones. Si esas condiciones no existen, las mejores herramientas de gestión del impacto quedan sin apoyo.</p>
+<p>La Metodología de Evaluación del Estadio de Preparación (RAM, por sus siglas en inglés) responde a esa pregunta previa: ¿está el país preparado para usar la IA de forma ética? La UNESCO la desarrolló como herramienta de su Recomendación de 2021 y la ofrece a los Estados que desean aplicarla. Examina cinco dimensiones —jurídica y regulatoria, social y cultural, económica, científica y educativa, y tecnológica y de infraestructura— mediante indicadores cuantitativos y cualitativos. El resultado es un informe nacional con un diagnóstico, fortalezas, aspectos a mejorar y recomendaciones de política.</p>
+<p>América Latina ha sido una de las regiones más activas en su aplicación. Según un documento de términos de referencia publicado en Guatemala en 2025, la metodología se aplicaba entonces en más de 60 países, unos 15 de ellos latinoamericanos.</p>
+
+<h2>Chile: el primer país en completarla</h2>
+<p>Chile fue el primer país del mundo en completar la RAM y publicar su informe, en 2023. El diagnóstico se complementó con una consulta a más de 300 expertos en IA, representantes de la sociedad civil y público general. Entre sus recomendaciones figuraban crear entornos de prueba regulatorios (<em>sandboxes</em>), fortalecer las leyes de protección de datos y de ciberseguridad, y formular estrategias de IA a escala municipal, adaptadas a las prioridades locales.</p>
+<p>El informe se planteó como un insumo para actualizar la Política Nacional de IA de 2021. Según una de las consultoras que participó en el proceso, esa actualización ya estaba en marcha por el rápido avance de la IA y por las nuevas prioridades del gobierno, y la RAM fue un ejercicio complementario. Es una lección útil: un diagnóstico tiene más impacto cuando llega en el momento en que hay una decisión que tomar.</p>
+
+<h2>México: un diagnóstico para construir una estrategia</h2>
+<p>En julio de 2024 se presentó en el Senado mexicano el informe de evaluación del estadio de preparación en IA de México, elaborado por la UNESCO con la Alianza Nacional de Inteligencia Artificial y con la participación de más de 250 personas y organizaciones. El informe se planteó como diagnóstico y hoja de ruta para que el gobierno federal y los estados elaboraran una estrategia nacional de IA con bases éticas.</p>
+<p>Entre las fortalezas, especialistas de la UNESCO destacaron el marco legal de protección de derechos humanos, datos y privacidad. Entre las brechas, la prensa recogió la ausencia de una estrategia para preparar al mercado laboral e incorporar a más personas a la industria de la IA.</p>
+
+<h2>Uruguay: fortalezas claras y una brecha de medición</h2>
+<p>Uruguay presentó su informe en octubre de 2024. Se elaboró mediante una encuesta de más de 200 preguntas, con la participación de Agesic, la unidad reguladora de datos personales, el Ministerio de Industria, la agencia nacional de investigación y la academia. Esa diversidad, según Agesic, confirmó que la IA no es solo un tema de tecnología.</p>
+<p>El informe destacó un marco normativo sólido, una visión integrada de la IA y los datos, muy buenos indicadores de conectividad —con cobertura total en las instituciones educativas, clave para el Plan Ceibal— y el papel de Agesic como rectora. Como aspectos a mejorar, señaló la falta de indicadores y de herramientas para medir el impacto, lo que dificulta evaluar las iniciativas; la necesidad de llevar la estrategia de IA, entonces centrada en el gobierno digital, a un nivel nacional que integrara al sector privado, y la urgencia de la formación. El país ya trabajaba en esa estrategia nacional, aprobada en noviembre de 2024 y estudiada en la Sesión 32.</p>
+
+<h2>Perú: de la estrategia a los planes de cada entidad</h2>
+<p>El Perú manifestó a la UNESCO su voluntad de aplicar la RAM, y documentos oficiales peruanos la citan como herramienta para conocer la preparación del país. Al compilar este caso no se localizó un informe RAM del Perú publicado.</p>
+<p>Lo que sí avanzó es el marco de política. En mayo de 2026, la Presidencia del Consejo de Ministros aprobó la Estrategia Nacional de Inteligencia Artificial 2026–2030, que se suma a la Ley N.° 31814 y su Reglamento. La estrategia obliga a cada entidad pública a formular un plan de acción de IA alineado con sus objetivos institucionales. En octubre de 2026 se creó, además, la figura del Oficial de Inteligencia Artificial en las entidades públicas. Para quienes trabajan en el Estado peruano, la pregunta de la RAM —¿estamos preparados?— deja de ser nacional y pasa a ser de cada institución.</p>
+
+<h2>Diseño institucional y gobernanza</h2>
+<table class="ficha comparativa">
+<thead><tr><th></th><th>Chile</th><th>México</th><th>Uruguay</th><th>Perú</th></tr></thead>
+<tbody>
+<tr><td>Año del informe</td><td>2023</td><td>2024</td><td>2024</td><td>No localizado</td></tr>
+<tr><td>Participación</td><td>Consulta con más de 300 personas: expertos, sociedad civil y público</td><td>Más de 250 personas y organizaciones</td><td>Encuesta de más de 200 preguntas a instituciones públicas y academia</td><td>—</td></tr>
+<tr><td>Hallazgo destacado</td><td>Recomendó entornos de prueba regulatorios, más protección de datos y ciberseguridad, y estrategias municipales</td><td>Fortaleza en derechos y datos; falta de una estrategia de empleo en IA</td><td>Marco normativo sólido; faltan indicadores de impacto</td><td>—</td></tr>
+<tr><td>Qué pasó después</td><td>Insumo para la actualización de la Política Nacional de IA</td><td>Hoja de ruta para una estrategia nacional</td><td>Coincidió con la elaboración de la Estrategia Nacional de IA 2024–2030</td><td>Estrategia Nacional de IA 2026–2030 con planes de acción por entidad y Oficial de IA</td></tr>
+</tbody>
+</table>
+
+<h2>Evidencia de impacto</h2>
+<p>La RAM produce diagnósticos y recomendaciones, no resultados directos para la ciudadanía. Su efecto se observa en las políticas que alimenta, y aun ahí es difícil separar su contribución de procesos que ya estaban en marcha, como reconocen las propias fuentes sobre Chile y Uruguay. Los informes los elaboran equipos nacionales con la UNESCO; no son auditorías independientes. Tampoco se encontró un seguimiento público y sistemático de cuántas recomendaciones se han aplicado en cada país.</p>
+<p>Aun así, el caso deja algo valioso: varios países de la región se miraron a sí mismos con un mismo método, con participación amplia y antes de decidir. Y uno de esos diagnósticos, el de Uruguay, identificó como debilidad justamente la falta de herramientas para medir el impacto, el tema central de esta sesión y de la próxima.</p>
+
+<h2>Tensiones y preguntas abiertas</h2>
+<p>La primera tensión es el seguimiento. Un diagnóstico sin un mecanismo que convierta sus recomendaciones en decisiones corre el riesgo de quedarse en un documento más. ¿Quién da seguimiento a la RAM una vez publicada?</p>
+<p>La segunda es el nivel. Un país puede estar razonablemente preparado y que muchas de sus instituciones no lo estén. Las condiciones que la RAM mide a escala nacional —normas, capacidades, datos, infraestructura— varían mucho de una entidad a otra.</p>
+<p>La tercera es la participación. Los informes de Chile y México se apoyaron en cientos de voces. Un diagnóstico hecho solo por el área de tecnología verá la infraestructura, pero quizá no vea la desconfianza ciudadana ni la falta de formación del personal.</p>
+<div class="caveat">Pregunta estructural para la reflexión: la Estrategia Nacional de IA 2026–2030 obliga a cada entidad pública peruana a elaborar un plan de acción de IA. Si su institución tuviera que empezar por un diagnóstico de preparación inspirado en la RAM, ¿qué dimensión evaluaría primero, y quién debería participar para que no lo haga solo el área de tecnología?</div>
+
+
+<h2>Preguntas para la reflexión</h2>
+<div class="nota-instrucciones">
+  <strong>Cómo usar estos espacios:</strong> Los recuadros que acompañan a cada pregunta son solo para usted. Puede usarlos para anotar sus reflexiones a medida que lee el caso, con la extensión que quiera. No se trata de una tarea: no tiene que entregar estas notas ni publicarlas en ningún sitio, y nadie las va a revisar ni a evaluar. Es una lectura guiada, pensada para ayudarle a leer el caso con más atención y a preparar el Mapa de Impacto y la estrategia de liderazgo de su proyecto final.
+  <br><br>
+  Si quiere conservar lo que ha escrito, puede copiarlo o descargarlo como archivo de texto con los botones que encontrará al final. Tenga en cuenta que las notas no se guardan si cierra o recarga la página.
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 1</h3>
+  <p class="enunciado">La RAM evalúa al país en cinco dimensiones: jurídica y regulatoria, social y cultural, económica, científica y educativa, y tecnológica y de infraestructura. Aplíquelas a su institución: ¿en cuál está más preparada para usar la IA de forma ética y en cuál menos? ¿Qué consecuencia tiene esa debilidad para la iniciativa de su proyecto final?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 2</h3>
+  <p class="enunciado">El informe de Uruguay señaló la falta de indicadores para medir el impacto de las iniciativas. ¿Cuenta su institución con alguna forma de saber si una iniciativa de IA mejora o empeora la vida de las personas a las que sirve? Proponga un indicador para su proyecto final; lo retomará en la Sesión 36.</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 3</h3>
+  <p class="enunciado">Los diagnósticos de Chile y México se construyeron con cientos de participantes. Si su institución hiciera un diagnóstico de preparación, ¿quién debería participar y qué voces suelen quedar fuera de estos ejercicios? ¿Qué se perdería si lo hiciera solo el área de tecnología?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 4</h3>
+  <p class="enunciado">Un diagnóstico sin seguimiento se convierte en un documento más. Usando las cuatro capas de la arquitectura de gobernanza, proponga un mecanismo concreto que garantice que las recomendaciones de un diagnóstico de su institución se conviertan en decisiones.</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 5</h3>
+  <p class="enunciado">La Estrategia Nacional de IA 2026–2030 crea la figura del Oficial de Inteligencia Artificial en las entidades públicas. ¿Qué responsabilidades de gestión del impacto (evaluación de impacto, registro de algoritmos, supervisión humana, atención de reclamos) le asignaría, y cuáles no deberían concentrarse en una sola persona? ¿Por qué?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="acciones">
+  <button id="copiarBtn">Copiar mis notas</button>
+  <button id="descargarBtn" class="secundario">Descargar mis notas (.txt)</button>
+  <span id="estadoCopia"></span>
+</div>
+
+<h2>Fuentes</h2>
+<ul class="fuentes">
+  <li><a href="https://unesdoc.unesco.org/ark:/48223/pf0000385198_spa" target="_blank" rel="noopener">UNESCO — Metodología de evaluación del estadio de preparación (RAM), en español</a></li>
+  <li><a href="https://gcedclearinghouse.org/es/node/147994" target="_blank" rel="noopener">UNESCO — Chile: Artificial Intelligence Readiness Assessment Report (2023), ficha en GCED Clearinghouse</a></li>
+  <li><a href="https://www.devdiscourse.com/article/technology/2783844-unesco-launcheschile-artificial-intelligence-readiness-assessment-report" target="_blank" rel="noopener">Devdiscourse — UNESCO presenta el informe RAM de Chile</a></li>
+  <li><a href="https://mexico.un.org/es/download/163921/273089" target="_blank" rel="noopener">Naciones Unidas México — Reporte de evaluación del estadio de preparación en IA de México (2024)</a></li>
+  <li><a href="https://mobiletime.la/noticias/16/07/2024/reporte-destaca-preparacion-de-mexico-en-inteligencia-artificial" target="_blank" rel="noopener">Mobile Time — Reporte destaca la preparación de México en inteligencia artificial (julio de 2024)</a></li>
+  <li><a href="https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/politicas-y-gestion/informe-evaluacion-sobre-estado-preparacion-inteligencia-artificial-uruguay" target="_blank" rel="noopener">Agesic — Informe de evaluación sobre el estado de preparación de la IA en Uruguay (octubre de 2024)</a></li>
+  <li><a href="https://unesdoc.unesco.org/ark:/48223/pf0000391491_spa" target="_blank" rel="noopener">UNESCO — Informe RAM de Uruguay, en español</a></li>
+  <li><a href="https://dplnews.com/?p=298354" target="_blank" rel="noopener">DPL News — Paraguay y su evaluación RAM con la UNESCO</a></li>
+  <li><a href="https://andina.pe/ingles/noticia-peru-government-approves-national-artificial-intelligence-strategy-2026–2030-1073446.aspx" target="_blank" rel="noopener">Andina — el gobierno del Perú aprueba la Estrategia Nacional de IA 2026–2030</a></li>
+  <li><a href="https://www.garrigues.com/es_ES/noticia/peru-aprueba-estrategia-nacional-inteligencia-artificial-enia-establece-obligaciones" target="_blank" rel="noopener">Garrigues — Perú aprueba la Estrategia Nacional de IA y establece obligaciones</a></li>
+  <li><a href="https://forbes.pe/actualidad/2026-10-21/peru-crea-el-cargo-de-oficial-de-inteligencia-artificial-para-la-transformacion-del-estado/" target="_blank" rel="noopener">Forbes Perú — el Perú crea el cargo de Oficial de Inteligencia Artificial (octubre de 2026)</a></li>
+  <li><a href="https://unctad.org/system/files/non-official-document/cstd2025-26_isp_ai_s07_peru_en.pdf" target="_blank" rel="noopener">UNCTAD — declaración del Perú sobre IA (incluye la adopción de la RAM)</a></li>
+</ul>
+
+<footer>
+  Material elaborado para uso académico a partir de las fuentes públicas citadas arriba. Compilado el 14 de noviembre de 2026.
+</footer>
+
+</div>
+
+<script>
+  const preguntas = document.querySelectorAll('.pregunta');
+
+  preguntas.forEach(div => {
+    const textarea = div.querySelector('textarea');
+    const contador = div.querySelector('.contador');
+    textarea.addEventListener('input', () => {
+      const palabras = textarea.value.trim().split(/\s+/).filter(Boolean).length;
+      contador.textContent = palabras + (palabras === 1 ? ' palabra' : ' palabras');
+    });
+  });
+
+  function construirTexto(){
+    let out = "CASO DE ESTUDIO B (SESIÓN 35): EVALUARSE ANTES DE AVANZAR — LA METODOLOGÍA DE EVALUACIÓN DEL ESTADIO DE PREPARACIÓN (RAM) DE LA UNESCO EN AMÉRICA LATINA" + "\n";
+    out += "Notas personales de lectura\n";
+    out += "----------------------------------------\n\n";
+    preguntas.forEach((div, i) => {
+      const enunciado = div.querySelector('.enunciado').textContent.trim();
+      const respuesta = div.querySelector('textarea').value.trim();
+      out += "Pregunta " + (i+1) + ": " + enunciado + "\n";
+      out += (respuesta || "[Sin notas]") + "\n\n";
+    });
+    return out;
+  }
+
+  const estado = document.getElementById('estadoCopia');
+
+  document.getElementById('copiarBtn').addEventListener('click', () => {
+    const texto = construirTexto();
+    navigator.clipboard.writeText(texto).then(() => {
+      estado.textContent = "Notas copiadas al portapapeles.";
+    }).catch(() => {
+      estado.textContent = "No se pudo copiar automáticamente. Seleccione y copie el texto manualmente.";
+    });
+  });
+
+  document.getElementById('descargarBtn').addEventListener('click', () => {
+    const texto = construirTexto();
+    const blob = new Blob([texto], {type: "text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "notas_caso_S35_B_RAM_america_latina.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+</script>
+
+</body>
+</html>
