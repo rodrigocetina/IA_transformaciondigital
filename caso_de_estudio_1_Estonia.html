@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso de estudio 1: Estonia — IA en la administración pública</title>
+<style>
+  :root{
+    --azul:#1f4e79;
+    --azul-claro:#eaf1f8;
+    --acento:#b5651d;
+    --texto:#222;
+    --gris:#666;
+    --borde:#d8dee6;
+    --fondo:#fbfbfa;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Georgia","Times New Roman",serif;
+    color:var(--texto);
+    background:var(--fondo);
+    line-height:1.6;
+  }
+  .container{max-width:880px;margin:0 auto;padding:40px 24px 80px;}
+  header h1{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+    font-size:2rem;
+    margin-bottom:6px;
+  }
+  header p.subtitulo{color:var(--gris);font-style:italic;margin-top:0;}
+  h2{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+    border-bottom:2px solid var(--azul-claro);
+    padding-bottom:6px;
+    margin-top:2.2em;
+  }
+  h3{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--azul);}
+  table.ficha{
+    width:100%;
+    border-collapse:collapse;
+    margin:18px 0 28px;
+    font-size:0.96rem;
+  }
+  table.ficha th, table.ficha td{
+    border:1px solid var(--borde);
+    padding:10px 12px;
+    text-align:left;
+    vertical-align:top;
+  }
+  table.ficha th{
+    background:var(--azul-claro);
+    width:28%;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+  }
+  p{text-align:justify;}
+  .nota-instrucciones{
+    background:var(--azul-claro);
+    border-left:4px solid var(--azul);
+    padding:14px 18px;
+    border-radius:4px;
+    font-size:0.95rem;
+  }
+  .pregunta{
+    background:#fff;
+    border:1px solid var(--borde);
+    border-radius:8px;
+    padding:18px 20px;
+    margin-bottom:20px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.05);
+  }
+  .pregunta h3{margin-top:0;margin-bottom:8px;font-size:1.02rem;}
+  .pregunta p.enunciado{margin-top:0;margin-bottom:12px;}
+  textarea{
+    width:100%;
+    min-height:120px;
+    padding:10px;
+    font-family:"Georgia",serif;
+    font-size:0.98rem;
+    border:1px solid var(--borde);
+    border-radius:6px;
+    resize:vertical;
+  }
+  .contador{font-size:0.82rem;color:var(--gris);text-align:right;margin-top:4px;}
+  .acciones{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+    margin:24px 0 8px;
+  }
+  button{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:11px 20px;
+    border-radius:6px;
+    font-size:0.95rem;
+    cursor:pointer;
+  }
+  button.secundario{
+    background:#fff;
+    color:var(--azul);
+    border:1px solid var(--azul);
+  }
+  button:hover{opacity:0.88;}
+  #estadoCopia{font-size:0.9rem;color:var(--acento);font-weight:bold;}
+  .caveat{
+    border-left:4px solid var(--acento);
+    background:#fdf3ea;
+    padding:14px 18px;
+    border-radius:4px;
+    font-style:italic;
+    color:#7a4310;
+  }
+  ul.fuentes li{margin-bottom:8px;}
+  a{color:var(--azul);}
+  footer{margin-top:60px;font-size:0.85rem;color:var(--gris);border-top:1px solid var(--borde);padding-top:16px;}
+  @media print{
+    .acciones, #estadoCopia{display:none;}
+    textarea{border:1px solid #999;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Caso de estudio 1: Estonia — La IA integrada en un Estado digital protector de derechos (X-Road y Bürokratt)</h1>
+  <p class="subtitulo">Caso de estudio con lectura guiada, pensado para la reflexión personal.</p>
+</header>
+
+<table class="ficha">
+  <tr><th>País / Nivel</th><td>Estonia — gobierno nacional</td></tr>
+  <tr><th>Agencias líderes</th><td>Autoridad de Sistemas de Información (RIA); Ministerio de Asuntos Económicos y Comunicaciones; Centro Estonio de Respuesta a Emergencias (Häirekeskus)</td></tr>
+  <tr><th>Sector</th><td>Infraestructura digital transversal del gobierno; despacho de emergencias; servicios orientados al ciudadano</td></tr>
+  <tr><th>Función de la IA</th><td>Asistentes virtuales de voz y texto (Bürokratt) para consultas ciudadanas; conversión de voz a texto y análisis de sentimiento para priorizar llamadas de emergencia; previsión de la demanda de llamadas</td></tr>
+  <tr><th>Lanzamiento</th><td>X-Road: 2001. Estrategia nacional de IA ("Kratikava"): 2019. Desarrollo de Bürokratt: desde 2020.</td></tr>
+  <tr><th>Base legal / regulatoria</th><td>Ley de Información Pública (obligación de compartir datos, artículo 43); RGPD; Estrategia Nacional de IA 2019–2021; legislación sectorial para cada servicio conectado</td></tr>
+  <tr><th>Evidencia principal</th><td>Cerca de 1 millón de llamadas de emergencia anuales priorizadas más rápido; cada acceso a datos personales queda registrado a nivel nacional y es visible para el ciudadano al que corresponde</td></tr>
+</table>
+
+<h2>Contexto y el problema</h2>
+<p>Estonia reconstruyó casi desde cero sus instituciones estatales tras recuperar la independencia en 1991, con una población pequeña (alrededor de 1.3 millones de personas) y una capacidad administrativa limitada. En lugar de digitalizar la burocracia en papel de forma fragmentada, Estonia construyó una capa fundacional de intercambio de datos, X-Road, a partir de 2001, años antes de que la mayoría de los gobiernos tratara el "gobierno digital" como una prioridad estratégica. El problema específico que aborda hoy la capa de IA es más reciente y acotado: hacia finales de la década de 2010, el Centro de Respuesta a Emergencias de Estonia gestionaba cerca de un millón de llamadas al año con un grupo limitado de operadores capacitados, y las agencias orientadas al ciudadano querían una forma compartida de responder preguntas rutinarias (beneficios, permisos, registros) sin que un funcionario público tuviera que atender cada una. La Estrategia Nacional de IA del país (2019) enmarca explícitamente la adopción de la IA como algo que debe ocurrir dentro de las garantías legales y arquitectónicas que X-Road ya había establecido, no al margen de ellas.</p>
+
+<h2>Cómo funciona el sistema</h2>
+<p>Es importante separar dos capas, porque confundirlas es el malentendido más común entre los estudiantes sobre este caso. La primera capa, X-Road, no es en absoluto IA — es una columna vertebral de intercambio de datos descentralizada y de cumplimiento legal obligatorio. La Ley de Información Pública de Estonia prohíbe que las agencias construyan bases de datos duplicadas para información que otra agencia ya posee, y en su lugar exige que consulten esa base de datos directamente a través de X-Road cuando estén autorizadas. Cada consulta —cada vez que un sistema gubernamental accede a los datos de un ciudadano en poder de otra agencia— queda registrada, y los ciudadanos tienen el derecho legal de ver ese registro: quién accedió a sus datos, desde qué agencia y, en principio, por qué. Este es el "principio de una sola vez": un ciudadano nunca debería tener que presentar la misma información al Estado dos veces.</p>
+<p>La segunda capa, construida sobre esta base desde 2020, es Bürokratt — un marco compartido de asistente virtual de IA al que las agencias individuales se conectan para ofrecer servicios ciudadanos basados en chatbot, más una aplicación independiente en el Centro de Respuesta a Emergencias que utiliza conversión de voz a texto y análisis de sentimiento para ayudar a los operadores a priorizar las llamadas entrantes más rápido, junto con un modelo de previsión que anticipa los picos de volumen de llamadas (por ejemplo, ante fenómenos meteorológicos severos) para poder ajustar el personal con antelación.</p>
+
+<h2>Diseño institucional y gobernanza</h2>
+<p>La característica de diseño más importante para un curso de administración pública es la secuencia temporal: la infraestructura de rendición de cuentas (el registro obligatorio de X-Road, los derechos de acceso ciudadano y la arquitectura descentralizada) se construyó y consagró legalmente casi dos décadas antes de añadir la capa de IA sobre ella. Esto contrasta fuertemente con países que desplegaron sistemas de IA primero y ahora intentan incorporar supervisión después de que surgieran problemas (el sistema SyRI de los Países Bajos, anulado por un tribunal neerlandés en 2020 por violar los derechos de privacidad bajo el Convenio Europeo de Derechos Humanos, es el contraejemplo habitual — carecía de una transparencia equivalente sobre qué datos alimentaban el algoritmo o cómo).</p>
+<p>La gobernanza también está explícitamente distribuida en lugar de centralizada en una única autoridad de IA: el Ministerio de Asuntos Económicos y Comunicaciones define la estrategia, la RIA opera y protege la infraestructura técnica compartida, y cada agencia individual sigue siendo legalmente responsable de las funciones de IA que despliega sobre esa infraestructura. Estonia también ha declarado su intención de construir un registro algorítmico público —una lista consultable de los sistemas de IA en uso gubernamental—, aunque, según los informes más recientes, esto sigue siendo una ambición declarada más que un sistema plenamente operativo, lo cual vale la pena señalar a los estudiantes como la brecha entre la transparencia anunciada y la implementada.</p>
+
+<h2>Evidencia de impacto</h2>
+<p>La evidencia aquí es más de carácter institucional y de proceso que los llamativos datos de resultados clínicos del caso de Ruanda, y los profesores deberían ser explícitos con los estudiantes sobre esta diferencia. Estudios académicos independientes (incluido un artículo de conferencia revisado por pares de Dreyling, Tammet, Pappel y McBride, y análisis publicados por Public Sector Network y la iniciativa AI for Good de la UIT) documentan una evaluación de riesgo más rápida en las llamadas de emergencia, una carga administrativa reducida para los operadores, una mejor previsión de los picos de demanda y —por separado— que la automatización al estilo Bürokratt ha impulsado mejoras de productividad medibles en agencias específicas (por ejemplo, según fuentes del gobierno estonio, la velocidad de procesamiento de casos de una unidad aumentó supuestamente más de sesenta veces tras la automatización). Lo que está genuinamente bien evidenciado, y es verificable de forma independiente en lugar de simplemente afirmado, es la propia arquitectura legal: el principio de una sola vez está escrito en la ley, y el mecanismo de registro de accesos es una característica real y auditable de X-Road, no una aspiración de política.</p>
+
+<h2>Tensiones y preguntas abiertas</h2>
+<p>Expertos, entre ellos el especialista en ética de la IA Sven Nyholm, han cuestionado públicamente si un chatbot puede sustituir alguna vez a un funcionario público humano en asuntos que requieren rendición de cuentas, argumentando que "un ser humano puede ser responsable y moralmente culpable de sus acciones; los chatbots de IA no pueden serlo." Esto constituye un desafío directo a la premisa de que Bürokratt es simplemente una versión más eficiente del mismo servicio, en lugar de un tipo de servicio distinto con una estructura de rendición de cuentas diferente.</p>
+<p>También vale la pena señalar, y matizar, una limitación importante: según los informes más recientes, Bürokratt sigue funcionando como una capa de chatbot y enrutamiento de consultas, sin "procesos totalmente automatizados" que tomen decisiones vinculantes sobre las personas — el sistema enruta y responde, pero un ser humano sigue siendo responsable de las decisiones consecuentes. Esta es una afirmación significativamente distinta (y de menor riesgo) que decir "Estonia ha automatizado la toma de decisiones gubernamentales", y tanto el periodismo como los estudios de caso entusiastas tienden a difuminar fácilmente esa diferencia.</p>
+<div class="caveat">Pregunta estructural para la reflexión: el tamaño reducido y la población de Estonia (relativa homogeneidad, alta alfabetización digital, adopción casi universal de la identidad digital) ¿hacen que este modelo sea transferible a estados más grandes, diversos o con menor confianza institucional, o es más bien una condición de frontera que limita hasta dónde se puede generalizar el caso?</div>
+
+<h2>Preguntas para la reflexión</h2>
+<div class="nota-instrucciones">
+  <strong>Cómo usar estos espacios:</strong> Los recuadros que acompañan a cada pregunta son solo para usted. Puede usarlos para anotar sus reflexiones a medida que lee el caso, con la extensión que quiera. No se trata de una tarea: no tiene que entregar estas notas ni publicarlas en ningún sitio, y nadie las va a revisar ni a evaluar. Es simplemente una lectura guiada, pensada para ayudarle a leer el caso con más atención, y nada más.
+  <br><br>
+  Si quiere conservar lo que ha escrito, puede copiarlo o descargarlo como archivo de texto con los botones que encontrará al final. Tenga en cuenta que las notas no se guardan si cierra o recarga la página.
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 1</h3>
+  <p class="enunciado">Estonia construyó su infraestructura de rendición de cuentas sobre el acceso a datos (X-Road, el principio de una sola vez, el registro obligatorio de accesos) dos décadas antes de añadir IA sobre ella. ¿Qué se necesitaría para que un país que ya ha desplegado sistemas de IA sin esta base incorpore una rendición de cuentas equivalente después? ¿Es realista esa incorporación posterior, o la secuencia importa de forma irreversible?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 2</h3>
+  <p class="enunciado">Sven Nyholm argumenta que un chatbot no puede ser responsable moral o legalmente de la misma manera que un funcionario público humano. ¿Está usted de acuerdo? ¿En qué condiciones, si las hay, debería permitirse que un sistema de IA sea el único punto de contacto entre un ciudadano y el Estado para un servicio determinado?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 3</h3>
+  <p class="enunciado">Estonia ha anunciado pero aún no ha implementado plenamente un registro algorítmico público. ¿Por qué un gobierno comprometido con la transparencia en principio podría, aun así, quedarse rezagado en la práctica? ¿Qué incentivos juegan en contra de publicar un inventario completo y actualizado de los sistemas de IA gubernamentales?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 4</h3>
+  <p class="enunciado">El principio de una sola vez asume que las agencias deberían compartir libremente los datos de los ciudadanos dentro del gobierno para reducir la carga administrativa. ¿En qué circunstancias esta ganancia de eficiencia crea un riesgo de privacidad o de concentración de poder que una evaluación centrada solo en la eficiencia pasaría por alto?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 5</h3>
+  <p class="enunciado">Compare el enfoque de Estonia con el sistema SyRI de los Países Bajos (anulado por los tribunales en 2020). ¿Qué características estructurales específicas distinguen a ambos, y cuáles de esas características cree usted que son más importantes para evitar un desenlace al estilo SyRI?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="acciones">
+  <button id="copiarBtn">Copiar mis notas</button>
+  <button id="descargarBtn" class="secundario">Descargar mis notas (.txt)</button>
+  <span id="estadoCopia"></span>
+</div>
+
+<h2>Fuentes</h2>
+<ul class="fuentes">
+  <li><a href="https://publicsectornetwork.com/insight/case-study-ai-implementation-in-the-government-of-estonia" target="_blank" rel="noopener">Public Sector Network — estudio de caso sobre Estonia</a></li>
+  <li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4850696" target="_blank" rel="noopener">SSRN — Dreyling, Tammet, Pappel y McBride sobre Bürokratt</a></li>
+  <li><a href="https://aiforgood.itu.int/hits-misses-and-lessons-learned-how-estonia-delivers-public-services-in-the-age-of-ai/" target="_blank" rel="noopener">AI for Good (UIT) — análisis de Estonia</a></li>
+  <li><a href="https://www.ria.ee/en/state-information-system/personal-services/burokratt" target="_blank" rel="noopener">RIA — página oficial de Bürokratt</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Once-only_principle" target="_blank" rel="noopener">Panorama general del principio de una sola vez</a></li>
+  <li><a href="https://eestielu.ca/is-estonias-new-ai-the-future-of-public-administration/" target="_blank" rel="noopener">Eesti Elu — límites de Bürokratt y críticas de expertos</a></li>
+</ul>
+
+<footer>
+  Material elaborado para uso académico a partir de fuentes públicas citadas arriba. Compilado el 13 de julio de 2026.
+</footer>
+
+</div>
+
+<script>
+  const preguntas = document.querySelectorAll('.pregunta');
+
+  preguntas.forEach(div => {
+    const textarea = div.querySelector('textarea');
+    const contador = div.querySelector('.contador');
+    textarea.addEventListener('input', () => {
+      const palabras = textarea.value.trim().split(/\s+/).filter(Boolean).length;
+      contador.textContent = palabras + (palabras === 1 ? ' palabra' : ' palabras');
+    });
+  });
+
+  function construirTexto(){
+    let out = "CASO DE ESTUDIO 1: ESTONIA — La IA integrada en un Estado digital protector de derechos (X-Road y Bürokratt)\n";
+    out += "Notas personales de lectura\n";
+    out += "----------------------------------------\n\n";
+    preguntas.forEach((div, i) => {
+      const enunciado = div.querySelector('.enunciado').textContent.trim();
+      const respuesta = div.querySelector('textarea').value.trim();
+      out += "Pregunta " + (i+1) + ": " + enunciado + "\n";
+      out += (respuesta || "[Sin notas]") + "\n\n";
+    });
+    return out;
+  }
+
+  const estado = document.getElementById('estadoCopia');
+
+  document.getElementById('copiarBtn').addEventListener('click', () => {
+    const texto = construirTexto();
+    navigator.clipboard.writeText(texto).then(() => {
+      estado.textContent = "Notas copiadas al portapapeles.";
+    }).catch(() => {
+      estado.textContent = "No se pudo copiar automáticamente. Seleccione y copie el texto manualmente.";
+    });
+  });
+
+  document.getElementById('descargarBtn').addEventListener('click', () => {
+    const texto = construirTexto();
+    const blob = new Blob([texto], {type: "text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "notas_caso_1_estonia.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+</script>
+
+</body>
+</html>
