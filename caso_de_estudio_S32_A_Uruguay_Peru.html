@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso de estudio A (Sesión 32): Uruguay y Perú — hojas de ruta para la IA pública</title>
+<style>
+  :root{
+    --azul:#1f4e79;
+    --azul-claro:#eaf1f8;
+    --acento:#b5651d;
+    --texto:#222;
+    --gris:#666;
+    --borde:#d8dee6;
+    --fondo:#fbfbfa;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Georgia","Times New Roman",serif;
+    color:var(--texto);
+    background:var(--fondo);
+    line-height:1.6;
+  }
+  .container{max-width:880px;margin:0 auto;padding:40px 24px 80px;}
+  header h1{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+    font-size:2rem;
+    margin-bottom:6px;
+  }
+  header p.subtitulo{color:var(--gris);font-style:italic;margin-top:0;}
+  h2{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+    border-bottom:2px solid var(--azul-claro);
+    padding-bottom:6px;
+    margin-top:2.2em;
+  }
+  h3{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--azul);}
+  table.ficha{
+    width:100%;
+    border-collapse:collapse;
+    margin:18px 0 28px;
+    font-size:0.96rem;
+  }
+  table.ficha th, table.ficha td{
+    border:1px solid var(--borde);
+    padding:10px 12px;
+    text-align:left;
+    vertical-align:top;
+  }
+  table.ficha th{
+    background:var(--azul-claro);
+    width:28%;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+  }
+  p{text-align:justify;}
+  .nota-instrucciones{
+    background:var(--azul-claro);
+    border-left:4px solid var(--azul);
+    padding:14px 18px;
+    border-radius:4px;
+    font-size:0.95rem;
+  }
+  .pregunta{
+    background:#fff;
+    border:1px solid var(--borde);
+    border-radius:8px;
+    padding:18px 20px;
+    margin-bottom:20px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.05);
+  }
+  .pregunta h3{margin-top:0;margin-bottom:8px;font-size:1.02rem;}
+  .pregunta p.enunciado{margin-top:0;margin-bottom:12px;}
+  textarea{
+    width:100%;
+    min-height:120px;
+    padding:10px;
+    font-family:"Georgia",serif;
+    font-size:0.98rem;
+    border:1px solid var(--borde);
+    border-radius:6px;
+    resize:vertical;
+  }
+  .contador{font-size:0.82rem;color:var(--gris);text-align:right;margin-top:4px;}
+  .acciones{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+    margin:24px 0 8px;
+  }
+  button{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:11px 20px;
+    border-radius:6px;
+    font-size:0.95rem;
+    cursor:pointer;
+  }
+  button.secundario{
+    background:#fff;
+    color:var(--azul);
+    border:1px solid var(--azul);
+  }
+  button:hover{opacity:0.88;}
+  #estadoCopia{font-size:0.9rem;color:var(--acento);font-weight:bold;}
+  .caveat{
+    border-left:4px solid var(--acento);
+    background:#fdf3ea;
+    padding:14px 18px;
+    border-radius:4px;
+    font-style:italic;
+    color:#7a4310;
+  }
+  ul.fuentes li{margin-bottom:8px;}
+  a{color:var(--azul);}
+  footer{margin-top:60px;font-size:0.85rem;color:var(--gris);border-top:1px solid var(--borde);padding-top:16px;}
+  @media print{
+    .acciones, #estadoCopia{display:none;}
+    textarea{border:1px solid #999;}
+  }
+
+  table.comparativa th{width:auto;}
+  table.comparativa thead th{background:var(--azul);color:#fff;}
+  table.comparativa td:first-child{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--azul);font-weight:bold;width:20%;background:var(--azul-claro);}
+  ul.lista{margin-top:0;}
+  ul.lista li{margin-bottom:6px;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Caso de estudio A (Sesión 32): Uruguay y Perú — Dos caminos para dar rumbo y continuidad a la IA pública</h1>
+  <p class="subtitulo">Caso de estudio con lectura guiada, pensado para la reflexión personal. Sesión 32: hojas de ruta digitales con enfoque democrático.</p>
+</header>
+
+<table class="ficha">
+<tr><th>Países / Nivel</th><td>Uruguay y Perú — gobierno nacional</td></tr>
+<tr><th>Instituciones líderes</th><td><strong>Uruguay:</strong> Agesic (agencia de gobierno electrónico y sociedad de la información, en la órbita de Presidencia) junto con el Comité Estratégico del Sector Público para la Inteligencia Artificial y Datos. <strong>Perú:</strong> Secretaría de Gobierno y Transformación Digital (SGTD) de la Presidencia del Consejo de Ministros.</td></tr>
+<tr><th>Instrumentos</th><td><strong>Uruguay:</strong> Estrategia Nacional de Inteligencia Artificial 2024–2030. <strong>Perú:</strong> Política Nacional de Transformación Digital al 2030; Ley N.° 31814 y su Reglamento.</td></tr>
+<tr><th>Fechas clave</th><td><strong>Uruguay:</strong> mandato legal en noviembre de 2023 (Ley N.° 20.212, artículo 74); aprobación de la estrategia el 21 de noviembre de 2024. <strong>Perú:</strong> política nacional aprobada el 28 de julio de 2023 (Decreto Supremo N.° 085-2023-PCM); Ley N.° 31814 en 2023; Reglamento publicado el 9 de septiembre de 2025 (Decreto Supremo N.° 115-2025-PCM), en vigor desde el 22 de enero de 2026 con plazos escalonados.</td></tr>
+<tr><th>Función de la IA en el caso</th><td>Aquí no se estudia un sistema concreto. El objeto del caso es la hoja de ruta: el instrumento con el que cada Estado decide cómo desarrolla, usa y supervisa la IA.</td></tr>
+<tr><th>Evidencia principal</th><td><strong>Uruguay:</strong> proceso participativo documentado (más de 300 personas; más de 40 instituciones del Estado, 11 organizaciones de la sociedad civil y 45 del sector privado) y compromiso de seguimiento público. <strong>Perú:</strong> clasificación de usos por riesgo, evaluación previa para los de riesgo alto, canal de alertas ciudadanas y reporte de seguimiento de la política nacional.</td></tr>
+</table>
+
+<h2>Contexto y el problema</h2>
+<p>Una transformación digital dura más que un gobierno. Quien firma una estrategia de IA rara vez es quien la termina de implementar, y lo que no queda anclado en algo más estable que una administración corre el riesgo de reiniciarse con cada relevo. A esto se suma una segunda dificultad: una hoja de ruta para la IA no solo fija qué tecnología se adopta, sino para quién, con qué límites y bajo el control de quién. Si esas preguntas se responden a puerta cerrada, el plan puede ser técnicamente correcto y, aun así, carecer de la legitimidad que necesita para sostenerse.</p>
+<p>Uruguay y el Perú han dado respuestas distintas al mismo problema. Uruguay se apoyó en una institución rectora con larga trayectoria y en un proceso amplio de participación. El Perú construyó una secuencia de normas —política nacional, ley y reglamento— que fue avanzando a través de varios cambios de gobierno. Ninguno de los dos caminos es "el correcto": cada uno ancla la continuidad en un lugar diferente y deja al descubierto riesgos diferentes.</p>
+
+<h2>Uruguay: una estrategia construida con participación</h2>
+<p>Uruguay cuenta desde mediados de la década de 2000 con una agencia rectora de gobierno digital, Agesic, que ha mantenido su papel a lo largo de gobiernos de distinto signo. En noviembre de 2023, el artículo 74 de la Ley N.° 20.212 le encargó liderar la revisión de la estrategia nacional de IA, que hasta entonces se centraba en el gobierno digital, para convertirla en una política de alcance nacional.</p>
+<p>El resultado, la Estrategia Nacional de Inteligencia Artificial 2024–2030, se elaboró mediante mesas de diálogo, talleres y una consulta pública. Según Agesic, recogió aportes de más de 300 personas de más de 40 instituciones del Estado, 11 organizaciones de la sociedad civil, 45 organizaciones del sector privado, la academia y otros colectivos, con cooperación técnica de CAF y de la UNESCO. La estrategia fija principios rectores y tres objetivos:</p>
+<ul class="lista">
+  <li><strong>Gobernanza:</strong> una institucionalidad adecuada, marcos regulatorios claros y procesos que aseguren transparencia, seguridad e inclusión.</li>
+  <li><strong>Capacidades:</strong> infraestructura, datos, talento y habilidades para aprovechar la IA.</li>
+  <li><strong>Desarrollo sostenible:</strong> usar la IA para el crecimiento con inclusión, la mejora de la gestión y de los servicios públicos, la investigación y la innovación, mitigando los impactos adversos.</li>
+</ul>
+<p>Dos rasgos interesan especialmente para esta sesión. El primero es el calendario: el Comité Estratégico aprobó la estrategia el 21 de noviembre de 2024, tres días antes de la segunda vuelta presidencial y unos tres meses antes del cambio de gobierno. Se diseñó, por tanto, para que la recibiera una administración distinta de la que la elaboró. El segundo es que su implementación quedó expresamente sujeta a un proceso de seguimiento, monitoreo y evaluación de carácter público.</p>
+
+<h2>Perú: una política, una ley y un reglamento</h2>
+<p>El Perú optó por anclar el rumbo en normas. La Política Nacional de Transformación Digital al 2030, aprobada en julio de 2023, organiza la acción del Estado en seis objetivos prioritarios —conectividad, economía, gobierno, talento, confianza e innovación digitales— y confirma a la Secretaría de Gobierno y Transformación Digital como ente rector. Ese mismo año, la Ley N.° 31814 declaró de interés la promoción de la IA en favor del desarrollo económico y social y designó a la misma Secretaría como autoridad nacional en la materia.</p>
+<p>El Reglamento de la ley, publicado en septiembre de 2025, convierte los principios en obligaciones. Entre sus elementos centrales:</p>
+<ul class="lista">
+  <li>Clasifica los usos de la IA en tres niveles: <strong>uso indebido</strong> (prohibido), <strong>riesgo alto</strong> (permitido con condiciones y evaluación previa) y <strong>riesgo aceptable</strong> (sujeto a buenas prácticas).</li>
+  <li>Encarga a la Secretaría un monitoreo preventivo de los usos prohibidos y de riesgo alto.</li>
+  <li>Exige transparencia algorítmica: informar al usuario, de forma previa y sencilla, sobre la finalidad y el funcionamiento de los sistemas de riesgo alto, y mantener supervisión humana.</li>
+  <li>Crea un canal digital para alertas y denuncias ciudadanas y prevé un Centro Nacional de Innovación Digital e Inteligencia Artificial al servicio de las entidades públicas.</li>
+  <li>Entra en vigor de forma gradual, con plazos escalonados por sector y por tamaño de la organización. Según análisis jurídicos, el primer plazo de adecuación, para sectores como salud, educación y justicia, venció en septiembre de 2026.</li>
+</ul>
+<p>Entre la aprobación de la política (2023), el reglamento (2025) y los primeros plazos de adecuación (2026), el país atravesó cambios en la Presidencia y en el gabinete, además de un proceso electoral. La secuencia normativa siguió su curso.</p>
+
+<h2>Diseño institucional y gobernanza</h2>
+<table class="ficha comparativa">
+<thead><tr><th></th><th>Uruguay</th><th>Perú</th></tr></thead>
+<tbody>
+<tr><td>Ancla principal</td><td>Una institución rectora estable y un consenso amplio construido durante la elaboración.</td><td>Una cadena de normas vinculantes: política nacional, ley y reglamento.</td></tr>
+<tr><td>Quién conduce</td><td>Agesic, en coordinación con un comité estratégico interinstitucional.</td><td>La Secretaría de Gobierno y Transformación Digital, como autoridad nacional.</td></tr>
+<tr><td>Participación</td><td>Mesas de diálogo, talleres y consulta pública con Estado, sociedad civil, empresas y academia.</td><td>Los proyectos de reglamento se sometieron a prepublicación para recibir comentarios; el reglamento incorpora un canal permanente de alertas ciudadanas.</td></tr>
+<tr><td>Hitos de supervisión</td><td>Seguimiento, monitoreo y evaluación públicos comprometidos en la propia estrategia.</td><td>Clasificación por riesgo, evaluación previa de los usos de riesgo alto y plazos de adecuación escalonados.</td></tr>
+<tr><td>Punto débil señalado</td><td>Voces críticas apuntan a la falta de un presupuesto específico y a definiciones regulatorias aún pendientes.</td><td>La autoridad no tiene régimen sancionador propio: debe derivar los incumplimientos a otras entidades (protección de datos, Indecopi, Contraloría).</td></tr>
+</tbody>
+</table>
+
+<h2>Evidencia de impacto</h2>
+<p>Conviene ser preciso sobre lo que se sabe. En ambos países la evidencia disponible es, sobre todo, de diseño y de proceso, no de resultados para las personas. En Uruguay está bien documentado cómo se elaboró la estrategia y quién participó; las actas del comité de 2025 mencionan el trabajo sobre una hoja de ruta de programas para 2025–2027, pero no se localizaron informes públicos de avance posteriores. En el Perú existe un reporte de seguimiento de la política nacional correspondiente a 2024, y el reglamento de IA lleva menos de un año en vigor, de modo que todavía es pronto para evaluar sus efectos.</p>
+<p>Esta distinción entre lo aprobado y lo implementado es, en sí misma, una lección del caso: una hoja de ruta se juzga por sus hitos de supervisión cumplidos y por sus métricas, no por la calidad de su texto.</p>
+
+<h2>Tensiones y preguntas abiertas</h2>
+<p>La primera tensión es entre participación y exigibilidad. Una estrategia construida con cientos de voces gana legitimidad y aliados, pero puede quedarse en orientación si no viene acompañada de recursos y de obligaciones. Un reglamento obliga, pero su eficacia depende de la capacidad real de las entidades para cumplirlo y de la autoridad para hacerlo cumplir.</p>
+<p>La segunda es entre continuidad y adaptación. Anclar el rumbo protege frente a los cambios de gobierno, pero la IA evoluciona más rápido que los decretos. Ambos países han previsto mecanismos de revisión; queda por ver si se usan.</p>
+<p>La tercera afecta directamente a quienes cursan este programa desde el Perú: el reglamento se aplica a sus propias instituciones. La pregunta deja de ser comparada y pasa a ser práctica: ¿en qué nivel de riesgo están los usos de IA de mi entidad y qué plazo me corresponde?</p>
+<div class="caveat">Pregunta estructural para la reflexión: ¿qué protege mejor una hoja de ruta frente a un cambio de gobierno, un consenso amplio sin fuerza obligatoria o una norma obligatoria con poco consenso? ¿Puede una institución aspirar a tener las dos cosas, y en qué orden conviene construirlas?</div>
+
+
+<h2>Preguntas para la reflexión</h2>
+<div class="nota-instrucciones">
+  <strong>Cómo usar estos espacios:</strong> Los recuadros que acompañan a cada pregunta son solo para usted. Puede usarlos para anotar sus reflexiones a medida que lee el caso, con la extensión que quiera. No se trata de una tarea: no tiene que entregar estas notas ni publicarlas en ningún sitio, y nadie las va a revisar ni a evaluar. Es una lectura guiada, pensada para ayudarle a leer el caso con más atención y a preparar el borrador de hoja de ruta de su proyecto final.
+  <br><br>
+  Si quiere conservar lo que ha escrito, puede copiarlo o descargarlo como archivo de texto con los botones que encontrará al final. Tenga en cuenta que las notas no se guardan si cierra o recarga la página.
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 1</h3>
+  <p class="enunciado">Uruguay elaboró su estrategia con aportes de más de 300 personas de dentro y fuera del Estado. ¿Qué le aporta esa participación a la legitimidad y a la duración de una hoja de ruta? Piense en su propia institución: ¿quién tendría que estar en la mesa al diseñar la hoja de ruta de su iniciativa de IA, y quién suele quedar fuera?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 2</h3>
+  <p class="enunciado">La estrategia uruguaya se aprobó tres días antes de una segunda vuelta presidencial; la secuencia peruana avanzó a través de varios cambios de gobierno. De las cuatro anclas de continuidad vistas en la sesión (norma, institución rectora, coalición amplia, recursos y seguimiento público), ¿cuál pesó más en cada país? ¿Con cuáles cuenta hoy su iniciativa y cuál le falta?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 3</h3>
+  <p class="enunciado">Uruguay tiene una estrategia con amplio respaldo pero, según sus críticos, sin presupuesto específico. El Perú tiene un reglamento vinculante, pero una autoridad sin capacidad sancionadora propia. ¿Cuál de las dos situaciones ofrece, a su juicio, más control real sobre cómo se usa la IA en el Estado? ¿Qué haría falta para cerrar la brecha en cada caso?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 4</h3>
+  <p class="enunciado">El reglamento peruano clasifica los usos de la IA por nivel de riesgo y exige evaluación previa para los de riesgo alto. Aplique esa lógica a su proyecto final: ¿en qué nivel situaría su iniciativa y por qué? Proponga tres hitos de supervisión para su hoja de ruta, indicando qué se revisa en cada uno y quién decide si se continúa.</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 5</h3>
+  <p class="enunciado">La política peruana define su meta en términos de capacidades de las personas, no de número de sistemas implantados. ¿Cómo sabría usted, dentro de tres años, que su iniciativa de IA ha servido a las personas a las que va dirigida? Formule una métrica de confianza, una de legitimidad y una de equidad.</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="acciones">
+  <button id="copiarBtn">Copiar mis notas</button>
+  <button id="descargarBtn" class="secundario">Descargar mis notas (.txt)</button>
+  <span id="estadoCopia"></span>
+</div>
+
+<h2>Fuentes</h2>
+<ul class="fuentes">
+  <li><a href="https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/comunicacion/publicaciones/estrategia-nacional-inteligencia-artificial-2024-2030" target="_blank" rel="noopener">Agesic — Estrategia Nacional de Inteligencia Artificial 2024–2030 (aprobación, proceso y objetivos)</a></li>
+  <li><a href="https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/politicas-y-gestion/comite-estrategico-del-sector-publico-para-inteligencia-artificial-datos" target="_blank" rel="noopener">Agesic — Comité Estratégico del Sector Público para la Inteligencia Artificial y Datos</a></li>
+  <li><a href="https://www.impo.com.uy/bases/leyes/20212-2023/74" target="_blank" rel="noopener">IMPO — Ley N.° 20.212, artículo 74 (Uruguay)</a></li>
+  <li><a href="https://oecd.ai/en/dashboards/policy-initiatives/national-artificial-intelligence-strategy-20242030-8923" target="_blank" rel="noopener">OECD.AI — ficha de la estrategia uruguaya</a></li>
+  <li><a href="https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/institucional/informacion-gestion/actas/acta-n-12025-0" target="_blank" rel="noopener">Agesic — Acta N.° 1/2025 (hoja de ruta 2025–2027)</a></li>
+  <li><a href="https://www.montevideo.com.uy/Columnistas/Opinion--El-tiempo-pasa-la-IA-no--Escribe-Fernando-Brum-uc972388" target="_blank" rel="noopener">Montevideo Portal — columna de opinión de Fernando Brum (visión crítica)</a></li>
+  <li><a href="https://www.gob.pe/44545-politica-nacional-de-transformacion-digital" target="_blank" rel="noopener">Gobierno del Perú — Política Nacional de Transformación Digital</a></li>
+  <li><a href="https://busquedas.elperuano.pe/dispositivo/NL/2200457-5" target="_blank" rel="noopener">El Peruano — Decreto Supremo N.° 085-2023-PCM</a></li>
+  <li><a href="https://www.gob.pe/institucion/pcm/normas-legales/7133522-115-2025-pcm" target="_blank" rel="noopener">Presidencia del Consejo de Ministros — Decreto Supremo N.° 115-2025-PCM (Reglamento de la Ley N.° 31814)</a></li>
+  <li><a href="https://www.garrigues.com/es_ES/noticia/peru-aprueba-reglamento-ley-promueve-uso-inteligencia-artificial-favor-desarrollo-economico" target="_blank" rel="noopener">Garrigues — resumen del Reglamento de la Ley N.° 31814</a></li>
+  <li><a href="https://cms.law/en/per/publication/inteligencia-artificial-el-10-de-setiembre-vence-el-primer-plazo-de-adecuacion-a-la-ley-n.-31814-para-los-sectores-de-salud-educacion-justicia" target="_blank" rel="noopener">CMS — primer plazo de adecuación a la Ley N.° 31814</a></li>
+  <li><a href="https://cdn.www.gob.pe/uploads/document/file/8207778/6860706-rd-seguimiento-pntd-2030-ejercicio-2024-vf.pdf" target="_blank" rel="noopener">Presidencia del Consejo de Ministros — reporte de seguimiento de la Política Nacional de Transformación Digital, ejercicio 2024</a></li>
+</ul>
+
+<footer>
+  Material elaborado para uso académico a partir de las fuentes públicas citadas arriba. Compilado el 14 de noviembre de 2026.
+</footer>
+
+</div>
+
+<script>
+  const preguntas = document.querySelectorAll('.pregunta');
+
+  preguntas.forEach(div => {
+    const textarea = div.querySelector('textarea');
+    const contador = div.querySelector('.contador');
+    textarea.addEventListener('input', () => {
+      const palabras = textarea.value.trim().split(/\s+/).filter(Boolean).length;
+      contador.textContent = palabras + (palabras === 1 ? ' palabra' : ' palabras');
+    });
+  });
+
+  function construirTexto(){
+    let out = "CASO DE ESTUDIO A (SESIÓN 32): URUGUAY Y PERÚ — DOS CAMINOS PARA DAR RUMBO Y CONTINUIDAD A LA IA PÚBLICA" + "\n";
+    out += "Notas personales de lectura\n";
+    out += "----------------------------------------\n\n";
+    preguntas.forEach((div, i) => {
+      const enunciado = div.querySelector('.enunciado').textContent.trim();
+      const respuesta = div.querySelector('textarea').value.trim();
+      out += "Pregunta " + (i+1) + ": " + enunciado + "\n";
+      out += (respuesta || "[Sin notas]") + "\n\n";
+    });
+    return out;
+  }
+
+  const estado = document.getElementById('estadoCopia');
+
+  document.getElementById('copiarBtn').addEventListener('click', () => {
+    const texto = construirTexto();
+    navigator.clipboard.writeText(texto).then(() => {
+      estado.textContent = "Notas copiadas al portapapeles.";
+    }).catch(() => {
+      estado.textContent = "No se pudo copiar automáticamente. Seleccione y copie el texto manualmente.";
+    });
+  });
+
+  document.getElementById('descargarBtn').addEventListener('click', () => {
+    const texto = construirTexto();
+    const blob = new Blob([texto], {type: "text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "notas_caso_S32_A_uruguay_peru.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+</script>
+
+</body>
+</html>

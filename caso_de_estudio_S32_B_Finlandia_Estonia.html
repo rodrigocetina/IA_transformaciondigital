@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso de estudio B (Sesión 32): Finlandia y Estonia — servicios por eventos de vida</title>
+<style>
+  :root{
+    --azul:#1f4e79;
+    --azul-claro:#eaf1f8;
+    --acento:#b5651d;
+    --texto:#222;
+    --gris:#666;
+    --borde:#d8dee6;
+    --fondo:#fbfbfa;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Georgia","Times New Roman",serif;
+    color:var(--texto);
+    background:var(--fondo);
+    line-height:1.6;
+  }
+  .container{max-width:880px;margin:0 auto;padding:40px 24px 80px;}
+  header h1{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+    font-size:2rem;
+    margin-bottom:6px;
+  }
+  header p.subtitulo{color:var(--gris);font-style:italic;margin-top:0;}
+  h2{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+    border-bottom:2px solid var(--azul-claro);
+    padding-bottom:6px;
+    margin-top:2.2em;
+  }
+  h3{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--azul);}
+  table.ficha{
+    width:100%;
+    border-collapse:collapse;
+    margin:18px 0 28px;
+    font-size:0.96rem;
+  }
+  table.ficha th, table.ficha td{
+    border:1px solid var(--borde);
+    padding:10px 12px;
+    text-align:left;
+    vertical-align:top;
+  }
+  table.ficha th{
+    background:var(--azul-claro);
+    width:28%;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    color:var(--azul);
+  }
+  p{text-align:justify;}
+  .nota-instrucciones{
+    background:var(--azul-claro);
+    border-left:4px solid var(--azul);
+    padding:14px 18px;
+    border-radius:4px;
+    font-size:0.95rem;
+  }
+  .pregunta{
+    background:#fff;
+    border:1px solid var(--borde);
+    border-radius:8px;
+    padding:18px 20px;
+    margin-bottom:20px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.05);
+  }
+  .pregunta h3{margin-top:0;margin-bottom:8px;font-size:1.02rem;}
+  .pregunta p.enunciado{margin-top:0;margin-bottom:12px;}
+  textarea{
+    width:100%;
+    min-height:120px;
+    padding:10px;
+    font-family:"Georgia",serif;
+    font-size:0.98rem;
+    border:1px solid var(--borde);
+    border-radius:6px;
+    resize:vertical;
+  }
+  .contador{font-size:0.82rem;color:var(--gris);text-align:right;margin-top:4px;}
+  .acciones{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+    margin:24px 0 8px;
+  }
+  button{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:11px 20px;
+    border-radius:6px;
+    font-size:0.95rem;
+    cursor:pointer;
+  }
+  button.secundario{
+    background:#fff;
+    color:var(--azul);
+    border:1px solid var(--azul);
+  }
+  button:hover{opacity:0.88;}
+  #estadoCopia{font-size:0.9rem;color:var(--acento);font-weight:bold;}
+  .caveat{
+    border-left:4px solid var(--acento);
+    background:#fdf3ea;
+    padding:14px 18px;
+    border-radius:4px;
+    font-style:italic;
+    color:#7a4310;
+  }
+  ul.fuentes li{margin-bottom:8px;}
+  a{color:var(--azul);}
+  footer{margin-top:60px;font-size:0.85rem;color:var(--gris);border-top:1px solid var(--borde);padding-top:16px;}
+  @media print{
+    .acciones, #estadoCopia{display:none;}
+    textarea{border:1px solid #999;}
+  }
+
+  table.comparativa th{width:auto;}
+  table.comparativa thead th{background:var(--azul);color:#fff;}
+  table.comparativa td:first-child{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--azul);font-weight:bold;width:20%;background:var(--azul-claro);}
+  ul.lista{margin-top:0;}
+  ul.lista li{margin-bottom:6px;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Caso de estudio B (Sesión 32): Finlandia y Estonia — Dos caminos hacia los servicios públicos organizados por eventos de vida</h1>
+  <p class="subtitulo">Caso de estudio con lectura guiada, pensado para la reflexión personal. Sesión 32: hojas de ruta digitales con enfoque democrático.</p>
+</header>
+
+<table class="ficha">
+<tr><th>Países / Nivel</th><td>Finlandia y Estonia — gobierno nacional</td></tr>
+<tr><th>Instituciones líderes</th><td><strong>Finlandia:</strong> Ministerio de Finanzas (programa nacional AuroraAI). <strong>Estonia:</strong> Seguro Social (Sotsiaalkindlustusamet), Ministerio de Asuntos Económicos y Comunicaciones y portal estatal eesti.ee.</td></tr>
+<tr><th>Idea central</th><td>Organizar los servicios públicos en torno a los eventos de vida de las personas (un nacimiento, una mudanza, la pérdida de un familiar) y ofrecerlos de forma proactiva, en lugar de esperar a que el ciudadano los solicite.</td></tr>
+<tr><th>Fechas clave</th><td><strong>Finlandia:</strong> la idea surge en 2017; programa nacional entre 2020 y 2022; evaluación final en marzo de 2023; la red técnica deja de mantenerse a finales de 2023. <strong>Estonia:</strong> prestaciones familiares proactivas desde octubre de 2019; análisis de los servicios por eventos de vida entre 2019 y 2020; plataforma en desarrollo por etapas.</td></tr>
+<tr><th>Función de la IA</th><td><strong>Finlandia:</strong> recomendar servicios a partir de la situación de cada persona; la visión inicial hablaba de un "gemelo digital" del ciudadano. <strong>Estonia:</strong> en su primera etapa no hay IA, sino intercambio de datos entre registros y reglas automáticas; la Agenda Digital 2030 prevé que la IA apoye estos servicios más adelante.</td></tr>
+<tr><th>Evidencia principal</th><td><strong>Finlandia:</strong> evaluación independiente que reconoce el trabajo de base y señala objetivos demasiado amplios; uso real limitado. <strong>Estonia:</strong> un servicio en funcionamiento desde 2019 y una plataforma que, según la propia administración, aún no ofrece servicios proactivos de forma centralizada.</td></tr>
+</table>
+
+<h2>Contexto y el problema</h2>
+<p>El Estado se organiza por competencias: un ministerio para cada materia, una oficina para cada trámite. Las personas, en cambio, viven acontecimientos. Cuando nace un hijo, una familia necesita a la vez el registro civil, la seguridad social, el sistema de salud y, pronto, el educativo. Lo habitual es que tenga que ir de ventanilla en ventanilla, averiguar por su cuenta a qué tiene derecho y entregar varias veces los mismos datos.</p>
+<p>La idea de los <em>eventos de vida</em> propone invertir esa lógica: ordenar los servicios alrededor del acontecimiento y hacer que sea el Estado quien se acerque a la persona. Finlandia y Estonia, dos países vecinos y con administraciones muy digitalizadas, persiguieron el mismo objetivo por caminos opuestos. Compararlos ayuda a pensar cómo se diseña una hoja de ruta centrada en las personas y qué la hace durar.</p>
+
+<h2>Finlandia: una gran visión (AuroraAI)</h2>
+<p>AuroraAI nació en 2017 como iniciativa de funcionarios del Ministerio de Finanzas, que la sostuvieron a través de varios cambios de gabinete, y se convirtió en programa nacional entre 2020 y 2022. Su propósito era impulsar una administración centrada en las personas, organizada por eventos de vida y asistida por IA. La pieza técnica, la red AuroraAI, debía conectar servicios de distintos organismos y recomendar a cada persona los más adecuados a su situación. En sus primeras presentaciones se describía con una pregunta ambiciosa: ¿y si pudieras consultar a tu gemelo digital para orientar tu vida?</p>
+<p>La evaluación independiente publicada en marzo de 2023 concluyó que el programa había cumplido en lo esencial sus objetivos como iniciativa experimental y de creación de condiciones: sentó bases para un modelo de administración centrado en las personas, desarrolló servicios de apoyo que otros organismos podían adoptar y su forma de implicar a actores diversos se consideró un ejemplo para otros programas. También señaló debilidades: un arranque lento, un conjunto de objetivos muy amplio que habría necesitado metas más claras y una comunicación insuficiente de los resultados hacia fuera del programa.</p>
+<p>La red estuvo lista a finales de 2022. En octubre de 2023 se anunció que dejaría de mantenerse y se retiraría del servicio al terminar el año. Según un investigador de la Universidad de Helsinki que estudió el programa, lo que llegó a funcionar en la práctica fue un complemento de recomendaciones integrado en un servicio de autoevaluación del bienestar para jóvenes, en algunos municipios. El Ministerio cifró el costo en torno a diez millones de euros.</p>
+<p>Lo que perduró fue la idea. El enfoque por eventos de vida se incorporó al debate sobre el diseño de servicios en Finlandia y en otros países, y las lecciones del programa, incluidas las relativas a los límites legales del uso de datos entre organismos, quedaron documentadas.</p>
+
+<h2>Estonia: un servicio concreto que crece</h2>
+<p>Estonia empezó por el otro extremo. En octubre de 2019, el Seguro Social puso en marcha las prestaciones familiares proactivas, que su director presentó como el primer servicio del país basado en un evento de vida. El funcionamiento es sencillo: cuando el nacimiento queda inscrito en el registro de población y el niño tiene nombre, la institución envía a los padres una oferta con las prestaciones a las que tienen derecho. La familia no solicita nada; solo confirma. El principio que lo sustenta es el mismo que se estudió en el caso sobre X-Road: si el Estado ya tiene la información que necesita, no debe volver a pedírsela a la persona.</p>
+<p>Este servicio no usa IA. Funciona porque los registros públicos están conectados, porque existe una identidad digital y porque una institución concreta asumió el rediseño. Sobre esa base, Estonia comenzó a construir una plataforma de servicios por eventos de vida en su portal estatal, con acontecimientos como el matrimonio, la llegada al país, el servicio militar obligatorio o el fallecimiento de un familiar.</p>
+<p>El avance es deliberadamente gradual. En la descripción que la propia administración estonia remitió a la OCDE en 2024, reconoce que todavía no ha llegado al punto de ofrecer servicios proactivos de forma centralizada: lo que existe es una base de servicios de información, a la que se van sumando los primeros servicios personalizados. La Agenda Digital 2030 del país plantea que estos servicios sean, con el tiempo, proactivos, centrados en las personas y apoyados en IA.</p>
+
+<h2>Diseño institucional y gobernanza</h2>
+<table class="ficha comparativa">
+<thead><tr><th></th><th>Finlandia (AuroraAI)</th><th>Estonia</th></tr></thead>
+<tbody>
+<tr><td>Punto de partida</td><td>Una visión de conjunto y una plataforma técnica común.</td><td>Un derecho concreto de una población concreta: las prestaciones por nacimiento.</td></tr>
+<tr><td>Quién lo sostiene</td><td>Un programa con fecha de inicio y de fin, impulsado desde un ministerio.</td><td>Una institución permanente responsable del servicio, apoyada en infraestructura estatal ya existente.</td></tr>
+<tr><td>Papel de la IA</td><td>Central desde el principio: recomendar servicios según la situación de la persona.</td><td>Posterior: primero datos conectados y reglas claras; la IA se prevé como apoyo.</td></tr>
+<tr><td>Papel de la persona</td><td>Recibe recomendaciones sobre servicios y opciones.</td><td>Recibe una oferta que puede aceptar o rechazar.</td></tr>
+<tr><td>Qué quedó</td><td>El concepto, los aprendizajes y un modelo de colaboración; la red técnica se retiró.</td><td>Un servicio en uso desde 2019 y una plataforma que se amplía por etapas.</td></tr>
+</tbody>
+</table>
+<p>La administración estonia enumera las condiciones que considera necesarias para este tipo de servicios: legislación que habilite el tratamiento de datos y la identificación digital, una capa segura de intercambio de datos, un portal central y buena cooperación entre los organismos. Entre sus lecciones señala dos muy útiles para cualquier hoja de ruta: acordar el modelo de gestión antes de empezar a desarrollar un servicio que implica a varias instituciones, y evitar desarrollos simultáneos de alcance demasiado amplio.</p>
+
+<h2>Evidencia de impacto</h2>
+<p>La evidencia es desigual y conviene leerla con cuidado. En Finlandia hay una evaluación independiente, favorable en cuanto al trabajo de base y crítica en cuanto a la amplitud de los objetivos, y hay también análisis académicos que subrayan la distancia entre lo que se planeó y lo que llegó a funcionar. En Estonia, el servicio de prestaciones familiares opera desde hace años, pero buena parte de la información disponible procede de la propia administración o de las empresas que participaron en su desarrollo, y la plataforma más amplia sigue en construcción.</p>
+<p>En ninguno de los dos casos se encontraron mediciones públicas de resultados para las personas, como tiempo ahorrado, prestaciones que antes no se cobraban o satisfacción de los usuarios. La administración estonia indica que prevé medir precisamente esos aspectos.</p>
+
+<h2>Tensiones y preguntas abiertas</h2>
+<p>La primera tensión es la que formuló uno de los investigadores que participó en el balance de AuroraAI: ¿de verdad se necesita IA para esto? Muchas de las mejoras que se buscaban, sostuvo, pueden lograrse revisando cómo circula la información entre organismos. El caso estonio parece darle la razón, al menos para la primera etapa.</p>
+<p>La segunda tiene que ver con la autonomía. Un Estado que anticipa necesidades puede ser un Estado más cercano o un Estado más intrusivo. No es lo mismo ofrecer una prestación a la que se tiene derecho que orientar a alguien sobre cómo conducir su vida. El diseño estonio, que envía una oferta que la persona confirma, y la visión inicial finlandesa, que hablaba de modelar la vida de cada ciudadano, se sitúan en puntos muy distintos de ese espectro.</p>
+<p>La tercera es jurídica: en ambos países el marco legal fue más lento que la ambición. Finlandia identificó límites en las reglas europeas sobre uso de datos; Estonia reconoce que su legislación no está preparada para todas las situaciones que plantean estos servicios.</p>
+<div class="caveat">Pregunta estructural para la reflexión: Estonia pudo empezar por un servicio pequeño porque ya contaba con registros conectados, identidad digital y casi dos décadas de infraestructura compartida. En un país que no dispone de esa base, ¿sigue siendo válido el consejo de "empezar por lo concreto", o primero hay que construir los cimientos? ¿Qué sería "lo concreto" en su contexto?</div>
+
+
+<h2>Preguntas para la reflexión</h2>
+<div class="nota-instrucciones">
+  <strong>Cómo usar estos espacios:</strong> Los recuadros que acompañan a cada pregunta son solo para usted. Puede usarlos para anotar sus reflexiones a medida que lee el caso, con la extensión que quiera. No se trata de una tarea: no tiene que entregar estas notas ni publicarlas en ningún sitio, y nadie las va a revisar ni a evaluar. Es una lectura guiada, pensada para ayudarle a leer el caso con más atención y a preparar el borrador de hoja de ruta de su proyecto final.
+  <br><br>
+  Si quiere conservar lo que ha escrito, puede copiarlo o descargarlo como archivo de texto con los botones que encontrará al final. Tenga en cuenta que las notas no se guardan si cierra o recarga la página.
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 1</h3>
+  <p class="enunciado">AuroraAI partió de una visión tecnológica muy amplia; Estonia, de un derecho concreto de las familias con un recién nacido. ¿Qué cambia según el punto de partida? Piense en su proyecto final: ¿cuál es el evento de vida, o la situación concreta de una persona, que su iniciativa de IA debería resolver?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 2</h3>
+  <p class="enunciado">"¿De verdad necesitamos IA para esto?" Aplique la pregunta a su propia iniciativa. ¿Qué parte del problema podría resolverse compartiendo mejor los datos o rediseñando el proceso, y para qué parte la IA aporta algo que no se conseguiría de otra manera?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 3</h3>
+  <p class="enunciado">La red de AuroraAI dependía de un programa con fecha de cierre; las prestaciones proactivas estonias dependen de una institución permanente y de infraestructura estatal. En la hoja de ruta de su iniciativa, ¿qué elementos dependen hoy de un proyecto, de un presupuesto temporal o de una persona, y cómo podrían anclarse en algo más estable?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 4</h3>
+  <p class="enunciado">Un Estado proactivo anticipa lo que la persona necesita. ¿Dónde situaría usted la línea entre un servicio que ayuda y uno que invade? ¿Qué papel debería tener el consentimiento, como en la oferta que las familias estonias aceptan o rechazan, en los servicios que su institución podría ofrecer de forma proactiva?</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="pregunta">
+  <h3>Pregunta 5</h3>
+  <p class="enunciado">La evaluación de AuroraAI señaló objetivos demasiado amplios y poca comunicación de resultados; Estonia recomienda acordar el modelo de gestión antes de desarrollar y evitar abarcar demasiado a la vez. Traduzca estas lecciones a su hoja de ruta: proponga dos hitos de supervisión y una métrica que le habrían permitido detectar a tiempo esos problemas.</p>
+  <textarea placeholder="Escriba su reflexión aquí..."></textarea>
+  <div class="contador">0 palabras</div>
+</div>
+
+<div class="acciones">
+  <button id="copiarBtn">Copiar mis notas</button>
+  <button id="descargarBtn" class="secundario">Descargar mis notas (.txt)</button>
+  <span id="estadoCopia"></span>
+</div>
+
+<h2>Fuentes</h2>
+<ul class="fuentes">
+  <li><a href="https://vm.fi/-/auroraai-ohjelma-loi-pohjaa-tekoalypohjaisille-palveluille" target="_blank" rel="noopener">Ministerio de Finanzas de Finlandia — evaluación final del programa AuroraAI (nota de prensa, en finés, marzo de 2023)</a></li>
+  <li><a href="https://vm.fi/en/-/the-auroraai-national-artificial-intelligence-programme-begins-with-the-aim-of-using-artificial-intelligence-to-bring-people-and-services-together-in-a-better-way" target="_blank" rel="noopener">Ministerio de Finanzas de Finlandia — inicio del programa AuroraAI (en inglés)</a></li>
+  <li><a href="https://fcai.fi/eab-blog/2023/12/11/what-we-learned-from-auroraai-the-pitfalls-of-doing-ethics-around-unsettled-technologies" target="_blank" rel="noopener">FCAI — Räisänen, S., "What we learned from AuroraAI" (diciembre de 2023)</a></li>
+  <li><a href="https://aaltodoc.aalto.fi/items/69826dbd-b12a-41c5-92a9-b181baaad806" target="_blank" rel="noopener">Universidad Aalto — Life events in the design of public services: el programa AuroraAI</a></li>
+  <li><a href="https://oecd-opsi.org/innovations/life-event-based-services-in-estonia/" target="_blank" rel="noopener">OCDE-OPSI — Life event-based services in Estonia (2024)</a></li>
+  <li><a href="https://oecd-opsi.org/innovations/proactive-family-benefits/" target="_blank" rel="noopener">OCDE-OPSI — Proactive family benefits (Estonia)</a></li>
+  <li><a href="https://news.err.ee/991789/parents-no-longer-have-to-apply-for-family-benefits" target="_blank" rel="noopener">ERR News — "Parents no longer have to apply for family benefits" (octubre de 2019)</a></li>
+  <li><a href="https://nortal.com/blog/estonia_introduces_proactive_service/" target="_blank" rel="noopener">Nortal — descripción del servicio proactivo de prestaciones familiares (empresa participante)</a></li>
+  <li><a href="https://arxiv.org/pdf/2501.19308" target="_blank" rel="noopener">Taveter, K. et al. — Ontological analysis of proactive life event services (arXiv, 2025)</a></li>
+</ul>
+
+<footer>
+  Material elaborado para uso académico a partir de las fuentes públicas citadas arriba. Compilado el 14 de noviembre de 2026.
+</footer>
+
+</div>
+
+<script>
+  const preguntas = document.querySelectorAll('.pregunta');
+
+  preguntas.forEach(div => {
+    const textarea = div.querySelector('textarea');
+    const contador = div.querySelector('.contador');
+    textarea.addEventListener('input', () => {
+      const palabras = textarea.value.trim().split(/\s+/).filter(Boolean).length;
+      contador.textContent = palabras + (palabras === 1 ? ' palabra' : ' palabras');
+    });
+  });
+
+  function construirTexto(){
+    let out = "CASO DE ESTUDIO B (SESIÓN 32): FINLANDIA Y ESTONIA — DOS CAMINOS HACIA LOS SERVICIOS PÚBLICOS ORGANIZADOS POR EVENTOS DE VIDA" + "\n";
+    out += "Notas personales de lectura\n";
+    out += "----------------------------------------\n\n";
+    preguntas.forEach((div, i) => {
+      const enunciado = div.querySelector('.enunciado').textContent.trim();
+      const respuesta = div.querySelector('textarea').value.trim();
+      out += "Pregunta " + (i+1) + ": " + enunciado + "\n";
+      out += (respuesta || "[Sin notas]") + "\n\n";
+    });
+    return out;
+  }
+
+  const estado = document.getElementById('estadoCopia');
+
+  document.getElementById('copiarBtn').addEventListener('click', () => {
+    const texto = construirTexto();
+    navigator.clipboard.writeText(texto).then(() => {
+      estado.textContent = "Notas copiadas al portapapeles.";
+    }).catch(() => {
+      estado.textContent = "No se pudo copiar automáticamente. Seleccione y copie el texto manualmente.";
+    });
+  });
+
+  document.getElementById('descargarBtn').addEventListener('click', () => {
+    const texto = construirTexto();
+    const blob = new Blob([texto], {type: "text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "notas_caso_S32_B_finlandia_estonia.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+</script>
+
+</body>
+</html>
